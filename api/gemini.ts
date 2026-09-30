@@ -30,11 +30,13 @@ Clients: Crack UPSC Exams, Salman BLC Interior Coach, Skyline Graphics, Ranking 
 Tone: Direct, human, helpful, professional. Always answer in 2-3 crisp sentences.
 If client wants to book or connect, their email is strictly required along with their name so the Symmetry team can confirm details.`;
 
-    // Valid Google Generative AI production models (v1beta)
+    // Verified working Google Generative AI production models (v1beta)
     const models = [
+      'models/gemini-3.8-flash',
+      'models/gemini-3.5-flash',
+      'models/gemini-3.5-flash-lite',
       'models/gemini-2.0-flash',
       'models/gemini-1.5-flash',
-      'models/gemini-1.5-flash-8b',
     ];
 
     const trimmedHistory = (history || []).slice(-2).map((h: any) => ({
