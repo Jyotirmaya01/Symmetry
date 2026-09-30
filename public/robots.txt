@@ -31,5 +31,5 @@ User-agent: DuckDuckBot
 Allow: /
 
 # Sitemap Index Link
-Sitemap: https://symmetryofficial.com/sitemap.xml
-Host: https://symmetryofficial.com
+Sitemap: https://symmetry-ochre.vercel.app/sitemap.xml
+Host: https://symmetry-ochre.vercel.app
