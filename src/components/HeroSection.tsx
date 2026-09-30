@@ -125,7 +125,7 @@ export default function HeroSection() {
       <div className="hero-video-container absolute inset-0 z-0 pointer-events-none overflow-hidden flex items-center justify-center will-change-transform transform-gpu">
         <video
           ref={videoRef}
-          src={getOptimizedMediaUrl('hero-bg.mp4', { isVideo: true })}
+          src={getOptimizedMediaUrl('Symmetry_compress.mp4', { isVideo: true })}
           autoPlay
           loop
           muted
@@ -133,8 +133,8 @@ export default function HeroSection() {
           preload="metadata"
           onError={(e) => {
             const target = e.currentTarget;
-            if (!target.src.endsWith('/hero-bg.mp4')) {
-              target.src = '/hero-bg.mp4';
+            if (!target.src.endsWith('/Symmetry_compress.mp4') && !target.src.endsWith('/hero-bg.mp4')) {
+              target.src = '/Symmetry_compress.mp4';
             }
           }}
           className="w-full h-full object-cover sm:object-contain max-h-[110vh] opacity-80"
