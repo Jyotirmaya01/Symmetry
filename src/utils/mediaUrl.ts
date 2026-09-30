@@ -71,7 +71,7 @@ export function getOptimizedMediaUrl(localPath: string, options?: { isVideo?: bo
   // Normalize path
   const cleanPath = localPath.startsWith('/') ? localPath.slice(1) : localPath;
 
-  const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+  const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME || 'mnosh6bi';
   const customCdnBase = import.meta.env.VITE_CDN_BASE_URL;
 
   // 1. If custom CDN base URL is configured
