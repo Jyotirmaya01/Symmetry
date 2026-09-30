@@ -229,8 +229,8 @@ export default function BentoServices() {
                       <div
                         className={`absolute inset-0 backface-hidden rounded-3xl p-7 flex flex-col justify-between border transition-all duration-500 ${
                           isCenter
-                            ? 'glass-panel border-white/35 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.95),0_0_35px_rgba(255,255,255,0.12)]'
-                            : 'bg-black/60 border-white/10 hover:border-white/20'
+                            ? 'bg-[#0f1118] border-white/35 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.95),0_0_35px_rgba(255,255,255,0.12)]'
+                            : 'bg-[#08090d]/90 border-white/10 hover:border-white/20'
                         }`}
                       >
                         {/* Chrome Shimmer Sheen on Center Card */}
@@ -290,7 +290,7 @@ export default function BentoServices() {
                       </div>
 
                       {/* ── CARD BACK (Flipped 180deg) ── */}
-                      <div className="absolute inset-0 backface-hidden rotate-y-180 glass-panel rounded-3xl p-7 flex flex-col justify-between border border-white/30 bg-[#08080a] shadow-2xl">
+                      <div className="absolute inset-0 backface-hidden rotate-y-180 bg-[#0c0e14] rounded-3xl p-7 flex flex-col justify-between border border-white/30 shadow-2xl">
                         <div>
                           <div className="flex items-center justify-between mb-3 pb-2.5 border-b border-white/10">
                             <span className="font-mono text-[11px] uppercase tracking-widest text-[#90909e]">

@@ -5,7 +5,7 @@
 // All cards include direct redirection to Project Archives on Google Drive
 // ─────────────────────────────────────────────
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Play, Pause, Volume2, VolumeX, Maximize2, Smartphone, Monitor, Video, ArrowUpRight, ExternalLink } from 'lucide-react';
 import { getOptimizedMediaUrl } from '@/utils/mediaUrl';
 
@@ -130,6 +130,29 @@ export default function AiVideoShowcase() {
   });
 
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Auto-pause any playing video when user scrolls away from this section
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting && playingId) {
+          const activeVideo = videoRefs.current[playingId];
+          if (activeVideo && !activeVideo.paused) {
+            activeVideo.pause();
+            setPlayingId(null);
+          }
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [playingId]);
 
   const togglePlay = (id: string, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
@@ -179,7 +202,7 @@ export default function AiVideoShowcase() {
   const horizontalVideos = filteredVideos.filter((v) => v.format === '16:9');
 
   return (
-    <section id="ai-videos" className="relative py-32 px-6 bg-[#030303] border-t border-white/5">
+    <section ref={sectionRef} id="ai-videos" className="relative py-32 px-6 bg-[#030303] border-t border-white/5">
       <div className="max-w-7xl mx-auto">
         {/* Header & Filter Controls */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 border-b border-white/10 pb-10">

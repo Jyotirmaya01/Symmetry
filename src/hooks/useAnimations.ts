@@ -79,6 +79,9 @@ export function useScrollPopAnimations() {
       });
     }, 200);
 
-    return () => clearTimeout(timeout);
+    return () => {
+      clearTimeout(timeout);
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
   }, []);
 }

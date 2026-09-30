@@ -22,14 +22,17 @@ export function useLenis() {
       return;
     }
 
+    const isTouch = window.matchMedia('(pointer: coarse)').matches;
+
     const lenis = new Lenis({
-      duration: 1.0,
+      duration: 0.9,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1.0,
-      touchMultiplier: 1.5,
+      wheelMultiplier: 0.95,
+      touchMultiplier: 1.0,
+      syncTouch: true,
       autoResize: true,
     });
 
@@ -43,9 +46,11 @@ export function useLenis() {
     };
 
     gsap.ticker.add(updateTicker);
+    gsap.ticker.lagSmoothing(0);
 
     return () => {
       gsap.ticker.remove(updateTicker);
+      gsap.ticker.lagSmoothing(500, 33);
       lenis.destroy();
       delete window.__lenis;
     };

@@ -19,22 +19,45 @@ export default function HeroSection() {
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
 
+  // Auto-pause video when scrolled out of view to free 100% GPU video decoding bandwidth
+  useEffect(() => {
+    const el = heroRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (videoRef.current) {
+          if (entry.isIntersecting) {
+            videoRef.current.play().catch(() => {});
+            setIsPlaying(true);
+          } else {
+            videoRef.current.pause();
+            setIsPlaying(false);
+          }
+        }
+      },
+      { threshold: 0.05 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const ctx = gsap.context(() => {
-      // Staggered entrance
+      // Staggered entrance — pure compositor transforms for instant 60fps
       gsap.fromTo(
         '.hero-stagger',
-        { y: 50, opacity: 0, filter: 'blur(10px)' },
+        { y: 40, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          filter: 'blur(0px)',
-          duration: 1.4,
-          stagger: 0.16,
+          duration: 1.1,
+          stagger: 0.12,
           ease: 'power3.out',
-          delay: 0.2,
+          delay: 0.1,
         }
       );
 
@@ -48,21 +71,21 @@ export default function HeroSection() {
           trigger: heroRef.current,
           start: 'top top',
           end: 'bottom top',
-          scrub: 0.5,
+          scrub: 0.4,
         },
       });
 
       // Video background slow cinematic drift on scroll (Hardware accelerated)
       gsap.to('.hero-video-container', {
-        y: 80,
-        scale: 1.08,
-        opacity: 0.3,
+        y: 60,
+        scale: 1.05,
+        opacity: 0.35,
         ease: 'none',
         scrollTrigger: {
           trigger: heroRef.current,
           start: 'top top',
           end: 'bottom top',
-          scrub: 0.6,
+          scrub: 0.5,
         },
       });
     }, heroRef);
