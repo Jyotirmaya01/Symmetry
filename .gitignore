@@ -28,5 +28,7 @@ dist
 # Large local media raw dumps (streamed via Cloudinary CDN)
 *.mp4
 *.mov
+!public/hero-bg.mp4
+!public/media/samsung-galaxy-s26.mp4
 Video Project 2.mp4
 scratch*
