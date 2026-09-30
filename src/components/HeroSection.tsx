@@ -38,32 +38,31 @@ export default function HeroSection() {
         }
       );
 
-      // Hero scroll parallax — elements recede SLOWLY and smoothly with luxury depth
+      // Hero scroll parallax — compositor-only transform & opacity (Zero repaints)
       gsap.to(contentRef.current, {
-        y: -140,
+        y: -120,
         opacity: 0,
-        filter: 'blur(8px)',
-        scale: 0.94,
+        scale: 0.95,
         ease: 'none',
         scrollTrigger: {
           trigger: heroRef.current,
           start: 'top top',
           end: 'bottom top',
-          scrub: 1.8, // Slow, weighted damping
+          scrub: 0.5,
         },
       });
 
-      // Video background slow cinematic drift on scroll
+      // Video background slow cinematic drift on scroll (Hardware accelerated)
       gsap.to('.hero-video-container', {
-        y: 120,
-        scale: 1.12,
-        opacity: 0.25,
+        y: 80,
+        scale: 1.08,
+        opacity: 0.3,
         ease: 'none',
         scrollTrigger: {
           trigger: heroRef.current,
           start: 'top top',
           end: 'bottom top',
-          scrub: 2.2, // Even slower drift for deep 3D separation
+          scrub: 0.6,
         },
       });
     }, heroRef);
@@ -100,7 +99,7 @@ export default function HeroSection() {
       className="relative min-h-screen flex flex-col justify-between items-center pt-28 pb-12 px-6 overflow-hidden bg-[#030303]"
     >
       {/* ── Background Video Container with Vignette ── */}
-      <div className="hero-video-container absolute inset-0 z-0 pointer-events-none overflow-hidden flex items-center justify-center">
+      <div className="hero-video-container absolute inset-0 z-0 pointer-events-none overflow-hidden flex items-center justify-center will-change-transform transform-gpu">
         <video
           ref={videoRef}
           src={getOptimizedMediaUrl('hero-bg.mp4', { isVideo: true })}

@@ -146,24 +146,8 @@ export default function MotionShowcase() {
               current.isVertical ? 'min-h-[580px] py-6' : 'aspect-video'
             }`}
           >
-            {/* Ambient Blurred Background Video for luxury atmosphere (Hidden on mobile to save GPU & bandwidth) */}
-            <video
-              key={`${current.id}-bg`}
-              src={getOptimizedMediaUrl(current.videoSrc, { isVideo: true })}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="none"
-              onError={(e) => {
-                const target = e.currentTarget;
-                const local = current.videoSrc.startsWith('/') ? current.videoSrc : `/${current.videoSrc}`;
-                if (!target.src.endsWith(local)) {
-                  target.src = local;
-                }
-              }}
-              className="hidden md:block absolute inset-0 w-full h-full object-cover blur-3xl opacity-20 scale-125 pointer-events-none"
-            />
+            {/* Ambient Lighting Atmosphere (Hardware accelerated zero-cost GPU glow) */}
+            <div className="hidden md:block absolute inset-0 w-full h-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.06)_0%,transparent_65%)] pointer-events-none" />
 
             {/* Video Container (Strictly 9:16 for vertical, 16:9 for landscape) */}
             <div
