@@ -25,6 +25,8 @@ dist
 *.sln
 *.sw?
 
-# Large local media raw dumps
+# Large local media raw dumps (streamed via Cloudinary CDN)
+*.mp4
+*.mov
 Video Project 2.mp4
 scratch*
