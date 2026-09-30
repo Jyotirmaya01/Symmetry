@@ -305,6 +305,13 @@ export default function AiVideoShowcase() {
                         muted={isMuted}
                         playsInline
                         preload="none"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          const local = item.videoSrc.startsWith('/') ? item.videoSrc : `/${item.videoSrc}`;
+                          if (!target.src.endsWith(local)) {
+                            target.src = local;
+                          }
+                        }}
                         className="w-full h-full object-cover"
                       />
 
@@ -452,6 +459,13 @@ export default function AiVideoShowcase() {
                           muted={isMuted}
                           playsInline
                           preload="none"
+                          onError={(e) => {
+                            const target = e.currentTarget;
+                            const local = item.videoSrc.startsWith('/') ? item.videoSrc : `/${item.videoSrc}`;
+                            if (!target.src.endsWith(local)) {
+                              target.src = local;
+                            }
+                          }}
                           className="w-full h-full object-cover"
                         />
 

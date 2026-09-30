@@ -155,6 +155,13 @@ export default function MotionShowcase() {
               muted
               playsInline
               preload="none"
+              onError={(e) => {
+                const target = e.currentTarget;
+                const local = current.videoSrc.startsWith('/') ? current.videoSrc : `/${current.videoSrc}`;
+                if (!target.src.endsWith(local)) {
+                  target.src = local;
+                }
+              }}
               className="hidden md:block absolute inset-0 w-full h-full object-cover blur-3xl opacity-20 scale-125 pointer-events-none"
             />
 
@@ -174,6 +181,13 @@ export default function MotionShowcase() {
                 muted={isMuted}
                 playsInline
                 preload="metadata"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  const local = current.videoSrc.startsWith('/') ? current.videoSrc : `/${current.videoSrc}`;
+                  if (!target.src.endsWith(local)) {
+                    target.src = local;
+                  }
+                }}
                 className={`w-full h-full ${current.isVertical ? 'object-cover' : 'object-contain'} bg-black`}
               />
 

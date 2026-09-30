@@ -109,6 +109,12 @@ export default function HeroSection() {
           muted
           playsInline
           preload="metadata"
+          onError={(e) => {
+            const target = e.currentTarget;
+            if (!target.src.endsWith('/hero-bg.mp4')) {
+              target.src = '/hero-bg.mp4';
+            }
+          }}
           className="w-full h-full object-cover sm:object-contain max-h-[110vh] opacity-80"
         />
 
