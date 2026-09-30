@@ -60,7 +60,7 @@ export default function Footer() {
                 { name: 'AI Commercials', href: '/#ai-videos' },
                 { name: 'Project Vault (Drive)', href: '/#vault' },
                 { name: 'Process', href: '/#process' },
-                { name: 'Impact', href: '/#impact' },
+                { name: 'Impact & Reviews', href: '/#impact' },
                 { name: 'Contact', href: '/#contact' },
               ].map((item) => (
                 <li key={item.name}>
@@ -72,6 +72,15 @@ export default function Footer() {
                   </a>
                 </li>
               ))}
+              <li>
+                <button
+                  type="button"
+                  onClick={() => window.dispatchEvent(new CustomEvent('symmetry:open-review-modal'))}
+                  className="hover:text-white text-emerald-400/90 transition-colors cursor-pointer text-left flex items-center gap-1.5"
+                >
+                  <span>★ Leave a Review</span>
+                </button>
+              </li>
             </ul>
           </div>
 

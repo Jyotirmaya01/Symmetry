@@ -68,7 +68,7 @@ export default function Navbar() {
             { name: 'AI Videos', id: 'ai-videos' },
             { name: 'Vault', id: 'vault' },
             { name: 'Process', id: 'process' },
-            { name: 'Impact', id: 'impact' },
+            { name: 'Reviews', id: 'impact' },
           ].map((item) => (
             <button
               key={item.id}
@@ -120,7 +120,7 @@ export default function Navbar() {
             { name: 'AI Videos', id: 'ai-videos' },
             { name: 'Vault', id: 'vault' },
             { name: 'Process', id: 'process' },
-            { name: 'Impact', id: 'impact' },
+            { name: 'Reviews', id: 'impact' },
           ].map((item) => (
             <button
               key={item.id}
