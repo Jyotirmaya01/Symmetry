@@ -4,8 +4,17 @@
 // ─────────────────────────────────────────────
 
 export default async function handler(req: any, res: any) {
+  // CORS & Preflight handling
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    return res.status(200).json({ status: 'ready', service: 'Symmetry AI Assistant' });
   }
 
   const defaultAssistantReply = 
@@ -13,7 +22,6 @@ export default async function handler(req: any, res: any) {
 
   const key = process.env.GEMINI_API_KEY;
   if (!key) {
-    // Graceful 200 OK fallback so Vercel function error rate stays at 0%
     return res.status(200).json({ 
       text: defaultAssistantReply,
       model: 'symmetry-studio-agent',
@@ -22,7 +30,16 @@ export default async function handler(req: any, res: any) {
   }
 
   try {
-    const { prompt, history = [] } = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+    let body = req.body;
+    if (typeof body === 'string') {
+      try {
+        body = JSON.parse(body);
+      } catch {
+        body = {};
+      }
+    }
+    body = body || {};
+    const { prompt = '', history = [] } = body;
 
     const systemInstruction = `You are AJ, an AI assistant working at Symmetry (luxury video commercials, 3D motion graphics, brand identity, websites).
 Symmetry Team: Connect clients directly with the Symmetry team. Turnaround: 48-72h project delivery.
