@@ -1,0 +1,35 @@
+# ==========================================
+# SYMMETRY — Modern Search Engine Robots File
+# https://symmetryofficial.com
+# ==========================================
+
+User-agent: *
+Allow: /
+Allow: /media/
+Allow: /sitemap.xml
+
+# Protect internal API proxy routes
+Disallow: /api/
+Disallow: /api/*
+
+# Google, Bing, Apple, DuckDuckGo specific directives
+User-agent: Googlebot
+Allow: /
+Allow: /*.js$
+Allow: /*.css$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.mp4$
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Sitemap Index Link
+Sitemap: https://symmetryofficial.com/sitemap.xml
+Host: https://symmetryofficial.com

@@ -1,0 +1,173 @@
+/* ─────────────────────────────────────────────
+   SYMMETRY — Global Design System & Styling
+   Tailwind CSS v4 + Obsidian Chrome Tokens
+   ───────────────────────────────────────────── */
+
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-dark: #030303;
+    --bg-surface: #0a0a0b;
+    --bg-card: rgba(18, 18, 20, 0.65);
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-glow: rgba(255, 255, 255, 0.2);
+    --text-primary: #f5f5f7;
+    --text-secondary: #9e9ea7;
+    --text-muted: #64646e;
+    --chrome-bright: #ffffff;
+    --chrome-silver: #c0c0c8;
+    --chrome-steel: #8e8e99;
+    --laser-beam: #ffffff;
+  }
+
+  html {
+    scroll-behavior: auto; /* Lenis handles smooth scrolling */
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    background-color: var(--bg-dark);
+    overflow-x: hidden;
+    position: relative;
+  }
+}
+
+/* Custom Typography & Utility Classes */
+.font-display {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+}
+
+.font-body {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Chrome Shimmer Gradient Text */
+.chrome-text {
+  background: linear-gradient(135deg, #ffffff 0%, #d8d8e2 35%, #888894 70%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.chrome-glow {
+  text-shadow: 0 0 25px rgba(255, 255, 255, 0.35);
+}
+
+/* Glassmorphism Panel */
+.glass-panel {
+  background: rgba(12, 12, 14, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+}
+
+.glass-panel-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(20, 20, 24, 0.8);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.85), 0 0 35px rgba(255, 255, 255, 0.08);
+}
+
+/* Radial Edge Vignette to blend background video into pure black */
+.video-vignette {
+  background: radial-gradient(
+    circle at center,
+    transparent 35%,
+    rgba(3, 3, 3, 0.4) 65%,
+    #030303 95%
+  );
+}
+
+/* Subtle Laser Vertical Beam Motif */
+.laser-line {
+  position: absolute;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 255, 255, 0.4) 20%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(255, 255, 255, 0.4) 80%,
+    transparent
+  );
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+/* Cybernetic Grid Overlay */
+.grid-overlay {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── 3D Rotating Flashcard Styles ── */
+.perspective-1000 {
+  perspective: 1200px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.card-flipped {
+  transform: rotateY(180deg);
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #030303;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* Security Anomaly Shake Animation */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  15%, 45%, 75% { transform: translateX(-8px); }
+  30%, 60%, 90% { transform: translateX(8px); }
+}
+
+.animate-shake {
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* Mobile Input Ergonomics: Prevent iOS Safari auto-zoom on input focus */
+@media (max-width: 640px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Touch & Tap Target Ergonomics */
+button, a {
+  touch-action: manipulation;
+}
