@@ -14,8 +14,10 @@ const MotionShowcase = lazy(() => import('@/components/MotionShowcase'));
 const AiVideoShowcase = lazy(() => import('@/components/AiVideoShowcase'));
 const ProjectVaultSection = lazy(() => import('@/components/ProjectVaultSection'));
 const SymmetryProcess = lazy(() => import('@/components/SymmetryProcess'));
+const AiStackSection = lazy(() => import('@/components/AiStackSection'));
 const ClientImpact = lazy(() => import('@/components/ClientImpact'));
 const CTASection = lazy(() => import('@/components/CTASection'));
+const CarbonAd = lazy(() => import('@/components/CarbonAd'));
 
 export default function HomePage() {
   // Activate scroll-triggered staggered pop animations for icons and cards
@@ -48,13 +50,23 @@ export default function HomePage() {
           {/* 6. The 4-Stage Symmetry Protocol */}
           <SymmetryProcess />
 
-          {/* 7. Enterprise Outcomes & Verified Testimonials */}
+          {/* 7. Curated AI Production Arsenal & Tech Stack (Affiliate Engine) */}
+          <AiStackSection />
+
+          {/* 8. Enterprise Outcomes & Verified Testimonials */}
           <ClientImpact />
 
-          {/* 8. Grand CTA & Direct Project Inquiry Form */}
+          {/* 9. Grand CTA & Direct Project Inquiry Form */}
           <CTASection />
         </Suspense>
       </main>
+
+      {/* Discreet Carbon Ads Placement (Floating corner on desktop with dismissal) */}
+      <Suspense fallback={null}>
+        <div className="fixed bottom-6 right-6 z-40 hidden xl:block">
+          <CarbonAd />
+        </div>
+      </Suspense>
 
       {/* Global Footer */}
       <Footer />

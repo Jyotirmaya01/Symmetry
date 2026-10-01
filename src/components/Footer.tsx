@@ -65,6 +65,7 @@ export default function Footer() {
                 { name: 'AI Commercials', href: '/#ai-videos' },
                 { name: 'Project Vault (Drive)', href: '/#vault' },
                 { name: 'Process', href: '/#process' },
+                { name: 'AI Production Stack', href: '/#ai-stack' },
                 { name: 'Impact & Reviews', href: '/#impact' },
                 { name: 'Contact', href: '/#contact' },
               ].map((item) => (
