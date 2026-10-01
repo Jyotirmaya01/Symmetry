@@ -52,7 +52,7 @@ export default function ProjectVaultSection() {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-widest text-[#9e9ea7] mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-widest text-[#b4b4c0] mb-4">
             <HardDrive className="w-3.5 h-3.5 text-white" />
             <span>CLOUD ARCHIVE & REPOSITORY ACCESS</span>
           </div>
@@ -61,7 +61,7 @@ export default function ProjectVaultSection() {
             CLIENT PROJECT VAULT // <span className="chrome-text">RAW 4K ARCHIVE</span>
           </h2>
 
-          <p className="font-body text-[#9e9ea7] text-sm sm:text-base leading-relaxed mb-8">
+          <p className="font-body text-[#b4b4c0] text-sm sm:text-base leading-relaxed mb-8">
             Access our private production directory containing full-resolution 4K ProRes deliverables, raw C4D/After Effects project scenes, and neural prompt pipelines across all commercial engagements.
           </p>
 
@@ -86,6 +86,7 @@ export default function ProjectVaultSection() {
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`Open Google Drive repository for ${item.title}`}
               className="glass-panel rounded-3xl p-6 sm:p-8 border border-white/15 hover:border-white/40 transition-all duration-300 group relative flex flex-col justify-between overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:-translate-y-1 cursor-pointer"
             >
               {/* Corner Ambient Shine */}
@@ -93,12 +94,12 @@ export default function ProjectVaultSection() {
 
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-mono uppercase tracking-wider text-[#a0a0b0]">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-mono uppercase tracking-wider text-[#b0b0c0]">
                     <Compass className="w-3 h-3 text-white" />
                     <span>{item.tag}</span>
                   </span>
 
-                  <span className="font-mono text-[10px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full">
+                  <span className="font-mono text-[10px] text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full font-semibold">
                     {item.badge}
                   </span>
                 </div>
@@ -108,14 +109,14 @@ export default function ProjectVaultSection() {
                   <ArrowUpRight className="w-5 h-5 text-white/50 group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all flex-shrink-0 ml-2" />
                 </h3>
 
-                <p className="font-body text-xs sm:text-sm text-[#9494a2] leading-relaxed mb-6">
+                <p className="font-body text-xs sm:text-sm text-[#a8a8b8] leading-relaxed mb-6">
                   {item.description}
                 </p>
               </div>
 
               <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono">
-                <span className="text-[#7a7a88] flex items-center gap-1.5">
-                  <Layers className="w-3.5 h-3.5 text-[#9a9aa8]" />
+                <span className="text-[#a0a0b0] flex items-center gap-1.5">
+                  <Layers className="w-3.5 h-3.5 text-[#b0b0c0]" />
                   <span>{item.deliverables}</span>
                 </span>
 
@@ -132,7 +133,7 @@ export default function ProjectVaultSection() {
         <div className="mt-12 p-6 rounded-2xl bg-white/[0.02] border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <div className="flex items-center gap-3">
             <ShieldCheck className="w-5 h-5 text-emerald-400 flex-shrink-0" />
-            <p className="font-mono text-xs text-[#8c8c9a]">
+            <p className="font-mono text-xs text-[#a5a5b5]">
               All client files are hosted on Google Cloud enterprise storage with high-speed uncompressed bandwidth and lifetime link persistence.
             </p>
           </div>
@@ -141,6 +142,7 @@ export default function ProjectVaultSection() {
             href={MASTER_DRIVE_URL}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Open master Google Drive folder containing all client deliverables"
             className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-white hover:text-white/80 whitespace-nowrap"
           >
             <span>Direct Folder Link</span>

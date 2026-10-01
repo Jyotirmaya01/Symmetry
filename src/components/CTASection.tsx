@@ -397,7 +397,7 @@ export default function CTASection() {
           <div className="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
 
           {/* Live Telemetry Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pb-6 mb-8 border-b border-white/10 text-[11px] font-mono text-[#8a8a9a]">
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-6 mb-8 border-b border-white/10 text-[11px] font-mono text-[#b4b4c6]">
             <div className="flex items-center gap-2">
               <Shield className="w-3.5 h-3.5 text-emerald-400" />
               <span>TLS 1.3 ENCRYPTED GATEWAY</span>
@@ -416,7 +416,7 @@ export default function CTASection() {
             {/* Left Copy, Calendly Direct Access & Studio Verification */}
             <div className="lg:col-span-5 flex flex-col justify-between">
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-widest text-[#9e9ea7] mb-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-widest text-[#b4b4c0] mb-6">
                   <Compass className="w-3.5 h-3.5 text-white" />
                   <span>DIRECT STUDIO INQUIRY</span>
                 </div>
@@ -425,7 +425,7 @@ export default function CTASection() {
                   READY TO ELEVATE YOUR <span className="chrome-text">BRAND REALM?</span>
                 </h2>
 
-                <p className="font-body text-[#9e9ea7] text-sm sm:text-base leading-relaxed mb-6">
+                <p className="font-body text-[#b4b4c0] text-sm sm:text-base leading-relaxed mb-6">
                   Collaborate directly with our creative directors and technical leads. We architect custom visual campaigns, cinema-grade product films, and high-velocity digital ecosystems.
                 </p>
 
@@ -436,12 +436,12 @@ export default function CTASection() {
                       <Calendar className="w-3.5 h-3.5" />
                       <span>Priority 1-on-1 Access</span>
                     </span>
-                    <span className="text-[10px] font-mono text-[#8a8a9a]">Instant Sync</span>
+                    <span className="text-[10px] font-mono text-[#b4b4c6]">Instant Sync</span>
                   </div>
                   <h3 className="font-display font-bold text-base text-white mb-1.5">
                     Schedule a 30-Minute Consultation
                   </h3>
-                  <p className="font-body text-xs text-[#9a9aa8] leading-relaxed mb-4">
+                  <p className="font-body text-xs text-[#b4b4c2] leading-relaxed mb-4">
                     Reserve a direct session on our directors' calendar to review your commercial brief or motion graphics pipeline.
                   </p>
                   <a
@@ -457,10 +457,10 @@ export default function CTASection() {
               </div>
 
               {/* Direct Email, Channels & Security Guarantees */}
-              <div className="space-y-3 pt-6 border-t border-white/10 text-xs font-mono text-[#a2a2af]">
+              <div className="space-y-3 pt-6 border-t border-white/10 text-xs font-mono text-[#b4b4c6]">
                 <div className="flex items-center justify-between">
-                  <span className="text-[#787886] flex items-center gap-1.5">
-                    <Mail className="w-3.5 h-3.5 text-white/50" />
+                  <span className="text-[#b4b4c6] flex items-center gap-1.5">
+                    <Mail className="w-3.5 h-3.5 text-white/70" />
                     <span>Direct Inquiries:</span>
                   </span>
                   <a href="mailto:symmetryofficial1@gmail.com" className="text-white hover:underline font-medium">
@@ -469,7 +469,7 @@ export default function CTASection() {
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <span className="text-[#787886]">Instagram:</span>
+                  <span className="text-[#b4b4c6]">Instagram:</span>
                   <a
                     href="https://www.instagram.com/symmetry_official_?stkn=aHUzajRrNmc2ZTR1"
                     target="_blank"
@@ -482,7 +482,7 @@ export default function CTASection() {
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <span className="text-[#787886]">YouTube:</span>
+                  <span className="text-[#b4b4c6]">YouTube:</span>
                   <a
                     href="https://youtube.com/@symmetry_official?si=_Pl3vL63HxJBorQj"
                     target="_blank"
@@ -494,8 +494,8 @@ export default function CTASection() {
                   </a>
                 </div>
 
-                <div className="flex items-center gap-3 pt-3 text-[11px] text-[#70707e]">
-                  <Lock className="w-3.5 h-3.5 text-white/40 flex-shrink-0" />
+                <div className="flex items-center gap-3 pt-3 text-[11px] text-[#b4b4c6]">
+                  <Lock className="w-3.5 h-3.5 text-white/70 flex-shrink-0" />
                   <span>Strict enterprise Non-Disclosure Agreement (NDA) & rapid turnaround</span>
                 </div>
               </div>
@@ -583,14 +583,14 @@ export default function CTASection() {
                     {loadingStep === 4 && 'Transmission Confirmed!'}
                   </h3>
 
-                  <p className="font-mono text-xs text-[#8c8c9e] max-w-sm leading-relaxed mb-6">
+                  <p className="font-mono text-xs text-[#b0b0c2] max-w-sm leading-relaxed mb-6">
                     {loadingStep === 1 && 'Applying quantum-resistant 256-bit encryption payload.'}
                     {loadingStep === 2 && `Validating cross-reference with node ${detectedTimezone}.`}
                     {loadingStep === 3 && 'Signing project brief into secure enterprise ledger.'}
                     {loadingStep === 4 && 'Complete. Opening secure client session.'}
                   </p>
 
-                  <div className="flex items-center gap-2 text-[10px] font-mono text-[#6c6c78]">
+                  <div className="flex items-center gap-2 text-[10px] font-mono text-[#c2c2d2]">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
                     <span>ZERO-KNOWLEDGE AUTHENTICATION</span>
                   </div>
@@ -604,7 +604,7 @@ export default function CTASection() {
                   <h3 className="font-display font-bold text-2xl text-white mb-2">
                     Transmission Authenticated
                   </h3>
-                  <p className="font-body text-sm text-[#a2a2b0] max-w-md mb-8 leading-relaxed">
+                  <p className="font-body text-sm text-[#b8b8c6] max-w-md mb-8 leading-relaxed">
                     Thank you, {formData.name}. Your details have passed security integrity checks. A creative technology director will reach out via <span className="text-white font-semibold">{formData.email}</span> or <span className="text-white font-semibold">{selectedCountry.dialCode} {formData.phone}</span> within 4 business hours.
                   </p>
                   <button
@@ -646,28 +646,34 @@ export default function CTASection() {
                   {/* Name and Work Email */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-[#8a8a98] mb-1.5">
+                      <label htmlFor="inquiry-name" className="block text-xs font-mono uppercase tracking-wider text-[#b4b4c4] mb-1.5">
                         Your Full Name *
                       </label>
                       <input
+                        id="inquiry-name"
+                        name="name"
                         type="text"
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. Alex Morgan"
+                        autoComplete="name"
                         className="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/15 focus:border-white focus:outline-none text-white text-sm font-body transition-colors"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-[#8a8a98] mb-1.5">
+                      <label htmlFor="inquiry-email" className="block text-xs font-mono uppercase tracking-wider text-[#b4b4c4] mb-1.5">
                         Verified Work Email *
                       </label>
                       <input
+                        id="inquiry-email"
+                        name="email"
                         type="email"
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="alex@company.com"
+                        autoComplete="email"
                         className="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/15 focus:border-white focus:outline-none text-white text-sm font-body transition-colors"
                       />
                     </div>
@@ -675,7 +681,7 @@ export default function CTASection() {
 
                   {/* International Phone with Country Code Selector */}
                   <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-[#8a8a98] mb-1.5">
+                    <label htmlFor="inquiry-phone" className="block text-xs font-mono uppercase tracking-wider text-[#b4b4c4] mb-1.5">
                       Phone Number & Country Code *
                     </label>
                     <div className="flex gap-2">
@@ -683,6 +689,9 @@ export default function CTASection() {
                       <div className="relative" ref={dropdownRef}>
                         <button
                           type="button"
+                          aria-label={`Selected country dial code: ${selectedCountry.name} ${selectedCountry.dialCode}. Click to change.`}
+                          aria-haspopup="listbox"
+                          aria-expanded={countryDropdownOpen}
                           onClick={() => setCountryDropdownOpen(!countryDropdownOpen)}
                           className="h-full px-3.5 py-3 rounded-xl bg-black/60 border border-white/15 hover:border-white/30 text-white text-sm font-mono flex items-center gap-2 transition-colors cursor-pointer"
                         >
@@ -697,6 +706,9 @@ export default function CTASection() {
                             <div className="p-2.5 border-b border-white/10 flex items-center gap-2 bg-black/50">
                               <Search className="w-3.5 h-3.5 text-white/50" />
                               <input
+                                id="country-search-input"
+                                name="countrySearch"
+                                aria-label="Search country or international dialing code"
                                 type="text"
                                 value={countrySearch}
                                 onChange={(e) => setCountrySearch(e.target.value)}
@@ -705,11 +717,13 @@ export default function CTASection() {
                                 autoFocus
                               />
                             </div>
-                            <div className="overflow-y-auto flex-1 p-1.5 space-y-0.5">
+                            <div className="overflow-y-auto flex-1 p-1.5 space-y-0.5" role="listbox">
                               {filteredCountries.map((c) => (
                                 <button
                                   key={c.code}
                                   type="button"
+                                  role="option"
+                                  aria-selected={selectedCountry.code === c.code}
                                   onClick={() => {
                                     setSelectedCountry(c);
                                     setFormData({ ...formData, countryCode: c.dialCode });
@@ -722,11 +736,11 @@ export default function CTASection() {
                                     <span className="text-base">{c.flag}</span>
                                     <span>{c.name}</span>
                                   </span>
-                                  <span className="text-[#8c8c9a]">{c.dialCode}</span>
+                                  <span className="text-[#b0b0be]">{c.dialCode}</span>
                                 </button>
                               ))}
                               {filteredCountries.length === 0 && (
-                                <p className="p-3 text-center text-xs font-mono text-[#8a8a9a]">
+                                <p className="p-3 text-center text-xs font-mono text-[#b4b4c6]">
                                   No country found
                                 </p>
                               )}
@@ -738,11 +752,15 @@ export default function CTASection() {
                       {/* Phone input */}
                       <div className="relative flex-1">
                         <input
+                          id="inquiry-phone"
+                          name="phone"
                           type="tel"
                           required
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                           placeholder="e.g. 98765 43210"
+                          autoComplete="tel"
+                          aria-label="Direct Phone Number"
                           className="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/15 focus:border-white focus:outline-none text-white text-sm font-body transition-colors"
                         />
                         <Phone className="w-4 h-4 text-white/30 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -753,27 +771,33 @@ export default function CTASection() {
                   {/* Company and Operating City / Location */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-[#8a8a98] mb-1.5">
+                      <label htmlFor="inquiry-company" className="block text-xs font-mono uppercase tracking-wider text-[#b4b4c4] mb-1.5">
                         Company / Brand Name
                       </label>
                       <input
+                        id="inquiry-company"
+                        name="company"
                         type="text"
                         value={formData.company}
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                         placeholder="e.g. Apex Luxury"
+                        autoComplete="organization"
                         className="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/15 focus:border-white focus:outline-none text-white text-sm font-body transition-colors"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-[#8a8a98] mb-1.5">
+                      <label htmlFor="inquiry-location" className="block text-xs font-mono uppercase tracking-wider text-[#b4b4c4] mb-1.5">
                         Operating City / Region *
                       </label>
                       <input
+                        id="inquiry-location"
+                        name="location"
                         type="text"
                         required
                         value={formData.location}
                         onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                         placeholder="e.g. London, New York, Mumbai"
+                        autoComplete="address-level2"
                         className="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/15 focus:border-white focus:outline-none text-white text-sm font-body transition-colors"
                       />
                     </div>
@@ -782,7 +806,7 @@ export default function CTASection() {
                   {/* Solution Selector */}
                   <div>
                     <div className="flex items-center justify-between mb-1.5">
-                      <label className="block text-xs font-mono uppercase tracking-wider text-[#8a8a98]">
+                      <label id="inquiry-service-label" htmlFor="inquiry-service" className="block text-xs font-mono uppercase tracking-wider text-[#b4b4c6]">
                         Select Creative Service *
                       </label>
                       <span className="text-[10px] font-mono text-cyan-400">
@@ -790,6 +814,12 @@ export default function CTASection() {
                       </span>
                     </div>
                     <select
+                      id="inquiry-service"
+                      name="service"
+                      title="Select Creative Service"
+                      aria-labelledby="inquiry-service-label"
+                      aria-label="Select Creative Service"
+                      aria-required="true"
                       value={formData.service}
                       onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/15 focus:border-white focus:outline-none text-white text-sm font-body transition-colors cursor-pointer"
@@ -808,16 +838,18 @@ export default function CTASection() {
                     {/* Dynamic Custom Service Input if "Other" is selected */}
                     {formData.service === 'Other' && (
                       <div className="mt-2.5 animate-in fade-in slide-in-from-top-1 duration-200">
-                        <label className="block text-[11px] font-mono text-cyan-300 mb-1 flex items-center gap-1.5">
+                        <label htmlFor="inquiry-custom-service" className="block text-[11px] font-mono text-cyan-300 mb-1 flex items-center gap-1.5">
                           <span>Please tell us what you need:</span>
                         </label>
                         <input
+                          id="inquiry-custom-service"
+                          name="customService"
                           type="text"
                           required
                           value={formData.customService}
                           onChange={(e) => setFormData({ ...formData, customService: e.target.value })}
                           placeholder="e.g. YouTube video editing, 3D logo spin, course trailer, etc."
-                          className="w-full px-4 py-2.5 rounded-xl bg-cyan-950/20 border border-cyan-500/40 focus:border-cyan-400 focus:outline-none text-white text-sm font-body transition-colors placeholder:text-white/40"
+                          className="w-full px-4 py-2.5 rounded-xl bg-cyan-950/20 border border-cyan-500/40 focus:border-cyan-400 focus:outline-none text-white text-sm font-body transition-colors placeholder:text-[#9a9aa8]"
                         />
                       </div>
                     )}
@@ -825,10 +857,12 @@ export default function CTASection() {
 
                   {/* Message */}
                   <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-[#8a8a98] mb-1.5">
+                    <label htmlFor="inquiry-message" className="block text-xs font-mono uppercase tracking-wider text-[#b4b4c4] mb-1.5">
                       Project Goals & Deliverables
                     </label>
                     <textarea
+                      id="inquiry-message"
+                      name="message"
                       rows={3}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -841,6 +875,7 @@ export default function CTASection() {
                   <button
                     type="submit"
                     disabled={isRateLimited}
+                    aria-label="Request Verified Strategic Proposal"
                     className={`w-full py-4 rounded-xl font-display font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-xl cursor-pointer ${
                       isRateLimited
                         ? 'bg-neutral-800 text-neutral-500 cursor-not-allowed border border-white/5'
@@ -854,7 +889,7 @@ export default function CTASection() {
                   </button>
 
                   <div className="text-center pt-2">
-                    <span className="text-[10px] font-mono text-[#666675]">
+                    <span className="text-[10px] font-mono text-[#b4b4c6]">
                       Protected by Symmetry Threat Matrix • Fake / Spoofed Submissions Automatically Quarantined
                     </span>
                   </div>

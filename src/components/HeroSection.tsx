@@ -125,20 +125,24 @@ export default function HeroSection() {
       <div className="hero-video-container absolute inset-0 z-0 pointer-events-none overflow-hidden flex items-center justify-center will-change-transform transform-gpu">
         <video
           ref={videoRef}
-          src={getOptimizedMediaUrl('Symmetry_compress.mp4', { isVideo: true })}
+          src={getOptimizedMediaUrl('Symmetry_Most_compressed.mp4', { isVideo: true })}
           autoPlay
           loop
           muted
           playsInline
           preload="metadata"
+          aria-label="Symmetry 3D cinematic motion reel showcase"
+          title="Symmetry 3D motion showcase"
           onError={(e) => {
             const target = e.currentTarget;
-            if (!target.src.endsWith('/Symmetry_compress.mp4') && !target.src.endsWith('/hero-bg.mp4')) {
-              target.src = '/Symmetry_compress.mp4';
+            if (!target.src.endsWith('/Symmetry_Most_compressed.mp4') && !target.src.endsWith('/Symmetry_compress.mp4')) {
+              target.src = '/Symmetry_Most_compressed.mp4';
             }
           }}
           className="w-full h-full object-cover sm:object-contain max-h-[110vh] opacity-80"
-        />
+        >
+          <track kind="captions" src="data:text/vtt,WEBVTT" label="English" srcLang="en" default />
+        </video>
 
         {/* Ambient Radial Vignette — Blends edges to pure pitch black */}
         <div className="absolute inset-0 video-vignette pointer-events-none" />
@@ -154,6 +158,7 @@ export default function HeroSection() {
       <div className="relative z-20 w-full max-w-7xl mx-auto flex justify-end gap-3 mb-4">
         <button
           onClick={toggleSound}
+          aria-label={isMuted ? 'Unmute Audio' : 'Mute Audio'}
           className="group flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 border border-white/15 backdrop-blur-md text-[#c0c0cb] hover:text-white hover:border-white/40 transition-all text-xs font-mono cursor-pointer"
           title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
         >
@@ -163,6 +168,7 @@ export default function HeroSection() {
 
         <button
           onClick={togglePlay}
+          aria-label={isPlaying ? 'Pause Background Reel' : 'Play Background Reel'}
           className="group flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 border border-white/15 backdrop-blur-md text-[#c0c0cb] hover:text-white hover:border-white/40 transition-all text-xs font-mono cursor-pointer"
           title={isPlaying ? 'Pause Reel' : 'Play Reel'}
         >
@@ -221,19 +227,19 @@ export default function HeroSection() {
         <div className="hero-stagger grid grid-cols-2 md:grid-cols-3 gap-6 sm:gap-10 mt-14 pt-10 border-t border-white/10 w-full max-w-3xl">
           <div className="flex flex-col items-center">
             <span className="font-display font-bold text-2xl sm:text-3xl text-white">4K ProRes</span>
-            <span className="font-mono text-[11px] text-[#848492] uppercase tracking-wider mt-1">
+            <span className="font-mono text-[11px] text-[#a5a5b5] uppercase tracking-wider mt-1">
               Master Deliverables
             </span>
           </div>
           <div className="flex flex-col items-center">
             <span className="font-display font-bold text-2xl sm:text-3xl text-white">9:16 & 16:9</span>
-            <span className="font-mono text-[11px] text-[#848492] uppercase tracking-wider mt-1">
+            <span className="font-mono text-[11px] text-[#a5a5b5] uppercase tracking-wider mt-1">
               Multi-Format Framing
             </span>
           </div>
           <div className="col-span-2 md:col-span-1 flex flex-col items-center">
             <span className="font-display font-bold text-2xl sm:text-3xl text-white">Bespoke</span>
-            <span className="font-mono text-[11px] text-[#848492] uppercase tracking-wider mt-1">
+            <span className="font-mono text-[11px] text-[#a5a5b5] uppercase tracking-wider mt-1">
               Custom Craft Direction
             </span>
           </div>
@@ -242,7 +248,7 @@ export default function HeroSection() {
 
       {/* ── Bottom Brand Pillars Ticker & Scroll Indicator ── */}
       <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-white/5">
-        <div className="flex items-center gap-3 text-[11px] font-mono tracking-widest text-[#727280] uppercase">
+        <div className="flex items-center gap-3 text-[11px] font-mono tracking-widest text-[#a5a5b5] uppercase">
           <span>IDEAS</span>
           <span className="text-white/30">•</span>
           <span>DESIGN</span>

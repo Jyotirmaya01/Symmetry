@@ -78,14 +78,19 @@ export function AjAvatar({
         {/* 3D Floating Robot Body Container */}
         <div
           className={`relative z-10 w-full h-full flex items-center justify-center transition-transform duration-700 ${
-            isSpeaking ? 'scale-105' : 'animate-[ajFloat_3.6s_easeInOut_infinite]'
+            isSpeaking ? 'scale-105' : 'animate-[ajFloat_3.6s_ease-in-out_infinite]'
           }`}
         >
-          <img
-            src="/media/aj-bot.png"
-            alt="AJ — Symmetry Autonomous Assistant"
-            className="w-full h-full object-contain filter contrast-[1.08] drop-shadow-[0_8px_20px_rgba(0,0,0,0.9)]"
-          />
+          <picture>
+            <source srcSet="/media/aj-bot.webp" type="image/webp" />
+            <img
+              src="/media/aj-bot.png"
+              alt="AJ — Symmetry Autonomous Assistant"
+              width="512"
+              height="285"
+              className="w-full h-full object-contain filter contrast-[1.08] drop-shadow-[0_8px_20px_rgba(0,0,0,0.9)]"
+            />
+          </picture>
 
           {/* Optic Laser Eye Glow Overlay */}
           <div className="absolute top-[28%] left-[58%] w-3.5 h-3.5 rounded-full bg-cyan-300 blur-[2px] opacity-80 animate-ping pointer-events-none" />
@@ -103,7 +108,7 @@ export function AjAvatar({
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           <span className="font-semibold tracking-wider">AJ // ONLINE</span>
           <span className="text-white/30">•</span>
-          <span className="text-[#9e9ea8]">
+          <span className="text-[#c2c2d2]">
             {isSpeaking ? 'SPEAKING' : isThinking ? 'THINKING...' : 'LIVE ASSISTANT'}
           </span>
         </div>
@@ -137,11 +142,16 @@ export function AjAvatar({
       {/* Frame Container */}
       <div className="relative w-full h-full rounded-2xl bg-[#090b14] border border-white/20 overflow-hidden shadow-[0_4px_16px_rgba(0,0,0,0.8)] flex items-center justify-center">
         {/* Cropped head of the robot */}
-        <img
-          src="/media/aj-bot.png"
-          alt="AJ Avatar"
-          className="w-full h-full object-cover object-[58%_20%] scale-[1.9] transition-transform duration-300"
-        />
+        <picture className="w-full h-full">
+          <source srcSet="/media/aj-bot.webp" type="image/webp" />
+          <img
+            src="/media/aj-bot.png"
+            alt="AJ Avatar"
+            width="512"
+            height="285"
+            className="w-full h-full object-cover object-[58%_20%] scale-[1.9] transition-transform duration-300"
+          />
+        </picture>
 
         {/* Live Optic Glint */}
         <div className="absolute top-[35%] left-[50%] w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_#38bdf8] pointer-events-none" />
@@ -816,7 +826,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                 <p className="font-display font-bold text-xs text-white leading-snug">
                   Hi, I'm AJ
                 </p>
-                <p className="font-body text-[11px] text-[#9090a2] mt-1 leading-relaxed">
+                <p className="font-body text-[11px] text-[#c2c2d2] mt-1 leading-relaxed">
                   Need details on our 4K video services or want to book a call in 1 click?
                 </p>
 
@@ -870,7 +880,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             </div>
-            <span className="font-mono text-[9px] text-[#8e8ea0] uppercase tracking-wider">
+            <span className="font-mono text-[9px] text-[#b4b4c4] uppercase tracking-wider">
               {isOpen ? 'Close' : 'Explore & Book'}
             </span>
           </div>
@@ -906,7 +916,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                     GEMINI LIVE
                   </span>
                 </div>
-                <p className="font-mono text-[10px] text-[#848496]">
+                <p className="font-mono text-[10px] text-[#b0b0c2]">
                   Symmetry Team Assistant • 48-72h Delivery
                 </p>
               </div>
@@ -921,6 +931,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                 }}
                 className="p-1.5 rounded-lg border border-white/15 text-white/60 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
                 title="Gemini Connection Settings"
+                aria-label="Gemini Connection Settings"
               >
                 <Key className="w-3.5 h-3.5 text-white" />
               </button>
@@ -939,6 +950,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                 }}
                 className="p-1.5 rounded-lg text-white/40 hover:text-white hover:bg-white/5 transition-colors cursor-pointer"
                 title="Reset Conversation"
+                aria-label="Reset Conversation"
               >
                 <RefreshCw className="w-3.5 h-3.5" />
               </button>
@@ -1034,25 +1046,25 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                       <div className="space-y-1.5 text-xs text-[#c0c0cb]">
                         {clientName && (
                           <div className="flex justify-between items-center">
-                            <span className="text-[#808090]">Name:</span>
+                            <span className="text-[#b0b0c0]">Name:</span>
                             <span className="text-white font-semibold">{clientName}</span>
                           </div>
                         )}
                         {clientPhone && (
                           <div className="flex justify-between items-center">
-                            <span className="text-[#808090]">Phone:</span>
+                            <span className="text-[#b0b0c0]">Phone:</span>
                             <span className="text-white font-semibold">{clientPhone}</span>
                           </div>
                         )}
                         {clientEmail && (
                           <div className="flex justify-between items-center">
-                            <span className="text-[#808090]">Email:</span>
+                            <span className="text-[#b0b0c0]">Email:</span>
                             <span className="text-white font-semibold">{clientEmail}</span>
                           </div>
                         )}
                         {clientService && (
                           <div className="flex justify-between items-center">
-                            <span className="text-[#808090]">Service:</span>
+                            <span className="text-[#b0b0c0]">Service:</span>
                             <span className="text-white font-medium truncate max-w-[190px]">
                               {clientService === 'Other'
                                 ? (clientCustomService ? `Other: ${clientCustomService}` : 'Other (Custom Request)')
@@ -1061,7 +1073,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                           </div>
                         )}
                         <div className="flex justify-between items-center">
-                          <span className="text-[#808090]">Slot:</span>
+                          <span className="text-[#b0b0c0]">Slot:</span>
                           <span className="text-white font-semibold">{selectedSlot}</span>
                         </div>
                       </div>
@@ -1087,7 +1099,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                                   setClientName(e.target.value);
                                   setBookingError(null);
                                 }}
-                                className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/15 text-[11px] font-mono text-white placeholder:text-white/40 focus:outline-none focus:border-white/50"
+                                className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/15 text-[11px] font-mono text-white placeholder:text-[#9a9aa8] focus:outline-none focus:border-white/50"
                               />
                             </div>
                           )}
@@ -1102,7 +1114,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                                   setClientEmail(e.target.value);
                                   setBookingError(null);
                                 }}
-                                className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/20 text-[11px] font-mono text-white placeholder:text-white/40 focus:outline-none focus:border-white/60"
+                                className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/20 text-[11px] font-mono text-white placeholder:text-[#9a9aa8] focus:outline-none focus:border-white/60"
                               />
                             </div>
                           )}
@@ -1117,7 +1129,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                                   setClientPhone(e.target.value);
                                   setBookingError(null);
                                 }}
-                                className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/15 text-[11px] font-mono text-white placeholder:text-white/40 focus:outline-none focus:border-white/50"
+                                className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/15 text-[11px] font-mono text-white placeholder:text-[#9a9aa8] focus:outline-none focus:border-white/50"
                               />
                             </div>
                           )}
@@ -1128,7 +1140,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                                 placeholder="Describe your custom project (e.g. YouTube edit, 3D promo)..."
                                 value={clientCustomService}
                                 onChange={(e) => setClientCustomService(e.target.value)}
-                                className="w-full px-3 py-2 rounded-xl bg-black/70 border border-white/20 text-[11px] font-mono text-white placeholder:text-white/40 focus:outline-none focus:border-white/60"
+                                className="w-full px-3 py-2 rounded-xl bg-black/70 border border-white/20 text-[11px] font-mono text-white placeholder:text-[#9a9aa8] focus:outline-none focus:border-white/60"
                               />
                             </div>
                           )}
@@ -1230,7 +1242,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                               setClientName(e.target.value);
                               setBookingError(null);
                             }}
-                            className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/15 text-[11px] font-mono text-white placeholder:text-white/40 focus:outline-none focus:border-white/60"
+                            className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/15 text-[11px] font-mono text-white placeholder:text-[#9a9aa8] focus:outline-none focus:border-white/60"
                           />
                         </div>
 
@@ -1244,7 +1256,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                               setClientEmail(e.target.value);
                               setBookingError(null);
                             }}
-                            className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/20 text-[11px] font-mono text-white placeholder:text-white/40 focus:outline-none focus:border-white/60"
+                            className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/20 text-[11px] font-mono text-white placeholder:text-[#9a9aa8] focus:outline-none focus:border-white/60"
                           />
                         </div>
 
@@ -1258,13 +1270,20 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                               setClientPhone(e.target.value);
                               setBookingError(null);
                             }}
-                            className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/15 text-[11px] font-mono text-white placeholder:text-white/40 focus:outline-none focus:border-white/60"
+                            className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/15 text-[11px] font-mono text-white placeholder:text-[#9a9aa8] focus:outline-none focus:border-white/60"
                           />
                         </div>
 
                         {/* Service selector with Other option */}
                         <div className="relative">
+                          <label id="bot-service-label" htmlFor="bot-booking-service" className="sr-only">
+                            Select Creative Service for Project Scoping
+                          </label>
                           <select
+                            id="bot-booking-service"
+                            name="bookingService"
+                            aria-labelledby="bot-service-label"
+                            aria-label="Select Creative Service for Project Scoping"
                             value={clientService}
                             onChange={(e) => setClientService(e.target.value)}
                             className="w-full px-3 py-2 rounded-xl bg-black/70 border border-white/15 text-[11px] font-mono text-white focus:outline-none focus:border-white/60 cursor-pointer"
@@ -1294,7 +1313,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                               placeholder="Describe your custom project or need..."
                               value={clientCustomService}
                               onChange={(e) => setClientCustomService(e.target.value)}
-                              className="w-full px-3 py-2 rounded-xl bg-black/70 border border-white/20 text-[11px] font-mono text-white placeholder:text-white/40 focus:outline-none focus:border-white/60"
+                              className="w-full px-3 py-2 rounded-xl bg-black/70 border border-white/20 text-[11px] font-mono text-white placeholder:text-[#9a9aa8] focus:outline-none focus:border-white/60"
                             />
                           </div>
                         )}
@@ -1328,7 +1347,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                         )}
                       </button>
 
-                      <p className="text-[9px] text-[#808090] font-mono text-center flex items-center justify-center gap-1.5">
+                      <p className="text-[9px] text-[#b0b0c0] font-mono text-center flex items-center justify-center gap-1.5">
                         <ShieldCheck className="w-3 h-3 text-emerald-400" />
                         <span>All bookings auto-synced into studio spreadsheet</span>
                       </p>
@@ -1352,7 +1371,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                   )}
                 </div>
 
-                <span className="font-mono text-[9px] text-[#606070] mt-1 px-1">
+                <span className="font-mono text-[9px] text-[#c2c2d2] mt-1 px-1">
                   {m.timestamp}
                 </span>
               </div>
@@ -1379,11 +1398,14 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
               className="flex items-center gap-2"
             >
               <input
+                id="aj-chat-input"
+                name="ajChatInput"
                 type="text"
                 placeholder="Ask AJ anything or say 'book call'..."
+                aria-label="Ask AJ anything or say 'book call'"
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
-                className="flex-1 px-4 py-2.5 rounded-xl bg-white/[0.05] border border-white/15 text-xs text-white placeholder:text-white/40 focus:outline-none focus:border-white/50 transition-colors"
+                className="flex-1 px-4 py-2.5 rounded-xl bg-white/[0.05] border border-white/15 text-xs text-white placeholder:text-[#9a9aa8] focus:outline-none focus:border-white/50 transition-colors"
               />
               <button
                 type="submit"
@@ -1417,7 +1439,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                 <h4 className="font-display font-bold text-sm text-white">
                   Gemini API Connected
                 </h4>
-                <p className="font-mono text-[10px] text-[#808092]">
+                <p className="font-mono text-[10px] text-[#b0b0c0]">
                   Live Multimodal Intelligence
                 </p>
               </div>
@@ -1432,7 +1454,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
               placeholder="Gemini API Key"
               value={tempKeyInput}
               onChange={(e) => setTempKeyInput(e.target.value)}
-              className="w-full px-3 py-2 rounded-xl bg-black/60 border border-white/20 text-xs font-mono text-white placeholder:text-white/30 focus:outline-none focus:border-white mb-3"
+              className="w-full px-3 py-2 rounded-xl bg-black/60 border border-white/20 text-xs font-mono text-white placeholder:text-[#9a9aa8] focus:outline-none focus:border-white mb-3"
             />
 
             <div className="flex items-center justify-end gap-2.5">

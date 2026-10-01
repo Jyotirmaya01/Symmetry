@@ -231,7 +231,7 @@ export default function ClientImpact() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-widest text-[#9e9ea7] mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-widest text-[#c2c2d2] mb-4">
               <ShieldCheck className="w-3.5 h-3.5 text-white" />
               <span>AUTHENTIC TESTIMONIALS & FEEDBACK</span>
             </div>
@@ -241,7 +241,7 @@ export default function ClientImpact() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            <p className="font-body text-[#9e9ea7] max-w-sm text-sm leading-relaxed">
+            <p className="font-body text-[#c2c2d2] max-w-sm text-sm leading-relaxed">
               Real brands, directors, and creators who trust Symmetry for cinema-grade motion.
             </p>
 
@@ -262,10 +262,10 @@ export default function ClientImpact() {
               <div className="font-display font-black text-2xl sm:text-3xl text-white mb-2 tracking-tight">
                 {item.value}
               </div>
-              <h4 className="font-display font-bold text-sm text-[#d4d4dc] mb-1">
+              <h3 className="font-display font-bold text-sm text-[#e0e0ec] mb-1">
                 {item.label}
-              </h4>
-              <span className="font-body text-xs text-[#80808e] leading-relaxed block">
+              </h3>
+              <span className="font-body text-xs text-[#a5a5b5] leading-relaxed block">
                 {item.note}
               </span>
             </div>
@@ -282,23 +282,27 @@ export default function ClientImpact() {
               <div>
                 {/* Header: Brand logo + name + verified status badge */}
                 <div className="flex items-start justify-between gap-3 mb-5">
-                  <div className="flex items-center gap-3 min-w-0">
+                  <a
+                    href={t.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={`Visit ${t.name} on Instagram`}
+                    aria-label={`Visit ${t.name} (${t.handle}) on Instagram`}
+                    className="flex items-center gap-3 min-w-0 group/author p-1 -m-1 rounded-xl hover:bg-white/[0.04] transition-colors"
+                  >
                     {/* Client Logo Image or Initials Badge */}
                     {t.logoSrc ? (
-                      <a
-                        href={t.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title={`Visit ${t.name}`}
-                        className="w-11 h-11 rounded-xl bg-white/5 border border-white/20 overflow-hidden flex items-center justify-center shrink-0 shadow-[0_4px_16px_rgba(0,0,0,0.5)] hover:border-white/60 transition-all duration-300 group/logo"
-                      >
+                      <div className="w-11 h-11 rounded-xl bg-white/5 border border-white/20 overflow-hidden flex items-center justify-center shrink-0 shadow-[0_4px_16px_rgba(0,0,0,0.5)] group-hover/author:border-white/60 transition-all duration-300">
                         <img
                           src={t.logoSrc}
                           alt={`${t.name} logo`}
-                          className="w-full h-full object-cover group-hover/logo:scale-110 transition-transform duration-300"
+                          width="44"
+                          height="44"
+                          className="w-full h-full object-cover group-hover/author:scale-110 transition-transform duration-300"
                           loading="lazy"
+                          decoding="async"
                         />
-                      </a>
+                      </div>
                     ) : (
                       <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-white/20 to-white/5 border border-white/30 flex items-center justify-center font-display font-bold text-white text-base shadow-[0_4px_16px_rgba(0,0,0,0.5)] shrink-0">
                         {t.name.slice(0, 2).toUpperCase()}
@@ -307,34 +311,23 @@ export default function ClientImpact() {
 
                     <div className="min-w-0">
                       <div className="flex items-center gap-1.5">
-                        <a
-                          href={t.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          title={`Visit ${t.name}`}
-                          className="font-display font-bold text-sm text-white hover:text-white/80 hover:underline transition-all flex items-center gap-1.5 truncate"
-                        >
-                          <span className="truncate">{t.name}</span>
-                          <ExternalLink className="w-3 h-3 text-white/50 hover:text-white shrink-0" />
-                        </a>
+                        <span className="font-display font-bold text-sm text-white group-hover/author:text-white/80 group-hover/author:underline transition-all truncate">
+                          {t.name}
+                        </span>
+                        <ExternalLink className="w-3 h-3 text-white/50 group-hover/author:text-white shrink-0" />
                         {t.verified && (
                           <CheckCircle2 className="w-3.5 h-3.5 text-white/80 fill-white/20 shrink-0" />
                         )}
                       </div>
-                      <a
-                        href={t.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-mono text-[11px] text-[#8e8e9e] hover:text-white flex items-center gap-1 transition-colors truncate"
-                      >
+                      <div className="font-mono text-[11px] text-[#b0b0c2] group-hover/author:text-white flex items-center gap-1 transition-colors truncate mt-0.5">
                         <InstagramIcon className="w-3 h-3 text-white/60 shrink-0" />
                         <span className="truncate">{t.handle}</span>
-                      </a>
+                      </div>
                     </div>
-                  </div>
+                  </a>
 
                   {/* Clean Partner Status Badge */}
-                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/70 text-[11px] font-mono shrink-0">
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/85 text-[11px] font-mono shrink-0">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                     <span>{t.date ? 'Verified Review' : 'Verified'}</span>
                   </div>
@@ -345,24 +338,24 @@ export default function ClientImpact() {
                   {[...Array(t.rating || 5)].map((_, i) => (
                     <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                   ))}
-                  <span className="font-mono text-[10px] text-[#787886] ml-2">
+                  <span className="font-mono text-[10px] text-[#b0b0c0] ml-2">
                     {t.rating || 5}.0 Verified
                   </span>
                 </div>
 
                 {/* Quote Text */}
-                <p className="font-body text-sm text-[#c8c8d4] leading-relaxed mb-6 italic">
+                <p className="font-body text-sm text-[#d4d4e0] leading-relaxed mb-6 italic">
                   "{t.quote}"
                 </p>
               </div>
 
               {/* Footer info: Deliverable tag & Category */}
               <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-2">
-                <span className="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-mono text-[#a0a0b0]">
+                <span className="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-mono text-[#b0b0c0]">
                   {t.deliverable}
                 </span>
 
-                <span className="font-mono text-[10px] text-[#707080] truncate max-w-[160px] text-right">
+                <span className="font-mono text-[10px] text-[#b4b4c6] truncate max-w-[160px] text-right">
                   {t.role}
                 </span>
               </div>
@@ -372,7 +365,7 @@ export default function ClientImpact() {
 
         {/* Bottom Call to Action */}
         <div className="mt-14 text-center flex flex-col sm:flex-row items-center justify-center gap-4">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 text-xs font-mono text-[#8a8a98]">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 text-xs font-mono text-[#a5a5b5]">
             <MessageSquare className="w-3.5 h-3.5 text-white/70" />
             <span>Have you worked with Symmetry? Your feedback helps us continually elevate our craft.</span>
           </div>
@@ -404,7 +397,7 @@ export default function ClientImpact() {
                   <h3 className="font-display font-bold text-lg text-white">
                     Submit Client Review & Feedback
                   </h3>
-                  <p className="font-mono text-[10px] text-[#8e8e9c] uppercase tracking-wider">
+                  <p className="font-mono text-[10px] text-[#b4b4c4] uppercase tracking-wider">
                     Symmetry Creative Technology Studio
                   </p>
                 </div>
@@ -414,6 +407,7 @@ export default function ClientImpact() {
                 onClick={() => setIsModalOpen(false)}
                 className="p-2 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-white/70 hover:text-white transition-all cursor-pointer"
                 title="Close"
+                aria-label="Close review modal"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -437,14 +431,15 @@ export default function ClientImpact() {
               <form onSubmit={handleSubmitReview} className="space-y-4">
                 {/* 5-Star Interactive Rating */}
                 <div>
-                  <label className="block font-mono text-[11px] text-[#a0a0b0] uppercase tracking-wider mb-2">
+                  <span className="block font-mono text-[11px] text-[#a0a0b0] uppercase tracking-wider mb-2">
                     Overall Experience Rating
-                  </label>
+                  </span>
                   <div className="flex items-center gap-2">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <button
                         key={star}
                         type="button"
+                        aria-label={`Rate ${star} out of 5 stars`}
                         onClick={() => setRating(star)}
                         onMouseEnter={() => setHoverRating(star)}
                         onMouseLeave={() => setHoverRating(rating)}
@@ -468,29 +463,33 @@ export default function ClientImpact() {
                 {/* Name & Handle */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block font-mono text-[10px] text-[#9090a0] uppercase tracking-wider mb-1">
+                    <label htmlFor="review-name" className="block font-mono text-[10px] text-[#c2c2d2] uppercase tracking-wider mb-1">
                       Your Name / Brand *
                     </label>
                     <input
+                      id="review-name"
+                      name="name"
                       type="text"
                       required
                       placeholder="e.g. John / Brand Studios"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/15 focus:border-white/50 text-white text-xs placeholder:text-white/30 outline-none transition-all"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/15 focus:border-white/50 text-white text-xs placeholder:text-[#9a9aa8] outline-none transition-all"
                     />
                   </div>
 
                   <div>
-                    <label className="block font-mono text-[10px] text-[#9090a0] uppercase tracking-wider mb-1">
+                    <label htmlFor="review-handle" className="block font-mono text-[10px] text-[#c2c2d2] uppercase tracking-wider mb-1">
                       Instagram / Social Handle
                     </label>
                     <input
+                      id="review-handle"
+                      name="handle"
                       type="text"
                       placeholder="e.g. @yourbrand"
                       value={handle}
                       onChange={(e) => setHandle(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/15 focus:border-white/50 text-white text-xs placeholder:text-white/30 outline-none transition-all"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/15 focus:border-white/50 text-white text-xs placeholder:text-[#9a9aa8] outline-none transition-all"
                     />
                   </div>
                 </div>
@@ -498,38 +497,46 @@ export default function ClientImpact() {
                 {/* Email & Role */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block font-mono text-[10px] text-[#9090a0] uppercase tracking-wider mb-1">
+                    <label htmlFor="review-email" className="block font-mono text-[10px] text-[#c2c2d2] uppercase tracking-wider mb-1">
                       Work Email (Private)
                     </label>
                     <input
+                      id="review-email"
+                      name="email"
                       type="email"
                       placeholder="client@company.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/15 focus:border-white/50 text-white text-xs placeholder:text-white/30 outline-none transition-all"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/15 focus:border-white/50 text-white text-xs placeholder:text-[#9a9aa8] outline-none transition-all"
                     />
                   </div>
 
                   <div>
-                    <label className="block font-mono text-[10px] text-[#9090a0] uppercase tracking-wider mb-1">
+                    <label htmlFor="review-role" className="block font-mono text-[10px] text-[#c2c2d2] uppercase tracking-wider mb-1">
                       Your Role / Designation
                     </label>
                     <input
+                      id="review-role"
+                      name="role"
                       type="text"
                       placeholder="e.g. Founder / Creative Lead"
                       value={role}
                       onChange={(e) => setRole(e.target.value)}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/15 focus:border-white/50 text-white text-xs placeholder:text-white/30 outline-none transition-all"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/15 focus:border-white/50 text-white text-xs placeholder:text-[#9a9aa8] outline-none transition-all"
                     />
                   </div>
                 </div>
 
                 {/* Project Delivered */}
                 <div>
-                  <label className="block font-mono text-[10px] text-[#9090a0] uppercase tracking-wider mb-1">
+                  <label id="review-deliverable-label" htmlFor="review-deliverable" className="block font-mono text-[10px] text-[#c2c2d2] uppercase tracking-wider mb-1">
                     Project Service Delivered
                   </label>
                   <select
+                    id="review-deliverable"
+                    name="deliverable"
+                    aria-label="Project Service Delivered"
+                    aria-labelledby="review-deliverable-label"
                     value={deliverable}
                     onChange={(e) => setDeliverable(e.target.value)}
                     className="w-full px-3.5 py-2.5 rounded-xl bg-[#12131c] border border-white/15 focus:border-white/50 text-white text-xs outline-none transition-all cursor-pointer"
@@ -545,16 +552,18 @@ export default function ClientImpact() {
 
                 {/* Review Text */}
                 <div>
-                  <label className="block font-mono text-[10px] text-[#9090a0] uppercase tracking-wider mb-1">
+                  <label htmlFor="review-quote" className="block font-mono text-[10px] text-[#c2c2d2] uppercase tracking-wider mb-1">
                     Your Review & Experience with Symmetry *
                   </label>
                   <textarea
+                    id="review-quote"
+                    name="quote"
                     required
                     rows={4}
                     placeholder="Share your experience working with the Symmetry team, speed of delivery, quality of visuals, and overall impression..."
                     value={quote}
                     onChange={(e) => setQuote(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/15 focus:border-white/50 text-white text-xs placeholder:text-white/30 outline-none transition-all resize-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-white/[0.04] border border-white/15 focus:border-white/50 text-white text-xs placeholder:text-[#9a9aa8] outline-none transition-all resize-none"
                   />
                 </div>
 

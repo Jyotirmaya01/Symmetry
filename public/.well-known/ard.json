@@ -1,0 +1,38 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "SYMMETRY",
+    "identifier": "did:web:symmetryofficial.com",
+    "documentationUrl": "https://symmetryofficial.com",
+    "logoUrl": "https://symmetryofficial.com/symmetry-logo.png"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:symmetryofficial.com:creative-studio:discovery",
+      "displayName": "Symmetry Creative Studio Services",
+      "type": "text/markdown",
+      "url": "https://symmetryofficial.com/llms.txt",
+      "description": "Cinema-grade 3D product animations, 4K commercials, viral video production, and bespoke digital architecture.",
+      "representativeQueries": [
+        "book 3D motion design project",
+        "order 4K commercial reels",
+        "luxury brand video animation",
+        "hire interactive web developer",
+        "CGI commercial production studio"
+      ]
+    },
+    {
+      "identifier": "urn:air:symmetryofficial.com:creative-studio:catalog",
+      "displayName": "Symmetry Services Catalog",
+      "type": "application/json",
+      "url": "https://symmetryofficial.com/ai-catalog.json",
+      "description": "Machine-readable discovery manifest for Symmetry's creative motion design and web engineering capabilities.",
+      "representativeQueries": [
+        "creative services pricing",
+        "3D animation portfolio",
+        "viral reels agency",
+        "motion design studio capabilities"
+      ]
+    }
+  ]
+}

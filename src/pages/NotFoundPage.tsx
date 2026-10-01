@@ -41,13 +41,13 @@ export default function NotFoundPage() {
             THE REQUESTED DIMENSION DOES NOT EXIST
           </h2>
 
-          <p className="font-body text-[#9e9ea7] max-w-lg mx-auto text-sm sm:text-base leading-relaxed mb-10">
+          <p className="font-body text-[#b4b4c0] max-w-lg mx-auto text-sm sm:text-base leading-relaxed mb-10">
             The neural route you attempted to access has either migrated, decayed, or remains outside authorized sector coordinates.
           </p>
 
           {/* Simulated Diagnostics Terminal */}
-          <div className="max-w-md mx-auto mb-10 p-4 rounded-2xl bg-black/80 border border-white/10 text-left font-mono text-[11px] text-[#8e8e9c] shadow-2xl relative overflow-hidden">
-            <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/10 text-[#606070]">
+          <div className="max-w-md mx-auto mb-10 p-4 rounded-2xl bg-black/80 border border-white/10 text-left font-mono text-[11px] text-[#b4b4c4] shadow-2xl relative overflow-hidden">
+            <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/10 text-[#c2c2d2]">
               <span className="flex items-center gap-1.5">
                 <Terminal className="w-3.5 h-3.5 text-white/50" />
                 <span>SYMMETRY_CORE_DIAGNOSTIC</span>
@@ -55,10 +55,10 @@ export default function NotFoundPage() {
               <span className="text-emerald-400">STATUS: RE-ROUTING</span>
             </div>
             <div className="space-y-1">
-              <p><span className="text-[#606070]">$</span> ORIGIN_HASH: <span className="text-white">0x7F2A...9C1D</span></p>
-              <p><span className="text-[#606070]">$</span> RATE_LIMITER: <span className="text-emerald-400">ACTIVE [3/min max]</span></p>
-              <p><span className="text-[#606070]">$</span> GEO_LOCATION_SPOOF_FILTER: <span className="text-emerald-400">VERIFIED</span></p>
-              <p><span className="text-[#606070]">$</span> RECOMMENDED_ACTION: <span className="text-white">RETURN_TO_BASE_GATEWAY</span></p>
+              <p><span className="text-[#c2c2d2]">$</span> ORIGIN_HASH: <span className="text-white">0x7F2A...9C1D</span></p>
+              <p><span className="text-[#c2c2d2]">$</span> RATE_LIMITER: <span className="text-emerald-400">ACTIVE [3/min max]</span></p>
+              <p><span className="text-[#c2c2d2]">$</span> GEO_LOCATION_SPOOF_FILTER: <span className="text-emerald-400">VERIFIED</span></p>
+              <p><span className="text-[#c2c2d2]">$</span> RECOMMENDED_ACTION: <span className="text-white">RETURN_TO_BASE_GATEWAY</span></p>
             </div>
           </div>
 

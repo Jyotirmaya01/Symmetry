@@ -1,5 +1,5 @@
 # ==========================================
-# SYMMETRY — Modern Search Engine Robots File
+# SYMMETRY — Modern Search Engine & AI Agent Robots File
 # https://symmetryofficial.com
 # ==========================================
 
@@ -7,6 +7,12 @@ User-agent: *
 Allow: /
 Allow: /media/
 Allow: /sitemap.xml
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /ai-catalog.json
+Allow: /ard.json
+Allow: /.well-known/
+Allow: /.well-known/*
 
 # Protect internal API proxy routes
 Disallow: /api/
@@ -20,6 +26,8 @@ Allow: /*.css$
 Allow: /*.png$
 Allow: /*.jpg$
 Allow: /*.mp4$
+Allow: /*.svg$
+Allow: /*.webp$
 
 User-agent: Bingbot
 Allow: /
@@ -30,6 +38,22 @@ Allow: /
 User-agent: DuckDuckBot
 Allow: /
 
-# Sitemap Index Link
-Sitemap: https://symmetry-ochre.vercel.app/sitemap.xml
-Host: https://symmetry-ochre.vercel.app
+# AI Crawlers & Agentic Browsing Directives
+User-agent: GPTBot
+Allow: /
+Allow: /llms.txt
+
+User-agent: ClaudeBot
+Allow: /
+Allow: /llms.txt
+
+User-agent: PerplexityBot
+Allow: /
+Allow: /llms.txt
+
+User-agent: Google-Extended
+Allow: /
+
+# Canonical Sitemap & Host
+Sitemap: https://symmetryofficial.com/sitemap.xml
+Host: https://symmetryofficial.com

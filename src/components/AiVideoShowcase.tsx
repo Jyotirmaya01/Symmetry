@@ -207,14 +207,14 @@ export default function AiVideoShowcase() {
         {/* Header & Filter Controls */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 border-b border-white/10 pb-10">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-widest text-[#9e9ea7] mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-widest text-[#c2c2d2] mb-4">
               <Video className="w-3.5 h-3.5 text-white" />
               <span>COMMERCIAL PRODUCTION ENGINE</span>
             </div>
             <h2 className="pop-heading font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight">
               AI VIDEO <span className="chrome-text">COMMERCIAL GALLERY</span>
             </h2>
-            <p className="font-body text-[#9e9ea7] max-w-xl text-sm leading-relaxed mt-3">
+            <p className="font-body text-[#c2c2d2] max-w-xl text-sm leading-relaxed mt-3">
               Crafted in native display formats — vertical 9:16 for high-converting social campaigns and 16:9 for widescreen cinematic broadcast. Click any card to access its raw project directory.
             </p>
           </div>
@@ -224,20 +224,22 @@ export default function AiVideoShowcase() {
             <div className="flex items-center gap-1.5 p-1 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md">
               <button
                 onClick={() => setFilter('all')}
+                aria-label="Filter all commercial production videos"
                 className={`px-3.5 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all cursor-pointer ${
                   filter === 'all'
                     ? 'bg-white text-black font-semibold shadow-md'
-                    : 'text-[#9a9aa8] hover:text-white'
+                    : 'text-[#b4b4c4] hover:text-white'
                 }`}
               >
                 All (6)
               </button>
               <button
                 onClick={() => setFilter('9:16')}
+                aria-label="Filter 9:16 vertical commercial reels"
                 className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all cursor-pointer ${
                   filter === '9:16'
                     ? 'bg-white text-black font-semibold shadow-md'
-                    : 'text-[#9a9aa8] hover:text-white'
+                    : 'text-[#b4b4c4] hover:text-white'
                 }`}
               >
                 <Smartphone className="w-3 h-3" />
@@ -245,10 +247,11 @@ export default function AiVideoShowcase() {
               </button>
               <button
                 onClick={() => setFilter('16:9')}
+                aria-label="Filter 16:9 cinematic commercial videos"
                 className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all cursor-pointer ${
                   filter === '16:9'
                     ? 'bg-white text-black font-semibold shadow-md'
-                    : 'text-[#9a9aa8] hover:text-white'
+                    : 'text-[#b4b4c4] hover:text-white'
                 }`}
               >
                 <Monitor className="w-3 h-3" />
@@ -278,13 +281,13 @@ export default function AiVideoShowcase() {
                   <h3 className="font-display font-bold text-xl text-white tracking-wide">
                     9:16 Vertical Social & E-Commerce Cinema
                   </h3>
-                  <p className="font-mono text-xs text-[#8c8c9a] uppercase tracking-wider">
+                  <p className="font-mono text-xs text-[#b0b0be] uppercase tracking-wider">
                     Jewellery, Skincare & Hospitality Reels (Never Cropped Horizontally)
                   </p>
                 </div>
               </div>
 
-              <span className="hidden sm:inline-block font-mono text-xs text-[#828290]">
+              <span className="hidden sm:inline-block font-mono text-xs text-[#b4b4c4]">
                 {verticalVideos.length} Vertical Productions
               </span>
             </div>
@@ -301,14 +304,14 @@ export default function AiVideoShowcase() {
                   >
                     {/* Top Client & Metric Bar */}
                     <div className="flex items-center justify-between mb-4">
-                      <span className="font-mono text-xs uppercase tracking-wider text-[#8e8e9c]">
+                      <span className="font-mono text-xs uppercase tracking-wider text-[#b4b4c4]">
                         {item.client}
                       </span>
                       <div className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-right">
                         <span className="font-display font-bold text-emerald-400 text-sm">
                           {item.metric}
                         </span>
-                        <span className="font-mono text-[9px] text-[#90b09e] uppercase ml-1">
+                        <span className="font-mono text-[9px] text-emerald-400 uppercase ml-1">
                           {item.metricLabel}
                         </span>
                       </div>
@@ -328,6 +331,8 @@ export default function AiVideoShowcase() {
                         muted={isMuted}
                         playsInline
                         preload="none"
+                        aria-label={`Commercial reel: ${item.title}`}
+                        title={item.title}
                         onError={(e) => {
                           const target = e.currentTarget;
                           const local = item.videoSrc.startsWith('/') ? item.videoSrc : `/${item.videoSrc}`;
@@ -336,7 +341,9 @@ export default function AiVideoShowcase() {
                           }
                         }}
                         className="w-full h-full object-cover"
-                      />
+                      >
+                        <track kind="captions" src="data:text/vtt,WEBVTT" label="English" srcLang="en" default />
+                      </video>
 
                       {/* Play Overlay when paused */}
                       {!isPlaying && (
@@ -357,6 +364,7 @@ export default function AiVideoShowcase() {
                       <div className="absolute bottom-3 right-3 flex items-center gap-1.5 z-20">
                         <button
                           onClick={(e) => toggleMute(item.id, e)}
+                          aria-label={isMuted ? `Unmute audio for ${item.title}` : `Mute audio for ${item.title}`}
                           className="p-2 rounded-full bg-black/75 hover:bg-white hover:text-black border border-white/20 backdrop-blur-md text-white transition-all cursor-pointer shadow-md"
                           title={isMuted ? 'Unmute' : 'Mute'}
                         >
@@ -364,6 +372,7 @@ export default function AiVideoShowcase() {
                         </button>
                         <button
                           onClick={(e) => handleFullscreen(item.id, e)}
+                          aria-label={`View ${item.title} in fullscreen`}
                           className="p-2 rounded-full bg-black/75 hover:bg-white hover:text-black border border-white/20 backdrop-blur-md text-white transition-all cursor-pointer shadow-md"
                           title="Fullscreen"
                         >
@@ -379,6 +388,7 @@ export default function AiVideoShowcase() {
                           href={item.projectUrl}
                           target="_blank"
                           rel="noopener noreferrer"
+                          aria-label={`Open project drive for ${item.title}`}
                           className="hover:underline flex items-start justify-between gap-2"
                         >
                           <span>{item.title}</span>
@@ -406,6 +416,7 @@ export default function AiVideoShowcase() {
                         href={item.projectUrl}
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label={`Open project drive for ${item.title}`}
                         className="inline-flex items-center justify-between w-full px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white hover:text-black border border-white/15 text-xs font-mono uppercase tracking-wider text-white transition-all group/btn"
                       >
                         <span className="font-semibold">Open Project Drive</span>
@@ -431,13 +442,13 @@ export default function AiVideoShowcase() {
                   <h3 className="font-display font-bold text-xl text-white tracking-wide">
                     16:9 Cinematic Motion & Brand Commercials
                   </h3>
-                  <p className="font-mono text-xs text-[#8c8c9a] uppercase tracking-wider">
+                  <p className="font-mono text-xs text-[#b0b0be] uppercase tracking-wider">
                     Spotify, Netflix & Artisan Coffee (Widescreen 16:9 Masters)
                   </p>
                 </div>
               </div>
 
-              <span className="hidden sm:inline-block font-mono text-xs text-[#828290]">
+              <span className="hidden sm:inline-block font-mono text-xs text-[#b4b4c4]">
                 {horizontalVideos.length} Cinematic Productions
               </span>
             </div>
@@ -455,14 +466,14 @@ export default function AiVideoShowcase() {
                     <div>
                       {/* Top Bar */}
                       <div className="flex items-center justify-between mb-3">
-                        <span className="font-mono text-xs uppercase tracking-wider text-[#8e8e9c]">
+                        <span className="font-mono text-xs uppercase tracking-wider text-[#b4b4c4]">
                           {item.client}
                         </span>
                         <div className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-right">
                           <span className="font-display font-bold text-emerald-400 text-sm">
                             {item.metric}
                           </span>
-                          <span className="font-mono text-[9px] text-[#90b09e] uppercase ml-1">
+                          <span className="font-mono text-[9px] text-emerald-400 uppercase ml-1">
                             {item.metricLabel}
                           </span>
                         </div>
@@ -482,6 +493,8 @@ export default function AiVideoShowcase() {
                           muted={isMuted}
                           playsInline
                           preload="none"
+                          aria-label={`Commercial cinema video: ${item.title}`}
+                          title={item.title}
                           onError={(e) => {
                             const target = e.currentTarget;
                             const local = item.videoSrc.startsWith('/') ? item.videoSrc : `/${item.videoSrc}`;
@@ -490,7 +503,9 @@ export default function AiVideoShowcase() {
                             }
                           }}
                           className="w-full h-full object-cover"
-                        />
+                        >
+                          <track kind="captions" src="data:text/vtt,WEBVTT" label="English" srcLang="en" default />
+                        </video>
 
                         {/* Play Overlay when paused */}
                         {!isPlaying && (
@@ -505,6 +520,7 @@ export default function AiVideoShowcase() {
                         <div className="absolute bottom-2.5 right-2.5 flex items-center gap-1.5 z-20">
                           <button
                             onClick={(e) => toggleMute(item.id, e)}
+                            aria-label={isMuted ? `Unmute audio for ${item.title}` : `Mute audio for ${item.title}`}
                             className="p-2 rounded-full bg-black/70 hover:bg-white hover:text-black border border-white/20 backdrop-blur-md text-white transition-all cursor-pointer shadow-md"
                             title={isMuted ? 'Unmute' : 'Mute'}
                           >
@@ -512,6 +528,7 @@ export default function AiVideoShowcase() {
                           </button>
                           <button
                             onClick={(e) => handleFullscreen(item.id, e)}
+                            aria-label={`View ${item.title} in fullscreen`}
                             className="p-2 rounded-full bg-black/70 hover:bg-white hover:text-black border border-white/20 backdrop-blur-md text-white transition-all cursor-pointer shadow-md"
                             title="Fullscreen"
                           >
@@ -531,6 +548,7 @@ export default function AiVideoShowcase() {
                           href={item.projectUrl}
                           target="_blank"
                           rel="noopener noreferrer"
+                          aria-label={`Open project drive for ${item.title}`}
                           className="hover:underline flex items-start justify-between gap-2"
                         >
                           <span>{item.title}</span>
@@ -560,6 +578,7 @@ export default function AiVideoShowcase() {
                         href={item.projectUrl}
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label={`Open project drive for ${item.title}`}
                         className="inline-flex items-center justify-between w-full px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white hover:text-black border border-white/15 text-xs font-mono uppercase tracking-wider text-white transition-all group/btn"
                       >
                         <span className="font-semibold">Open Project Drive</span>

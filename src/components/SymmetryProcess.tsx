@@ -48,13 +48,13 @@ export default function SymmetryProcess() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="max-w-3xl mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-widest text-[#9e9ea7] mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-widest text-[#b4b4c0] mb-4">
             <span>THE SYMMETRY PROTOCOL</span>
           </div>
           <h2 className="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight mb-4">
             FROM BLANK CANVAS TO <span className="chrome-text">PRODUCTION EXCELLENCE</span>
           </h2>
-          <p className="font-body text-[#9e9ea7] text-sm sm:text-base leading-relaxed">
+          <p className="font-body text-[#b4b4c0] text-sm sm:text-base leading-relaxed">
             Our 4-stage systematic pipeline streamlines creative production, delivering cinema-grade motion and brand identity without sacrificing visual prestige.
           </p>
         </div>
@@ -75,7 +75,7 @@ export default function SymmetryProcess() {
                 <div>
                   {/* Step Number & Icon */}
                   <div className="flex items-center justify-between mb-8">
-                    <span className="font-display font-black text-3xl text-white/20 group-hover:text-white/60 transition-colors">
+                    <span className="font-display font-black text-3xl text-white/60 group-hover:text-white transition-colors">
                       {step.number}
                     </span>
                     <div className="pop-icon p-3 rounded-xl bg-white/5 border border-white/10 group-hover:bg-white group-hover:text-black transition-all">
@@ -83,25 +83,25 @@ export default function SymmetryProcess() {
                     </div>
                   </div>
 
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-[#8e8e9c] block mb-2">
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-[#b4b4c4] block mb-2">
                     {step.phase}
                   </span>
                   <h3 className="font-display font-bold text-lg text-white mb-3">
                     {step.title}
                   </h3>
-                  <p className="font-body text-xs text-[#a0a0ae] leading-relaxed mb-6">
+                  <p className="font-body text-xs text-[#b8b8c8] leading-relaxed mb-6">
                     {step.desc}
                   </p>
                 </div>
 
                 <div className="pt-4 border-t border-white/5">
-                  <span className="font-mono text-[10px] text-[#70707c] uppercase tracking-wider block mb-2">
+                  <span className="font-mono text-[10px] text-[#b4b4c4] uppercase tracking-wider block mb-2">
                     Key Deliverables
                   </span>
                   <ul className="space-y-1.5">
                     {step.deliverables.map((item, dIdx) => (
-                      <li key={dIdx} className="flex items-center gap-2 text-[11px] font-mono text-[#c0c0cc]">
-                        <Check className="w-3 h-3 text-white/70" />
+                      <li key={dIdx} className="flex items-center gap-2 text-[11px] font-mono text-[#d0d0dc]">
+                        <Check className="w-3 h-3 text-white/80" />
                         <span>{item}</span>
                       </li>
                     ))}

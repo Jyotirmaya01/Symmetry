@@ -44,24 +44,29 @@ export default function Navbar() {
           aria-label="SYMMETRY Home"
         >
           <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-lg overflow-hidden border border-white/20 p-0.5 bg-black/60 shadow-[0_0_15px_rgba(255,255,255,0.15)] group-hover:border-white/50 transition-colors">
-            <img
-              src="/symmetry-logo.png"
-              alt="SYMMETRY Emblem"
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            />
+            <picture>
+              <source srcSet="/symmetry-logo.webp" type="image/webp" />
+              <img
+                src="/symmetry-logo.png"
+                alt="SYMMETRY Emblem"
+                width="40"
+                height="40"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </picture>
           </div>
           <div className="flex flex-col">
             <span className="font-display font-bold text-base sm:text-lg tracking-[0.22em] text-white leading-none">
               SYMMETRY
             </span>
-            <span className="font-mono text-[9px] sm:text-[10px] tracking-widest text-[#888894] mt-0.5 uppercase">
+            <span className="font-mono text-[9px] sm:text-[10px] tracking-widest text-[#a5a5b5] mt-0.5 uppercase">
               AI Business Solutions
             </span>
           </div>
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-8 rounded-full px-6 py-2 bg-white/[0.03] border border-white/10 backdrop-blur-md">
+        <nav aria-label="Primary Navigation" className="hidden md:flex items-center gap-8 rounded-full px-6 py-2 bg-white/[0.03] border border-white/10 backdrop-blur-md">
           {[
             { name: 'Solutions', id: 'solutions' },
             { name: 'Motion', id: 'showreel' },
@@ -73,7 +78,8 @@ export default function Navbar() {
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className="text-xs uppercase tracking-widest font-mono text-[#a0a0ab] hover:text-white transition-colors cursor-pointer"
+              aria-label={`Scroll to ${item.name} section`}
+              className="text-xs uppercase tracking-widest font-mono text-[#b4b4c4] hover:text-white transition-colors cursor-pointer"
             >
               {item.name}
             </button>
@@ -86,6 +92,7 @@ export default function Navbar() {
             href="https://calendly.com/sabatanant883/30min"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Book a 30-minute strategy call on Calendly"
             className="hidden lg:inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider text-[#a0a0b0] hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 transition-all cursor-pointer"
           >
             <span>Book 30-Min Call</span>
@@ -94,6 +101,7 @@ export default function Navbar() {
 
           <button
             onClick={() => scrollToSection('contact')}
+            aria-label="Initiate Project - jump to contact form"
             className="group relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider text-black bg-white hover:bg-[#e0e0e0] font-semibold transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.25)] hover:shadow-[0_0_30px_rgba(255,255,255,0.45)] hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
           >
             <span>Initiate Project</span>
@@ -105,7 +113,8 @@ export default function Navbar() {
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="md:hidden p-2 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors"
-          aria-label="Toggle Menu"
+          aria-label={mobileMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
+          aria-expanded={mobileMenuOpen}
         >
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -149,7 +158,7 @@ export default function Navbar() {
             <ArrowUpRight className="w-4 h-4" />
           </button>
 
-          <div className="flex items-center justify-center gap-6 pt-2 text-xs font-mono text-[#8a8a96]">
+          <div className="flex items-center justify-center gap-6 pt-2 text-xs font-mono text-[#b4b4c4]">
             <a href="https://www.instagram.com/symmetry_official_?stkn=aHUzajRrNmc2ZTR1" target="_blank" rel="noopener noreferrer" className="hover:text-white">
               Instagram ↗
             </a>

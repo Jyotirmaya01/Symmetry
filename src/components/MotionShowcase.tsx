@@ -57,24 +57,27 @@ const showcases: ShowcaseItem[] = [
 
 export default function MotionShowcase() {
   const [activeTab, setActiveTab] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  const [isInView, setIsInView] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
   const current = showcases[activeTab];
 
-  // Pause playback when off-screen to preserve mobile CPU/GPU
+  // Defer video loading and pause playback when off-screen to save 4MB initial payload & GPU bandwidth
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (videoRef.current) {
-          if (entry.isIntersecting) {
-            videoRef.current.play().catch(() => {});
-            setIsPlaying(true);
-          } else {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          if (videoRef.current) {
+            videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+          }
+        } else {
+          if (videoRef.current) {
             videoRef.current.pause();
             setIsPlaying(false);
           }
@@ -86,13 +89,13 @@ export default function MotionShowcase() {
     return () => observer.disconnect();
   }, []);
 
-  // When tab changes, reload video
+  // When tab changes, reload video if in view
   useEffect(() => {
-    if (videoRef.current) {
+    if (videoRef.current && isInView) {
       videoRef.current.load();
       videoRef.current.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
     }
-  }, [activeTab]);
+  }, [activeTab, isInView]);
 
   const togglePlay = () => {
     if (videoRef.current) {
@@ -126,14 +129,14 @@ export default function MotionShowcase() {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-widest text-[#9e9ea7] mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-widest text-[#b4b4c0] mb-4">
             <Film className="w-3.5 h-3.5 text-white" />
             <span>STUDIO BENCHMARK SHOWCASE</span>
           </div>
           <h2 className="pop-heading font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight mb-4">
             MOTION AT THE <span className="chrome-text">SPEED OF THOUGHT</span>
           </h2>
-          <p className="font-body text-[#9e9ea7] text-sm sm:text-base leading-relaxed">
+          <p className="font-body text-[#b4b4c0] text-sm sm:text-base leading-relaxed">
             Explore our iconic motion graphics created for world-leading brands: Samsung, Claude AI, and Spotify.
           </p>
         </div>
@@ -159,12 +162,13 @@ export default function MotionShowcase() {
             >
               <video
                 ref={videoRef}
-                src={getOptimizedMediaUrl(current.videoSrc, { isVideo: true })}
-                autoPlay
+                src={isInView ? getOptimizedMediaUrl(current.videoSrc, { isVideo: true }) : undefined}
                 loop
                 muted={isMuted}
                 playsInline
-                preload="metadata"
+                preload="none"
+                aria-label={`Motion showcase: ${current.title}`}
+                title={current.title}
                 onError={(e) => {
                   const target = e.currentTarget;
                   const local = current.videoSrc.startsWith('/') ? current.videoSrc : `/${current.videoSrc}`;
@@ -173,12 +177,27 @@ export default function MotionShowcase() {
                   }
                 }}
                 className={`w-full h-full ${current.isVertical ? 'object-cover' : 'object-contain'} bg-black`}
-              />
+              >
+                <track kind="captions" src="data:text/vtt,WEBVTT" label="English" srcLang="en" default />
+              </video>
+
+              {/* Play Overlay when paused or awaiting first frame */}
+              {!isPlaying && (
+                <div
+                  onClick={togglePlay}
+                  className="absolute inset-0 bg-black/40 flex items-center justify-center transition-all cursor-pointer z-15 hover:bg-black/20"
+                >
+                  <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center text-white shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:scale-110 transition-transform">
+                    <Play className="w-6 h-6 translate-x-0.5 fill-white" />
+                  </div>
+                </div>
+              )}
 
               {/* Controls Overlay */}
               <div className="absolute bottom-4 right-4 flex items-center gap-2.5 z-20">
                 <button
                   onClick={toggleMute}
+                  aria-label={isMuted ? `Unmute audio for ${current.title}` : `Mute audio for ${current.title}`}
                   className="p-2.5 sm:p-3 rounded-full bg-black/70 hover:bg-white hover:text-black border border-white/20 backdrop-blur-md text-white transition-all cursor-pointer shadow-lg"
                   title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
                 >
@@ -186,6 +205,7 @@ export default function MotionShowcase() {
                 </button>
                 <button
                   onClick={togglePlay}
+                  aria-label={isPlaying ? `Pause video for ${current.title}` : `Play video for ${current.title}`}
                   className="p-2.5 sm:p-3 rounded-full bg-black/70 hover:bg-white hover:text-black border border-white/20 backdrop-blur-md text-white transition-all cursor-pointer shadow-lg"
                   title={isPlaying ? 'Pause' : 'Play'}
                 >
@@ -193,6 +213,7 @@ export default function MotionShowcase() {
                 </button>
                 <button
                   onClick={handleFullscreen}
+                  aria-label={`View ${current.title} in fullscreen`}
                   className="p-2.5 sm:p-3 rounded-full bg-black/70 hover:bg-white hover:text-black border border-white/20 backdrop-blur-md text-white transition-all cursor-pointer shadow-lg"
                   title="Fullscreen"
                 >
@@ -209,10 +230,13 @@ export default function MotionShowcase() {
           </div>
 
           {/* Selector Tabs & Specs Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-4 border-t border-white/10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-4 border-t border-white/10" role="tablist">
             {showcases.map((item, idx) => (
               <button
                 key={item.id}
+                role="tab"
+                aria-selected={activeTab === idx}
+                aria-label={`Switch to showcase: ${item.title}`}
                 onClick={() => setActiveTab(idx)}
                 className={`text-left p-5 rounded-2xl transition-all duration-300 cursor-pointer ${
                   activeTab === idx
@@ -221,15 +245,15 @@ export default function MotionShowcase() {
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#8e8e9c]">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#a5a5b5]">
                     {item.badge}
                   </span>
                   {activeTab === idx && <Focus className="w-3.5 h-3.5 text-white" />}
                 </div>
-                <h4 className="font-display font-bold text-base text-white mb-2 leading-snug">
+                <span className="block font-display font-bold text-base text-white mb-2 leading-snug">
                   {item.title}
-                </h4>
-                <p className="font-body text-xs text-[#9898a6] leading-relaxed mb-4 line-clamp-2">
+                </span>
+                <p className="font-body text-xs text-[#b0b0c0] leading-relaxed mb-4 line-clamp-2">
                   {item.description}
                 </p>
                 <div className="flex flex-wrap gap-1.5">
@@ -248,7 +272,7 @@ export default function MotionShowcase() {
 
           {/* Drive Vault Redirection Bar */}
           <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2 text-xs font-mono text-[#8e8e9c]">
+            <div className="flex items-center gap-2 text-xs font-mono text-[#b4b4c4]">
               <span className="w-2 h-2 rounded-full bg-emerald-400" />
               <span>Full ProRes 4444XQ masters & project archives accessible in Google Drive</span>
             </div>

@@ -2,17 +2,20 @@
 // SYMMETRY — Homepage Architecture
 // ─────────────────────────────────────────────
 
+import { lazy, Suspense } from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import BentoServices from '@/components/BentoServices';
-import MotionShowcase from '@/components/MotionShowcase';
-import AiVideoShowcase from '@/components/AiVideoShowcase';
-import ProjectVaultSection from '@/components/ProjectVaultSection';
-import SymmetryProcess from '@/components/SymmetryProcess';
-import ClientImpact from '@/components/ClientImpact';
-import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
 import { useScrollPopAnimations } from '@/hooks/useAnimations';
+
+// Lazy-load below-the-fold sections to minimize initial JS payload and optimize LCP
+const MotionShowcase = lazy(() => import('@/components/MotionShowcase'));
+const AiVideoShowcase = lazy(() => import('@/components/AiVideoShowcase'));
+const ProjectVaultSection = lazy(() => import('@/components/ProjectVaultSection'));
+const SymmetryProcess = lazy(() => import('@/components/SymmetryProcess'));
+const ClientImpact = lazy(() => import('@/components/ClientImpact'));
+const CTASection = lazy(() => import('@/components/CTASection'));
 
 export default function HomePage() {
   // Activate scroll-triggered staggered pop animations for icons and cards
@@ -31,23 +34,26 @@ export default function HomePage() {
         {/* 2. Interactive Bento Grid of All 12 AI Solutions */}
         <BentoServices />
 
-        {/* 3. High-Definition Motion Graphics & Video Theater (Samsung, Claude, Spotify) */}
-        <MotionShowcase />
+        {/* Below-the-fold sections wrapped in Suspense for instant initial page render */}
+        <Suspense fallback={null}>
+          {/* 3. High-Definition Motion Graphics & Video Theater (Samsung, Claude, Spotify) */}
+          <MotionShowcase />
 
-        {/* 4. AI Video Production & Commercial Gallery (Jewellery, Yapi, Bakery, Spotify, Netflix, Coffee) */}
-        <AiVideoShowcase />
+          {/* 4. AI Video Production & Commercial Gallery (Jewellery, Yapi, Bakery, Spotify, Netflix, Coffee) */}
+          <AiVideoShowcase />
 
-        {/* 5. Master Client Vault & Raw 4K Google Drive Repository */}
-        <ProjectVaultSection />
+          {/* 5. Master Client Vault & Raw 4K Google Drive Repository */}
+          <ProjectVaultSection />
 
-        {/* 6. The 4-Stage Symmetry Protocol */}
-        <SymmetryProcess />
+          {/* 6. The 4-Stage Symmetry Protocol */}
+          <SymmetryProcess />
 
-        {/* 7. Enterprise Outcomes & Verified Testimonials */}
-        <ClientImpact />
+          {/* 7. Enterprise Outcomes & Verified Testimonials */}
+          <ClientImpact />
 
-        {/* 8. Grand CTA & Direct Project Inquiry Form */}
-        <CTASection />
+          {/* 8. Grand CTA & Direct Project Inquiry Form */}
+          <CTASection />
+        </Suspense>
       </main>
 
       {/* Global Footer */}

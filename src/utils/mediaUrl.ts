@@ -48,20 +48,23 @@ const CLOUDINARY_PUBLIC_ID_MAP: Record<string, string> = {
   'netflix-motion': 'netflix',
   'netflix': 'netflix',
 
-  // Hero Video & Symmetry Background (Updated to Symmetry_compress 5.5MB stream)
-  'hero-bg.mp4': 'Symmetry_compress',
-  'hero-bg': 'Symmetry_compress',
-  'media/hero-bg.mp4': 'Symmetry_compress',
-  'Hero-Bg': 'Symmetry_compress',
-  'Symmetry_compress': 'Symmetry_compress',
-  'Symmetry_compress.mp4': 'Symmetry_compress',
-  'media/Symmetry_compress.mp4': 'Symmetry_compress',
+  // Hero Video & Symmetry Background (Updated to Symmetry_Most_compressed 1.38MB ultra-compressed stream)
+  'hero-bg.mp4': 'Symmetry_Most_compressed',
+  'hero-bg': 'Symmetry_Most_compressed',
+  'media/hero-bg.mp4': 'Symmetry_Most_compressed',
+  'Hero-Bg': 'Symmetry_Most_compressed',
+  'Symmetry_compress': 'Symmetry_Most_compressed',
+  'Symmetry_compress.mp4': 'Symmetry_Most_compressed',
+  'media/Symmetry_compress.mp4': 'Symmetry_Most_compressed',
+  'Symmetry_Most_compressed': 'Symmetry_Most_compressed',
+  'Symmetry_Most_compressed.mp4': 'Symmetry_Most_compressed',
+  'media/Symmetry_Most_compressed.mp4': 'Symmetry_Most_compressed',
 
   // Symmetry Studio Motion
-  'symmetry-motion.mp4': 'Symmetry_compress',
-  'symmetry-motion': 'Symmetry_compress',
-  'media/symmetry-motion.mp4': 'Symmetry_compress',
-  'Symmetry-motion': 'Symmetry_compress',
+  'symmetry-motion.mp4': 'Symmetry_Most_compressed',
+  'symmetry-motion': 'Symmetry_Most_compressed',
+  'media/symmetry-motion.mp4': 'Symmetry_Most_compressed',
+  'Symmetry-motion': 'Symmetry_Most_compressed',
 };
 
 /**

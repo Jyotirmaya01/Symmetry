@@ -97,14 +97,14 @@ export default function BentoServices() {
         {/* Section Header — Client-Friendly & Clear */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-14 border-b border-white/10 pb-10">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-widest text-[#9e9ea7] mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-widest text-[#b4b4c0] mb-4">
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
               <span>WHAT WE DELIVER // 48-72 HOUR PROJECT DELIVERY</span>
             </div>
             <h2 className="pop-heading font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight mb-3">
               CREATIVE SERVICES <span className="chrome-text">BUILT TO GROW</span>
             </h2>
-            <p className="font-body text-sm sm:text-base text-[#a2a2b0] max-w-2xl leading-relaxed">
+            <p className="font-body text-sm sm:text-base text-[#b8b8c6] max-w-2xl leading-relaxed">
               From viral 4K video reels and 3D product commercials to luxury websites—clear deliverables, fast 48–72h turnaround, and direct collaboration with the Symmetry team.
             </p>
           </div>
@@ -114,8 +114,9 @@ export default function BentoServices() {
             <div className="inline-flex p-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
               <button
                 onClick={() => setViewMode('3d-roll')}
+                aria-label="Switch to 3D Cylindrical Roll view"
                 className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all cursor-pointer ${
-                  viewMode === '3d-roll' ? 'bg-white text-black font-semibold shadow-md' : 'text-[#8e8e9c] hover:text-white'
+                  viewMode === '3d-roll' ? 'bg-white text-black font-semibold shadow-md' : 'text-[#b4b4c4] hover:text-white'
                 }`}
               >
                 <Disc3 className="w-3.5 h-3.5" />
@@ -123,8 +124,9 @@ export default function BentoServices() {
               </button>
               <button
                 onClick={() => setViewMode('grid')}
+                aria-label="Switch to Bento Grid view"
                 className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all cursor-pointer ${
-                  viewMode === 'grid' ? 'bg-white text-black font-semibold shadow-md' : 'text-[#8e8e9c] hover:text-white'
+                  viewMode === 'grid' ? 'bg-white text-black font-semibold shadow-md' : 'text-[#b4b4c4] hover:text-white'
                 }`}
               >
                 <LayoutGrid className="w-3.5 h-3.5" />
@@ -136,6 +138,7 @@ export default function BentoServices() {
             {viewMode === '3d-roll' && (
               <button
                 onClick={() => setIsAutoRolling(!isAutoRolling)}
+                aria-label={isAutoRolling ? 'Pause Auto-Roll carousel' : 'Start Auto-Roll carousel'}
                 className={`p-2 rounded-full border transition-all cursor-pointer ${
                   isAutoRolling ? 'bg-white text-black border-white' : 'bg-white/5 text-white/70 border-white/10 hover:text-white'
                 }`}
@@ -153,6 +156,7 @@ export default function BentoServices() {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
+              aria-label={`Filter services by ${cat}`}
               className={`px-5 py-2.5 rounded-full text-xs font-mono uppercase tracking-wider transition-all duration-300 cursor-pointer ${
                 activeCategory === cat
                   ? 'bg-white text-black font-semibold shadow-[0_0_20px_rgba(255,255,255,0.3)] scale-105'
@@ -211,7 +215,7 @@ export default function BentoServices() {
                         toggleFlip(service.id);
                       }
                     }}
-                    className="absolute w-[310px] sm:w-[360px] h-[480px] cursor-pointer transition-all duration-700 ease-[cubic-bezier(0.2,0.85,0.2,1.05)]"
+                    className="absolute w-[310px] sm:w-[360px] h-[480px] cursor-pointer transition-[transform,opacity] duration-700 ease-[cubic-bezier(0.2,0.85,0.2,1.05)] will-change-transform transform-gpu"
                     style={{
                       transform: `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
                       opacity,
@@ -227,7 +231,7 @@ export default function BentoServices() {
                     >
                       {/* ── CARD FRONT ── */}
                       <div
-                        className={`absolute inset-0 backface-hidden rounded-3xl p-7 flex flex-col justify-between border transition-all duration-500 ${
+                        className={`absolute inset-0 backface-hidden rounded-3xl p-7 flex flex-col justify-between border transition-[background-color,border-color,box-shadow] duration-500 ${
                           isCenter
                             ? 'bg-[#0f1118] border-white/35 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.95),0_0_35px_rgba(255,255,255,0.12)]'
                             : 'bg-[#08090d]/90 border-white/10 hover:border-white/20'
@@ -254,7 +258,7 @@ export default function BentoServices() {
 
                           {/* Category & Badge */}
                           <div className="flex items-center justify-between gap-2 mb-2">
-                            <span className="font-mono text-[11px] text-[#808090] uppercase tracking-widest truncate">
+                            <span className="font-mono text-[11px] text-[#a5a5b5] uppercase tracking-widest truncate">
                               {service.category}
                             </span>
                             {service.badge && (
@@ -266,7 +270,7 @@ export default function BentoServices() {
                           <h3 className="font-display font-bold text-xl text-white mb-2 leading-snug">
                             {service.title}
                           </h3>
-                          <p className="font-body text-xs text-[#a2a2b4] leading-relaxed line-clamp-3">
+                          <p className="font-body text-xs text-[#b8b8c8] leading-relaxed line-clamp-3">
                             {service.shortDesc}
                           </p>
                         </div>
@@ -277,7 +281,7 @@ export default function BentoServices() {
                             <span className="font-display font-bold text-2xl text-white block">
                               {service.metric}
                             </span>
-                            <span className="font-mono text-[10px] text-[#80808c] uppercase tracking-wider">
+                            <span className="font-mono text-[10px] text-[#a5a5b5] uppercase tracking-wider">
                               {service.metricLabel}
                             </span>
                           </div>
@@ -293,31 +297,31 @@ export default function BentoServices() {
                       <div className="absolute inset-0 backface-hidden rotate-y-180 bg-[#0c0e14] rounded-3xl p-7 flex flex-col justify-between border border-white/30 shadow-2xl">
                         <div>
                           <div className="flex items-center justify-between mb-3 pb-2.5 border-b border-white/10">
-                            <span className="font-mono text-[11px] uppercase tracking-widest text-[#90909e]">
+                            <span className="font-mono text-[11px] uppercase tracking-widest text-[#c2c2d4]">
                               What You Get
                             </span>
                             <button
                               onClick={(e) => toggleFlip(service.id, e)}
-                              className="flex items-center gap-1 text-[11px] font-mono text-white/70 hover:text-white"
+                              className="flex items-center gap-1 text-[11px] font-mono text-white/90 hover:text-white"
                             >
                               <RotateCw className="w-3 h-3" />
                               <span>Flip</span>
                             </button>
                           </div>
 
-                          <h4 className="font-display font-bold text-lg text-white mb-2">
+                          <h3 className="font-display font-bold text-lg text-white mb-2">
                             {service.title}
-                          </h4>
-                          <p className="font-body text-xs text-[#c0c0cc] leading-relaxed mb-3">
+                          </h3>
+                          <p className="font-body text-xs text-[#d8d8e4] leading-relaxed mb-3">
                             {service.fullDesc}
                           </p>
 
                           <div className="space-y-1.5 mb-4">
-                            <span className="font-mono text-[10px] uppercase text-cyan-400 tracking-wider block">
+                            <span className="font-mono text-[10px] uppercase text-cyan-300 font-semibold tracking-wider block">
                               Deliverables Included:
                             </span>
                             {service.tags.map((tag, i) => (
-                              <div key={i} className="flex items-center gap-2 text-[11px] font-mono text-white/90">
+                              <div key={i} className="flex items-center gap-2 text-[11px] font-mono text-white/95">
                                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                                 <span>{tag}</span>
                               </div>
@@ -355,17 +359,22 @@ export default function BentoServices() {
                 <ChevronLeft className="w-5 h-5" />
               </button>
 
-              {/* Position Progress Dots */}
-              <div className="flex items-center gap-1.5">
+              {/* Position Progress Dots with accessible 36px touch targets */}
+              <div className="flex items-center gap-1.5" role="tablist" aria-label="Service carousel navigation">
                 {filteredServices.map((_, idx) => (
                   <button
                     key={idx}
                     onClick={() => setActiveIndex(idx)}
-                    className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                      activeIndex === idx ? 'w-8 bg-white' : 'w-1.5 bg-white/20 hover:bg-white/50'
-                    }`}
+                    className="min-h-[36px] min-w-[36px] flex items-center justify-center p-2 cursor-pointer rounded-full transition-transform active:scale-90"
                     aria-label={`Go to slide ${idx + 1}`}
-                  />
+                    aria-current={activeIndex === idx ? 'true' : undefined}
+                  >
+                    <span
+                      className={`h-1.5 rounded-full transition-all duration-300 pointer-events-none block ${
+                        activeIndex === idx ? 'w-8 bg-white' : 'w-2 bg-white/40 hover:bg-white/70'
+                      }`}
+                    />
+                  </button>
                 ))}
               </div>
 
@@ -378,7 +387,7 @@ export default function BentoServices() {
               </button>
             </div>
 
-            <p className="font-mono text-[11px] text-[#70707c] mt-4 uppercase tracking-widest">
+            <p className="font-mono text-[11px] text-[#c4c4d4] mt-4 uppercase tracking-widest">
               Slide or use arrows to roll • Click center card to rotate specs
             </p>
           </div>
@@ -411,7 +420,7 @@ export default function BentoServices() {
                           <div className="p-3.5 rounded-2xl bg-white/[0.06] border border-white/15 text-white shadow-lg">
                             <IconComponent className="w-5 h-5" />
                           </div>
-                          <span className="flex items-center gap-1 text-[10px] font-mono text-[#8e8e9c]">
+                          <span className="flex items-center gap-1 text-[10px] font-mono text-[#b4b4c4]">
                             <RotateCw className="w-3 h-3" />
                             <span>Flip</span>
                           </span>
@@ -419,7 +428,7 @@ export default function BentoServices() {
 
                         {/* Category & Badge */}
                         <div className="flex items-center justify-between gap-2 mb-2">
-                          <span className="font-mono text-[11px] text-[#808090] uppercase tracking-widest truncate">
+                          <span className="font-mono text-[11px] text-[#b0b0c0] uppercase tracking-widest truncate">
                             {service.category}
                           </span>
                           {service.badge && (
@@ -441,7 +450,7 @@ export default function BentoServices() {
                           <span className="font-display font-bold text-2xl text-white block">
                             {service.metric}
                           </span>
-                          <span className="font-mono text-[10px] text-[#80808c] uppercase tracking-wider">
+                          <span className="font-mono text-[10px] text-[#b0b0be] uppercase tracking-wider">
                             {service.metricLabel}
                           </span>
                         </div>
@@ -456,7 +465,7 @@ export default function BentoServices() {
                     <div className="absolute inset-0 backface-hidden rotate-y-180 glass-panel rounded-3xl p-7 flex flex-col justify-between border border-white/25 bg-[#09090b]">
                       <div>
                         <div className="flex items-center justify-between mb-3 pb-2.5 border-b border-white/10">
-                          <span className="font-mono text-[11px] uppercase tracking-widest text-[#90909e]">
+                          <span className="font-mono text-[11px] uppercase tracking-widest text-[#c2c2d4]">
                             What You Get
                           </span>
                           <button
@@ -468,9 +477,9 @@ export default function BentoServices() {
                           </button>
                         </div>
 
-                        <h4 className="font-display font-bold text-lg text-white mb-2">
+                        <h3 className="font-display font-bold text-lg text-white mb-2">
                           {service.title}
-                        </h4>
+                        </h3>
                         <p className="font-body text-xs text-[#c0c0cc] leading-relaxed mb-3">
                           {service.fullDesc}
                         </p>

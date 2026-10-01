@@ -21,7 +21,7 @@ export default function PrivacyPage() {
         {/* Back Navigation */}
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#8e8e9c] hover:text-white transition-colors mb-8"
+          className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#b4b4c4] hover:text-white transition-colors mb-8"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Return to Homepage</span>
@@ -29,14 +29,14 @@ export default function PrivacyPage() {
 
         {/* Header */}
         <div className="mb-14 border-b border-white/10 pb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-widest text-[#9e9ea7] mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-widest text-[#b4b4c0] mb-4">
             <Lock className="w-3.5 h-3.5 text-white" />
             <span>ENTERPRISE PRIVACY CHARTER</span>
           </div>
           <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight mb-4">
             PRIVACY & <span className="chrome-text">AI DATA GOVERNANCE</span>
           </h1>
-          <p className="font-mono text-xs text-[#828290]">
+          <p className="font-mono text-xs text-[#b4b4c4]">
             Effective Date: September 2026 • Document Version: 2.4-PROD
           </p>
         </div>
@@ -73,11 +73,11 @@ export default function PrivacyPage() {
         </div>
 
         {/* Detailed Sections */}
-        <div className="space-y-12 font-body text-sm text-[#a4a4b2] leading-relaxed">
+        <div className="space-y-12 font-body text-sm text-[#b8b8c6] leading-relaxed">
           {/* Section 1 */}
           <section>
             <h2 className="font-display font-bold text-xl text-white mb-3 flex items-center gap-2">
-              <span className="font-mono text-xs text-[#70707c]">01 //</span>
+              <span className="font-mono text-xs text-[#c2c2d2]">01 //</span>
               Information We Collect & Process
             </h2>
             <p className="mb-3">
@@ -93,7 +93,7 @@ export default function PrivacyPage() {
           {/* Section 2 */}
           <section>
             <h2 className="font-display font-bold text-xl text-white mb-3 flex items-center gap-2">
-              <span className="font-mono text-xs text-[#70707c]">02 //</span>
+              <span className="font-mono text-xs text-[#c2c2d2]">02 //</span>
               Model Isolation & Enclave Processing
             </h2>
             <p>
@@ -104,7 +104,7 @@ export default function PrivacyPage() {
           {/* Section 3 */}
           <section>
             <h2 className="font-display font-bold text-xl text-white mb-3 flex items-center gap-2">
-              <span className="font-mono text-xs text-[#70707c]">03 //</span>
+              <span className="font-mono text-xs text-[#c2c2d2]">03 //</span>
               Ownership of AI-Generated Output
             </h2>
             <p>
@@ -115,7 +115,7 @@ export default function PrivacyPage() {
           {/* Section 4 */}
           <section>
             <h2 className="font-display font-bold text-xl text-white mb-3 flex items-center gap-2">
-              <span className="font-mono text-xs text-[#70707c]">04 //</span>
+              <span className="font-mono text-xs text-[#c2c2d2]">04 //</span>
               Data Retention & Destruction
             </h2>
             <p>
@@ -126,7 +126,7 @@ export default function PrivacyPage() {
           {/* Section 5 */}
           <section>
             <h2 className="font-display font-bold text-xl text-white mb-3 flex items-center gap-2">
-              <span className="font-mono text-xs text-[#70707c]">05 //</span>
+              <span className="font-mono text-xs text-[#c2c2d2]">05 //</span>
               Global Regulatory Compliance
             </h2>
             <p>
@@ -139,7 +139,7 @@ export default function PrivacyPage() {
             <h3 className="font-display font-bold text-base text-white mb-2">
               Data Protection Officer & Security Inquiries
             </h3>
-            <p className="text-xs text-[#8e8e9c]">
+            <p className="text-xs text-[#b4b4c4]">
               For custom Data Processing Agreements (DPA), vendor security assessments, or audit logs:
               <br />
               <span className="text-white font-mono mt-1 block">symmetryofficial1@gmail.com</span>

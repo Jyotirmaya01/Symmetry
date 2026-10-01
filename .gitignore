@@ -33,3 +33,7 @@ dist
 !public/media/jewellery-brand-ad.mp4
 Video Project 2.mp4
 scratch*
+
+# Graphify local sidecars
+graphify-out/.*
+graphify-out/cache/

@@ -21,7 +21,7 @@ export default function SecurityPage() {
         {/* Back Navigation */}
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#8e8e9c] hover:text-white transition-colors mb-8"
+          className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#b4b4c4] hover:text-white transition-colors mb-8"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Return to Homepage</span>
@@ -29,14 +29,14 @@ export default function SecurityPage() {
 
         {/* Header */}
         <div className="mb-14 border-b border-white/10 pb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-widest text-[#9e9ea7] mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-widest text-[#b4b4c0] mb-4">
             <Shield className="w-3.5 h-3.5 text-white" />
             <span>ENTERPRISE SECURITY INFRASTRUCTURE</span>
           </div>
           <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight mb-4">
             SECURITY & <span className="chrome-text">INFRASTRUCTURE</span>
           </h1>
-          <p className="font-mono text-xs text-[#828290]">
+          <p className="font-mono text-xs text-[#b4b4c4]">
             Defense-in-depth architecture engineered for global brands and regulated industries.
           </p>
         </div>
@@ -48,7 +48,7 @@ export default function SecurityPage() {
             <h3 className="font-display font-bold text-base text-white mb-1">
               Isolated VPCs
             </h3>
-            <p className="font-body text-xs text-[#90909e] leading-relaxed">
+            <p className="font-body text-xs text-[#b4b4c4] leading-relaxed">
               Dedicated neural inference compute clusters isolated by hardware security modules.
             </p>
           </div>
@@ -57,7 +57,7 @@ export default function SecurityPage() {
             <h3 className="font-display font-bold text-base text-white mb-1">
               End-to-End Encryption
             </h3>
-            <p className="font-body text-xs text-[#90909e] leading-relaxed">
+            <p className="font-body text-xs text-[#b4b4c4] leading-relaxed">
               All client assets encrypted with AES-256 at rest and TLS 1.3 in transit.
             </p>
           </div>
@@ -66,14 +66,14 @@ export default function SecurityPage() {
             <h3 className="font-display font-bold text-base text-white mb-1">
               Zero-Retention Policy
             </h3>
-            <p className="font-body text-xs text-[#90909e] leading-relaxed">
+            <p className="font-body text-xs text-[#b4b4c4] leading-relaxed">
               Model inputs and fine-tuned weights never cross-pollinate with external tenants.
             </p>
           </div>
         </div>
 
         {/* Detailed Security Controls */}
-        <div className="space-y-10 font-body text-sm text-[#a4a4b2] leading-relaxed">
+        <div className="space-y-10 font-body text-sm text-[#b8b8c6] leading-relaxed">
           <section>
             <h2 className="font-display font-bold text-xl text-white mb-3">
               1. Compute & Model Segregation
@@ -106,7 +106,7 @@ export default function SecurityPage() {
             <h3 className="font-display font-bold text-base text-white mb-2">
               Request Enterprise Security Whitepaper
             </h3>
-            <p className="text-xs text-[#8e8e9c]">
+            <p className="text-xs text-[#b4b4c4]">
               To request our SOC2 report, architectural diagrams, or submit vendor questionnaires:
               <br />
               <span className="text-white font-mono mt-1 block">symmetryofficial1@gmail.com</span>
