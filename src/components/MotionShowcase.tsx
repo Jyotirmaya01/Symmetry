@@ -163,6 +163,7 @@ export default function MotionShowcase() {
               <video
                 ref={videoRef}
                 src={isInView ? getOptimizedMediaUrl(current.videoSrc, { isVideo: true }) : undefined}
+                poster={getOptimizedMediaUrl(current.videoSrc, { isVideo: true, isPoster: true, width: 800 })}
                 loop
                 muted={isMuted}
                 playsInline

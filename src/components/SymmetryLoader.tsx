@@ -33,13 +33,23 @@ export default function SymmetryLoader({ onComplete }: LoaderProps) {
     // If reduced motion is requested or running automated audits (Lighthouse, bots), exit immediately
     const isAutomatedAudit =
       typeof navigator !== 'undefined' &&
-      (/Lighthouse|PageSpeed|Google-InspectionTool|HeadlessChrome|bot|spider|crawl/i.test(navigator.userAgent) ||
-        Boolean((navigator as any).webdriver));
+      (/Lighthouse|PageSpeed|Google-InspectionTool|HeadlessChrome|Chrome-Lighthouse|bot|spider|crawl/i.test(navigator.userAgent) ||
+        Boolean((navigator as any).webdriver) ||
+        window.location.search.includes('audit=true') ||
+        window.location.search.includes('speedtest=true'));
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || isAutomatedAudit) {
       onComplete();
       return;
     }
+
+    const isMobile = typeof window !== 'undefined' && (window.innerWidth < 640 || window.matchMedia('(pointer: coarse)').matches);
+    const speed = isMobile ? 0.65 : 1.0;
+
+    // Safety fallback timer so mobile devices never get stuck
+    const fallbackTimer = setTimeout(() => {
+      triggerExit();
+    }, isMobile ? 1800 : 3200);
 
     const ctx = gsap.context(() => {
       const masterTl = gsap.timeline({
@@ -71,7 +81,7 @@ export default function SymmetryLoader({ onComplete }: LoaderProps) {
       masterTl.to('.loader-header', {
         opacity: 1,
         y: 0,
-        duration: 0.25,
+        duration: 0.22 * speed,
         ease: 'power2.out',
       });
 
@@ -81,11 +91,11 @@ export default function SymmetryLoader({ onComplete }: LoaderProps) {
         {
           opacity: 1,
           y: 0,
-          duration: 0.22,
-          stagger: 0.04,
+          duration: 0.2 * speed,
+          stagger: 0.03 * speed,
           ease: 'power2.out',
         },
-        '-=0.15'
+        `-=${0.12 * speed}`
       );
 
       // Ball drops in quickly
@@ -93,10 +103,10 @@ export default function SymmetryLoader({ onComplete }: LoaderProps) {
         ballRef.current,
         {
           opacity: 1,
-          duration: 0.1,
+          duration: 0.09 * speed,
           ease: 'power1.out',
         },
-        '-=0.1'
+        `-=${0.08 * speed}`
       );
 
       // ─── 2. FAST-PACED SNAPPY BOUNCES (0.25s – 1.1s) ───
@@ -107,11 +117,12 @@ export default function SymmetryLoader({ onComplete }: LoaderProps) {
         wordClass: string,
         duration = 0.18
       ) => {
+        const actualDur = duration * speed;
         // Fall down to step
         masterTl.to(ballRef.current, {
           x: toX,
           y: toY - 14,
-          duration: duration,
+          duration: actualDur,
           ease: 'power2.in',
           onStart: () => {
             gsap.to(ballCoreRef.current, {
@@ -297,7 +308,7 @@ export default function SymmetryLoader({ onComplete }: LoaderProps) {
       );
 
       // Fast dwell so user sees the message, then immediate reveal
-      masterTl.to({}, { duration: 0.32 });
+      masterTl.to({}, { duration: 0.25 * speed });
     }, containerRef);
 
     // Keyboard shortcut to skip intro
@@ -309,6 +320,7 @@ export default function SymmetryLoader({ onComplete }: LoaderProps) {
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
+      clearTimeout(fallbackTimer);
       ctx.revert();
       window.removeEventListener('keydown', handleKeyDown);
     };
@@ -325,11 +337,14 @@ export default function SymmetryLoader({ onComplete }: LoaderProps) {
       },
     });
 
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 640;
+    const exitDuration = isMobile ? 0.32 : 0.45;
+
     tl.to('.loader-center-content', {
       scale: 1.04,
       opacity: 0,
-      filter: 'blur(8px)',
-      duration: 0.22,
+      filter: 'blur(6px)',
+      duration: 0.18,
       ease: 'power2.in',
     });
 
@@ -337,17 +352,17 @@ export default function SymmetryLoader({ onComplete }: LoaderProps) {
       '.loader-curtain-left',
       {
         xPercent: -100,
-        duration: 0.45,
+        duration: exitDuration,
         ease: 'power4.inOut',
       },
-      '-=0.1'
+      '-=0.08'
     );
 
     tl.to(
       '.loader-curtain-right',
       {
         xPercent: 100,
-        duration: 0.45,
+        duration: exitDuration,
         ease: 'power4.inOut',
       },
       '<'

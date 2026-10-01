@@ -327,6 +327,7 @@ export default function AiVideoShowcase() {
                           videoRefs.current[item.id] = el;
                         }}
                         src={getOptimizedMediaUrl(item.videoSrc, { isVideo: true })}
+                        poster={getOptimizedMediaUrl(item.videoSrc, { isVideo: true, isPoster: true, width: 600 })}
                         loop
                         muted={isMuted}
                         playsInline
@@ -489,6 +490,7 @@ export default function AiVideoShowcase() {
                             videoRefs.current[item.id] = el;
                           }}
                           src={getOptimizedMediaUrl(item.videoSrc, { isVideo: true })}
+                          poster={getOptimizedMediaUrl(item.videoSrc, { isVideo: true, isPoster: true, width: 800 })}
                           loop
                           muted={isMuted}
                           playsInline

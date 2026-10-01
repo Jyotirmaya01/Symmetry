@@ -73,7 +73,10 @@ const CLOUDINARY_PUBLIC_ID_MAP: Record<string, string> = {
  * high-speed global CDN with automatic format (f_auto), automatic quality (q_auto), and adaptive streaming.
  * Otherwise, cleanly serves the local asset from /media/ or /public/.
  */
-export function getOptimizedMediaUrl(localPath: string, options?: { isVideo?: boolean; width?: number }): string {
+export function getOptimizedMediaUrl(
+  localPath: string,
+  options?: { isVideo?: boolean; width?: number; isPoster?: boolean }
+): string {
   // Normalize path
   const cleanPath = localPath.startsWith('/') ? localPath.slice(1) : localPath;
 
@@ -89,6 +92,9 @@ export function getOptimizedMediaUrl(localPath: string, options?: { isVideo?: bo
   if (cloudName) {
     const resourceType = options?.isVideo ? 'video' : 'image';
     const transformations = ['f_auto', 'q_auto'];
+    if (options?.isPoster) {
+      transformations.unshift('so_0');
+    }
     if (options?.width) {
       transformations.push(`w_${options.width}`);
     }
@@ -97,7 +103,8 @@ export function getOptimizedMediaUrl(localPath: string, options?: { isVideo?: bo
     // Strip leading "media/" and extension for clean Cloudinary public ID lookup
     const baseName = cleanPath.replace(/^media\//, '').replace(/\.[^/.]+$/, '');
     const mappedId = CLOUDINARY_PUBLIC_ID_MAP[cleanPath] || CLOUDINARY_PUBLIC_ID_MAP[baseName] || baseName;
-    return `https://res.cloudinary.com/${cloudName}/${resourceType}/upload/${transformStr}/${encodeURIComponent(mappedId)}`;
+    const ext = options?.isPoster ? '.jpg' : '';
+    return `https://res.cloudinary.com/${cloudName}/${resourceType}/upload/${transformStr}/${encodeURIComponent(mappedId)}${ext}`;
   }
 
   // 3. Default: Serve fast local asset

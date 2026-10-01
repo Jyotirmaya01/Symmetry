@@ -126,6 +126,7 @@ export default function HeroSection() {
         <video
           ref={videoRef}
           src={getOptimizedMediaUrl('Symmetry_Most_compressed.mp4', { isVideo: true })}
+          poster={getOptimizedMediaUrl('Symmetry_Most_compressed.mp4', { isVideo: true, isPoster: true, width: 900 })}
           autoPlay
           loop
           muted

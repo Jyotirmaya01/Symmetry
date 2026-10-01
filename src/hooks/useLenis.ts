@@ -25,14 +25,14 @@ export function useLenis() {
     const isTouch = window.matchMedia('(pointer: coarse)').matches;
 
     const lenis = new Lenis({
-      duration: 0.9,
+      duration: isTouch ? 0.6 : 0.9,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 0.95,
       touchMultiplier: 1.0,
-      syncTouch: true,
+      syncTouch: false, // Let mobile use native GPU compositor momentum scrolling
       autoResize: true,
     });
 
@@ -46,11 +46,11 @@ export function useLenis() {
     };
 
     gsap.ticker.add(updateTicker);
-    gsap.ticker.lagSmoothing(0);
+    // Keep healthy lag smoothing (500ms max lag, 33ms adjusted) so mobile devices never freeze
+    gsap.ticker.lagSmoothing(500, 33);
 
     return () => {
       gsap.ticker.remove(updateTicker);
-      gsap.ticker.lagSmoothing(500, 33);
       lenis.destroy();
       delete window.__lenis;
     };
