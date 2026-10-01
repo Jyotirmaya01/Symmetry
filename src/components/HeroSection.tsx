@@ -180,6 +180,26 @@ export default function HeroSection() {
 
       {/* ── Main Foreground Content ── */}
       <div ref={contentRef} className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center my-auto">
+        {/* Top Premium Sponsor Line (ElevenLabs Official Audio Partner) */}
+        <a
+          href="https://try.elevenlabs.io/wvovc6eu0tnv"
+          target="_blank"
+          rel="sponsored noopener noreferrer"
+          aria-label="ElevenLabs - Official Studio Audio & Voiceover Partner (opens in new tab)"
+          className="hero-stagger group mb-5 inline-flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 px-3.5 sm:px-4 py-1.5 rounded-full bg-white/[0.03] hover:bg-white/[0.07] border border-emerald-500/30 hover:border-emerald-400/60 backdrop-blur-xl transition-all duration-300 shadow-[0_0_20px_rgba(16,185,129,0.12)] hover:shadow-[0_0_25px_rgba(16,185,129,0.25)] cursor-pointer"
+        >
+          <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-mono text-[10px] uppercase font-semibold tracking-wider">
+            Audio Partner
+          </span>
+          <span className="text-xs font-mono text-neutral-300 group-hover:text-white transition-colors">
+            Cinema Voice & Audio SFX powered by <span className="text-white font-semibold">ElevenLabs</span>
+          </span>
+          <span className="text-emerald-400 text-xs font-mono group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-0.5 font-medium">
+            <span>Claim Free Credits</span>
+            <span className="text-[11px]">↗</span>
+          </span>
+        </a>
+
         {/* Live Status Pill */}
         <div className="hero-stagger inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/15 backdrop-blur-lg mb-6 shadow-[0_0_20px_rgba(255,255,255,0.06)]">
           <span className="relative flex h-2 w-2">
