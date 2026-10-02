@@ -360,7 +360,7 @@ export default function BentoServices() {
               </button>
 
               {/* Position Progress Dots with accessible 36px touch targets */}
-              <div className="flex items-center gap-1.5" role="tablist" aria-label="Service carousel navigation">
+              <div className="flex items-center gap-1.5" role="group" aria-label="Service carousel navigation">
                 {filteredServices.map((_, idx) => (
                   <button
                     key={idx}

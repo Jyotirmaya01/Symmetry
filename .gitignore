@@ -38,6 +38,8 @@ scratch*
 graphify-out/.*
 graphify-out/cache/
 
-# Test outputs
+# Test & Audit outputs
 test-results/
 playwright-report/
+lighthouse-*.json
+lighthouse-*.html

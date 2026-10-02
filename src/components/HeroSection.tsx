@@ -159,7 +159,7 @@ export default function HeroSection() {
       <div className="relative z-20 w-full max-w-7xl mx-auto flex justify-end gap-3 mb-4">
         <button
           onClick={toggleSound}
-          aria-label={isMuted ? 'Unmute Audio' : 'Mute Audio'}
+          aria-label={isMuted ? 'Muted' : 'Sound ON'}
           className="group flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 border border-white/15 backdrop-blur-md text-[#c0c0cb] hover:text-white hover:border-white/40 transition-all text-xs font-mono cursor-pointer"
           title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
         >
@@ -169,7 +169,7 @@ export default function HeroSection() {
 
         <button
           onClick={togglePlay}
-          aria-label={isPlaying ? 'Pause Background Reel' : 'Play Background Reel'}
+          aria-label={isPlaying ? 'Pause' : 'Play'}
           className="group flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 border border-white/15 backdrop-blur-md text-[#c0c0cb] hover:text-white hover:border-white/40 transition-all text-xs font-mono cursor-pointer"
           title={isPlaying ? 'Pause Reel' : 'Play Reel'}
         >
