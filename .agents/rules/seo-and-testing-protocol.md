@@ -1,22 +1,25 @@
-# Automated Testing & Top-Rank Google SEO Protocol
+# The Unified 2-Tool Standard for Testing & SEO (Universal Across Any Project)
 
-Whenever the user asks to "test code", "run tests", "verify code", or "increase Google ranking", you MUST ALWAYS follow this protocol:
+Whenever the user asks to "test code", "verify code", or "increase Google ranking", you MUST use EXACTLY these two industry-standard tools across ANY project:
 
-## 1. Automated Testing Engine
-- **Unit & Component Testing:** Run `npm test` (powered by Vitest) to verify component logic, data integrity, and state machines.
-- **Search Engine Crawler & E2E Testing:** Run `npm run test:seo` (powered by Microsoft Playwright) to simulate `Googlebot/2.1` and mobile devices. Verify:
-  - Title tags (between 20 and 70 characters to prevent SERP truncation).
-  - Meta description (between 50 and 300 characters, keyword-rich).
-  - Canonical URL matching the active domain (zero unresolvable redirects).
-  - Semantic heading hierarchy (single `<h1>` with core intent keywords).
-  - JSON-LD structured data (`ProfessionalService`, `FAQPage`, `WebSite`, `BreadcrumbList`).
-  - Accessibility and validity of `robots.txt` and `sitemap.xml`.
+## 1. The Single Testing Tool: Microsoft Playwright (`@playwright/test`)
+- **Storage:** ~17.7 MB in project dependencies.
+- **Why it is the best for ANY project:**
+  - Works universally with React, Next.js, Vue, Svelte, Node.js, Python, PHP, or plain HTML.
+  - Runs real end-to-end (E2E) testing across Desktop Chrome, Mobile Chrome, and Googlebot.
+  - Tests user journeys, forms, buttons, APIs, route transitions, and catches runtime JavaScript errors.
+- **Execution:** `npm test` (or `npx playwright test`).
 
-## 2. Beast-Level SEO Optimization Standard
-- **Zero SPA Crawl Trap:** Always provide pre-rendered semantic HTML inside the root container (`<div id="app">`) so search engines receive full keyword copy on raw HTTP fetch without waiting for JavaScript.
-- **Topical Authority & FAQs:** Maintain an on-page FAQ accordion matching the JSON-LD `FAQPage` schema to capture Google "People Also Ask" rich snippets.
-- **Sitemap Hygiene:** Never include hash URL fragments (`#...`) in `sitemap.xml`. Include `<image:image>` and `<video:video>` metadata for multimedia indexing.
-- **Site-Wide Audits:** Use Unlighthouse (`npm run audit:seo` or `npx unlighthouse --site <url>`) for automated Core Web Vitals (LCP, CLS, INP) audits.
+## 2. The Single SEO Tool: Google Lighthouse (`lighthouse`)
+- **Storage:** ~18.3 MB in project dependencies (or 0 MB on-demand via `npx lighthouse`).
+- **Why it is the best for ANY project:**
+  - It is Google's official search engine audit engine used to determine real-world ranking and indexing.
+  - Tests Title tags, Meta descriptions, Canonical links, Open Graph, H1 headings, Robots.txt, Sitemap validity, and Core Web Vitals (LCP, CLS, INP).
+  - Guarantees 100/100 Technical SEO compliance before production deployment.
+- **Execution:** `npm run audit:seo` (or `npx lighthouse <url> --only-categories=seo`).
 
-## 3. Pre-Push Validation & Git Sync
-- Always run `npm test`, `npm run test:seo`, and `npm run build` before pushing commits to GitHub.
+## 3. SEO Ranking Architecture Rules (All Projects)
+- **Zero SPA Crawl Trap:** Always provide pre-rendered semantic HTML inside root containers (`<div id="app">` or `<div id="root">`) so search engines receive full keyword copy on raw HTTP fetch.
+- **Valid URLs Only:** Zero `#` hash fragments in `sitemap.xml`.
+- **JSON-LD Structured Data:** Embed valid schema (`ProfessionalService`, `FAQPage`, `BreadcrumbList`).
+- **Pre-Push Validation:** Ensure `npm test` and `npm run build` pass cleanly before pushing to GitHub.
