@@ -203,11 +203,11 @@ export default function HeroSection() {
         {/* Live Status Pill */}
         <div className="hero-stagger inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/15 backdrop-blur-lg mb-6 shadow-[0_0_20px_rgba(255,255,255,0.06)]">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400" />
           </span>
-          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-[#d0d0dc]">
-            SYMMETRY // CREATIVE TECHNOLOGY & MOTION STUDIO
+          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#d0d0dc]">
+            SYMMETRY // 3D MOTION DESIGN STUDIO & VIDEO AGENCY
           </span>
         </div>
 
@@ -220,7 +220,7 @@ export default function HeroSection() {
 
         {/* Tagline / Subtitle */}
         <p className="hero-stagger font-body text-base sm:text-xl text-[#a8a8b6] max-w-2xl mx-auto font-normal leading-relaxed mb-10">
-          We fuse computational design, cinema-grade commercial motion, and autonomous business workflows into category-defining digital presence for ambitious global brands.
+          We engineer cinema-grade 3D product animations, viral 4K video commercials, and high-retention social reels for ambitious global brands with rapid 48–72h turnaround.
         </p>
 
         {/* Call to Actions */}

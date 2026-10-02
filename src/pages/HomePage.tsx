@@ -15,6 +15,7 @@ const AiVideoShowcase = lazy(() => import('@/components/AiVideoShowcase'));
 const ProjectVaultSection = lazy(() => import('@/components/ProjectVaultSection'));
 const SymmetryProcess = lazy(() => import('@/components/SymmetryProcess'));
 const ClientImpact = lazy(() => import('@/components/ClientImpact'));
+const FaqSection = lazy(() => import('@/components/FaqSection'));
 const CTASection = lazy(() => import('@/components/CTASection'));
 
 export default function HomePage() {
@@ -51,7 +52,10 @@ export default function HomePage() {
           {/* 7. Enterprise Outcomes & Verified Testimonials */}
           <ClientImpact />
 
-          {/* 8. Grand CTA & Direct Project Inquiry Form */}
+          {/* 8. Frequently Asked Questions (FAQ) & Topical Authority */}
+          <FaqSection />
+
+          {/* 9. Grand CTA & Direct Project Inquiry Form */}
           <CTASection />
         </Suspense>
       </main>

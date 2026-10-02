@@ -1,81 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   
-  <!-- Homepage Primary Route -->
+  <!-- 1. Homepage Primary Authority Route -->
   <url>
     <loc>https://symmetry-ochre.vercel.app/</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://symmetry-ochre.vercel.app/symmetry-logo.png</image:loc>
-      <image:title>Symmetry Creative Motion Studio</image:title>
-      <image:caption>High-performance 3D motion design and 4K commercial film studio</image:caption>
+      <image:title>SYMMETRY — 3D Motion Design Studio & 4K Video Editing Agency</image:title>
+      <image:caption>Cinema-grade 3D product animations, viral 4K video commercials, and high-retention video reels</image:caption>
     </image:image>
+    <video:video>
+      <video:thumbnail_loc>https://res.cloudinary.com/mnosh6bi/video/upload/so_0,f_auto,q_auto,w_900/Symmetry_Most_compressed.jpg</video:thumbnail_loc>
+      <video:title>SYMMETRY 3D Motion Design & 4K Commercial Showreel</video:title>
+      <video:description>High-performance 3D motion graphics, liquid chrome visual effects, and cinema-grade commercial video production by Symmetry.</video:description>
+      <video:content_loc>https://symmetry-ochre.vercel.app/Symmetry_Most_compressed.mp4</video:content_loc>
+      <video:player_loc>https://symmetry-ochre.vercel.app/</video:player_loc>
+      <video:duration>60</video:duration>
+      <video:publication_date>2026-10-01T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:uploader info="https://symmetry-ochre.vercel.app/">Symmetry Creative Studio</video:uploader>
+    </video:video>
   </url>
 
-  <!-- Core Services & Solutions -->
-  <url>
-    <loc>https://symmetry-ochre.vercel.app/#solutions</loc>
-    <lastmod>2026-09-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Motion Graphics & Commercial Showcases -->
-  <url>
-    <loc>https://symmetry-ochre.vercel.app/#showcase</loc>
-    <lastmod>2026-09-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Verified Client Collaborations & Impact -->
-  <url>
-    <loc>https://symmetry-ochre.vercel.app/#impact</loc>
-    <lastmod>2026-09-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Production Vault & Raw 4K Drive -->
-  <url>
-    <loc>https://symmetry-ochre.vercel.app/#vault</loc>
-    <lastmod>2026-09-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Project Discovery & Direct Inquiry -->
-  <url>
-    <loc>https://symmetry-ochre.vercel.app/#contact</loc>
-    <lastmod>2026-09-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <!-- Legal & Trust Policies -->
+  <!-- 2. Legal, Trust & Security Verification Routes -->
   <url>
     <loc>https://symmetry-ochre.vercel.app/privacy</loc>
-    <lastmod>2026-09-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 
   <url>
     <loc>https://symmetry-ochre.vercel.app/terms</loc>
-    <lastmod>2026-09-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 
   <url>
     <loc>https://symmetry-ochre.vercel.app/security</loc>
-    <lastmod>2026-09-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 
 </urlset>
-

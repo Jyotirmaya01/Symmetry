@@ -1,34 +1,34 @@
-# SYMMETRY - Creative Motion & Digital Architecture Studio (Full Context)
+# SYMMETRY - 3D Motion Design Studio & 4K Video Editing Agency (Full Context)
 
-> Complete knowledge base and machine-readable context for AI systems, autonomous agents, and search engines regarding Symmetry's creative services, production standards, and contact protocols.
+> Complete knowledge base and machine-readable context for AI search systems, autonomous agents, and search engines regarding Symmetry's creative services, production standards, and contact protocols.
 
 ## Studio Overview
-Symmetry is an elite creative motion design studio engineering cinema-grade 3D product animations, viral 4K commercial reels, luxury visual effects, and high-converting digital architecture. We deliver commercial-grade motion and web experiences with rapid 48-72h turnaround.
+Symmetry is an elite 3D motion design studio and commercial video editing agency engineering cinema-grade 3D product animations, viral 4K commercial reels, luxury visual effects, and high-converting digital architecture. We deliver commercial-grade motion and web experiences with rapid 48-72h turnaround.
 
-- Official Domain: https://symmetryofficial.com
+- Official Domain: https://symmetry-ochre.vercel.app
 - Primary Email: symmetryofficial1@gmail.com
 - Delivery SLA: 48 to 72 hours for initial creative milestone
 - Quality Standard: 4K 60FPS, ProRes 4444, HDR-ready color pipeline
 
 ## Capabilities & Offerings
 
-### 1. Viral 4K Video Reels & Shorts
+### 1. Viral 4K Video Reels & Shorts (TikTok, Instagram Reels, YouTube Shorts)
 - Platforms: Instagram Reels, TikTok, YouTube Shorts.
 - Format: 9:16 vertical, 4K resolution, 60fps.
-- Methodology: Hook-optimized first 3 seconds, dynamic kinetic typography, sound design, visual retention pacing.
+- Methodology: Hook-optimized first 3 seconds, dynamic kinetic typography, custom Foley sound design, visual retention pacing.
 
-### 2. 3D Product Commercials & CGI Ads
-- Techniques: Photorealistic octane/redshift/cycles rendering, specular caustics, soft-body and fluid simulation, camera mapping.
-- Applications: Luxury cosmetics, consumer tech, watches, jewellery, and automotive.
+### 2. 3D Product Commercials & CGI Animation
+- Techniques: Photorealistic octane/redshift/blender rendering, specular caustics, soft-body and fluid simulation, cinematic camera mapping.
+- Applications: Luxury cosmetics, consumer tech, watches, jewellery, automotive, and DTC physical products.
 
 ### 3. Luxury Websites & Digital Architecture
 - Stack: React, Vite, TypeScript, Tailwind CSS, Three.js, GSAP, WebGL.
 - Performance: 60FPS fluid interactions, accessible semantic DOM, sub-second load times.
 
 ### 4. Brand Identity & Motion Systems
-- Deliverables: Logo identity, motion guideline stinger, typography tokens, social media templates, monthly recurring content engine.
+- Deliverables: Vector logo identity, motion guideline stinger, typography tokens, social media templates, monthly recurring content engine.
 
 ## Discovery & Contact
-- Website: [https://symmetryofficial.com](https://symmetryofficial.com)
-- Booking Gateway: [https://symmetryofficial.com/#contact](https://symmetryofficial.com/#contact)
+- Website: [https://symmetry-ochre.vercel.app](https://symmetry-ochre.vercel.app)
+- Booking Gateway: [https://symmetry-ochre.vercel.app/#contact](https://symmetry-ochre.vercel.app/#contact)
 - Inquiries: [mailto:symmetryofficial1@gmail.com](mailto:symmetryofficial1@gmail.com)

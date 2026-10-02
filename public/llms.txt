@@ -1,33 +1,35 @@
-# SYMMETRY - Creative Motion & Digital Architecture Studio
+# SYMMETRY - 3D Motion Design Studio & 4K Video Editing Agency
 
-> Symmetry is an elite creative motion design studio engineering cinema-grade 3D product animations, viral 4K commercial reels, luxury visual effects, and high-converting digital architecture.
+> Symmetry is an elite creative motion design studio and video editing agency engineering cinema-grade 3D product animations, viral 4K commercial reels, luxury visual effects, and high-converting digital architecture with 48–72h turnaround.
 
-Symmetry is a high-performance creative studio that partners with ambitious luxury brands, high-growth startups, and prominent digital creators. We specialize in rapid 48-72 hour turnarounds for high-retention 4K vertical reels, photorealistic 3D product CGI commercials, complete brand identity systems, and interactive 3D web experiences.
+Symmetry is a high-performance creative production studio that partners with ambitious luxury brands, high-growth startups, and prominent digital creators. We specialize in rapid 48-72 hour turnarounds for high-retention 4K vertical reels, photorealistic 3D product CGI commercials, complete brand identity systems, and interactive 3D web experiences.
 
-## Core Services & Solutions
+## Core Services & High-Volume Solutions
 
-- [Viral 4K Video Reels & Shorts](https://symmetryofficial.com/#solutions): High-retention vertical 9:16 production tailored for Instagram, TikTok, and YouTube.
-- [Cinema-Grade 3D Motion Design](https://symmetryofficial.com/#solutions): Specular gemstone caustics, fluid dynamics, and photorealistic 3D CGI product animations.
-- [Luxury Websites & Digital Architecture](https://symmetryofficial.com/#solutions): High-converting interactive websites built with React, Three.js, and bespoke modern UX.
-- [Brand Identity & Motion Systems](https://symmetryofficial.com/#solutions): Comprehensive visual identity, vector marks, design systems, and monthly recurring content engines.
-- [AI Video Commercials & Multi-Variant Ads](https://symmetryofficial.com/#solutions): Data-driven paid ad creatives and AI-assisted commercial variations.
+- [Viral 4K Video Reels & Shorts](https://symmetry-ochre.vercel.app/#solutions): High-retention vertical 9:16 production tailored for Instagram, TikTok, and YouTube Shorts.
+- [Cinema-Grade 3D Motion Design](https://symmetry-ochre.vercel.app/#solutions): Specular gemstone caustics, fluid dynamics, and photorealistic 3D CGI product animations.
+- [Commercial Video Production & Editing](https://symmetry-ochre.vercel.app/#solutions): Master 4K ProRes 4444 commercial films for TV, web headers, and DTC ads.
+- [Luxury Websites & Digital Architecture](https://symmetry-ochre.vercel.app/#solutions): High-converting interactive websites built with React, Three.js, and bespoke modern UX.
+- [Brand Identity & Motion Systems](https://symmetry-ochre.vercel.app/#solutions): Comprehensive visual identity, vector marks, design systems, and monthly recurring content engines.
+- [AI Video Commercials & Multi-Variant Ads](https://symmetry-ochre.vercel.app/#solutions): Data-driven paid ad creatives and AI-assisted commercial variations.
 
 ## Quick Links & Navigation
 
-- [Official Website](https://symmetryofficial.com): Elite Creative Motion & Digital Architecture Studio homepage.
-- [Client Portal & Booking](https://symmetryofficial.com/#contact): Project inquiries, discovery scoping, and direct booking gateway.
-- [Services Overview](https://symmetryofficial.com/#solutions): 48-72 hour creative project delivery and deliverables list.
-- [Process & Protocol](https://symmetryofficial.com/#process): Four-stage production protocol from concept to final ProRes 4444 delivery.
-- [Client Testimonials & Impact](https://symmetryofficial.com/#impact): Verified client reviews and measured growth metrics.
+- [Official Website](https://symmetry-ochre.vercel.app): Elite 3D Motion Design & Video Editing Agency homepage.
+- [Client Portal & Booking](https://symmetry-ochre.vercel.app/#contact): Project inquiries, discovery scoping, and direct booking gateway.
+- [Services Overview](https://symmetry-ochre.vercel.app/#solutions): 48-72 hour creative project delivery and deliverables list.
+- [Motion Showreel](https://symmetry-ochre.vercel.app/#showcase): 4K motion graphics theater and commercial case studies.
+- [Process & Protocol](https://symmetry-ochre.vercel.app/#process): Four-stage production protocol from concept to final ProRes 4444 delivery.
+- [Client Testimonials & Impact](https://symmetry-ochre.vercel.app/#impact): Verified client reviews and measured growth metrics.
 - [Instagram Portfolio](https://www.instagram.com/symmetry_official_): Official Instagram channel featuring latest visual drops.
 - [YouTube Channel](https://youtube.com/@symmetry_official): 4K video reels and cinema showcases.
 
 ## Contact & Direct Communication
 
 - [Email Inquiries](mailto:symmetryofficial1@gmail.com): Direct contact for partnerships and custom project scoping.
-- [Direct Inquiry Gateway](https://symmetryofficial.com/#contact): Instant booking with 48-72 hour SLA guarantee.
+- [Direct Inquiry Gateway](https://symmetry-ochre.vercel.app/#contact): Instant booking with 48-72 hour SLA guarantee.
 
 ## Optional Resources
 
-- [Full LLM Knowledge Document](https://symmetryofficial.com/llms-full.txt): Complete detailed text specification for LLMs and AI agents.
-- [Agentic Resource Discovery Manifest](https://symmetryofficial.com/.well-known/ai-catalog.json): Machine-readable ARD capability catalog.
+- [Full LLM Knowledge Document](https://symmetry-ochre.vercel.app/llms-full.txt): Complete detailed text specification for LLMs and AI agents.
+- [Agentic Resource Discovery Manifest](https://symmetry-ochre.vercel.app/.well-known/ai-catalog.json): Machine-readable ARD capability catalog.

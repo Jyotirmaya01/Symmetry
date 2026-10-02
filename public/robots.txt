@@ -1,6 +1,6 @@
 # ==========================================
 # SYMMETRY — Modern Search Engine & AI Agent Robots File
-# https://symmetryofficial.com
+# https://symmetry-ochre.vercel.app
 # ==========================================
 
 User-agent: *
@@ -38,7 +38,7 @@ Allow: /
 User-agent: DuckDuckBot
 Allow: /
 
-# AI Crawlers & Agentic Browsing Directives
+# AI Crawlers & Agentic Search Directives (ChatGPT, Claude, Perplexity, Gemini)
 User-agent: GPTBot
 Allow: /
 Allow: /llms.txt
@@ -55,5 +55,5 @@ User-agent: Google-Extended
 Allow: /
 
 # Canonical Sitemap & Host
-Sitemap: https://symmetryofficial.com/sitemap.xml
-Host: https://symmetryofficial.com
+Sitemap: https://symmetry-ochre.vercel.app/sitemap.xml
+Host: https://symmetry-ochre.vercel.app
