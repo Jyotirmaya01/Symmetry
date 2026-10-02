@@ -37,3 +37,7 @@ scratch*
 # Graphify local sidecars
 graphify-out/.*
 graphify-out/cache/
+
+# Test outputs
+test-results/
+playwright-report/
