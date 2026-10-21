@@ -21,6 +21,26 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu on Escape key
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileMenuOpen(false);
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [mobileMenuOpen]);
+
+  // Lock body scroll when mobile drawer is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileMenuOpen]);
+
   const scrollToSection = (id: string) => {
     setMobileMenuOpen(false);
     if (location.pathname !== '/') {
@@ -120,9 +140,22 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Drawer Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden px-6 pt-4 pb-8 bg-[#08080a] border-b border-white/10 shadow-2xl flex flex-col gap-4">
+      {/* Dark Backdrop Overlay */}
+      <div
+        className={`md:hidden fixed inset-0 top-0 bg-black/60 backdrop-blur-sm z-[-1] transition-opacity duration-300 ${
+          mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={() => setMobileMenuOpen(false)}
+        aria-hidden="true"
+      />
+
+      {/* Mobile Drawer Menu with Smooth Transition */}
+      <div
+        className={`md:hidden overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          mobileMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <div className="px-6 pt-4 pb-8 bg-[#08080a] border-b border-white/10 shadow-2xl flex flex-col gap-4">
           {[
             { name: 'Solutions', id: 'solutions' },
             { name: 'Motion', id: 'showreel' },
@@ -168,7 +201,8 @@ export default function Navbar() {
             </a>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }
+

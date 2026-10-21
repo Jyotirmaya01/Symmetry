@@ -247,9 +247,6 @@ export default defineConfig({
           if (id.includes('node_modules/lenis')) {
             return 'vendor-lenis';
           }
-          if (id.includes('node_modules/canvas-confetti')) {
-            return 'vendor-confetti';
-          }
         },
       },
     },

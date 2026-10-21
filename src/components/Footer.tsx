@@ -3,11 +3,23 @@
 // ─────────────────────────────────────────────
 
 import { ArrowUp } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { smoothScrollTo } from '@/hooks/useLenis';
 
 export default function Footer() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const scrollToSection = (id: string) => {
+    if (location.pathname !== '/') {
+      navigate(`/#${id}`);
+    } else {
+      smoothScrollTo(`#${id}`, -80);
+    }
   };
 
   return (
@@ -53,28 +65,29 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Navigation Links */}
+          {/* Navigation Links — using SPA-compatible scroll handlers */}
           <div className="md:col-span-3">
             <h3 className="font-mono text-xs uppercase tracking-widest text-white mb-4">
               Navigation
             </h3>
             <ul className="space-y-2.5 text-xs font-mono text-[#b4b4c6]">
               {[
-                { name: 'Solutions', href: '/#solutions' },
-                { name: 'Motion Graphics', href: '/#showreel' },
-                { name: 'AI Commercials', href: '/#ai-videos' },
-                { name: 'Project Vault (Drive)', href: '/#vault' },
-                { name: 'Process', href: '/#process' },
-                { name: 'Impact & Reviews', href: '/#impact' },
-                { name: 'Contact', href: '/#contact' },
+                { name: 'Solutions', id: 'solutions' },
+                { name: 'Motion Graphics', id: 'showreel' },
+                { name: 'AI Commercials', id: 'ai-videos' },
+                { name: 'Project Vault (Drive)', id: 'vault' },
+                { name: 'Process', id: 'process' },
+                { name: 'Impact & Reviews', id: 'impact' },
+                { name: 'Contact', id: 'contact' },
               ].map((item) => (
                 <li key={item.name}>
-                  <a
-                    href={item.href}
-                    className="hover:text-white transition-colors block"
+                  <button
+                    type="button"
+                    onClick={() => scrollToSection(item.id)}
+                    className="hover:text-white transition-colors block cursor-pointer text-left"
                   >
                     {item.name}
-                  </a>
+                  </button>
                 </li>
               ))}
               <li>

@@ -505,7 +505,7 @@ export default function CTASection() {
             <div className="lg:col-span-7">
               {/* Security Alert Toast if Cheat Detected */}
               {securityAlert && (
-                <div className="mb-6 p-4 rounded-2xl bg-red-950/40 border border-red-500/40 text-red-200 text-xs font-mono flex items-start gap-3 shadow-[0_0_30px_rgba(239,68,68,0.25)] relative">
+                <div role="alert" aria-live="assertive" className="mb-6 p-4 rounded-2xl bg-red-950/40 border border-red-500/40 text-red-200 text-xs font-mono flex items-start gap-3 shadow-[0_0_30px_rgba(239,68,68,0.25)] relative">
                   <ShieldAlert className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5 animate-pulse" />
                   <div className="flex-1">
                     <p className="font-bold text-red-400 mb-1 flex items-center gap-2">
@@ -525,7 +525,7 @@ export default function CTASection() {
 
               {/* Rate Limit Blocked Notice */}
               {isRateLimited && (
-                <div className="mb-6 p-5 rounded-2xl bg-amber-950/40 border border-amber-500/40 text-amber-200 text-xs font-mono flex items-start gap-3 shadow-[0_0_30px_rgba(245,158,11,0.2)]">
+                <div role="alert" aria-live="assertive" className="mb-6 p-5 rounded-2xl bg-amber-950/40 border border-amber-500/40 text-amber-200 text-xs font-mono flex items-start gap-3 shadow-[0_0_30px_rgba(245,158,11,0.2)]">
                   <AlertTriangle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
                   <div>
                     <p className="font-bold text-amber-300 mb-1">
@@ -544,7 +544,7 @@ export default function CTASection() {
 
               {/* Multi-Stage Loading Overlay */}
               {loadingStep !== null ? (
-                <div className="p-8 sm:p-12 rounded-2xl bg-black/80 border border-white/20 text-center flex flex-col items-center justify-center min-h-[440px] relative overflow-hidden backdrop-blur-xl">
+                <div role="status" aria-live="polite" className="p-8 sm:p-12 rounded-2xl bg-black/80 border border-white/20 text-center flex flex-col items-center justify-center min-h-[440px] relative overflow-hidden backdrop-blur-xl">
                   {/* Cyber Scanline Effect */}
                   <div className="absolute inset-0 bg-gradient-to-b from-white/[0.04] to-transparent pointer-events-none animate-pulse" />
 
@@ -597,7 +597,7 @@ export default function CTASection() {
                 </div>
               ) : submitted ? (
                 /* Success View */
-                <div className="p-8 sm:p-12 rounded-2xl bg-white/[0.03] border border-white/20 text-center flex flex-col items-center justify-center min-h-[440px] shadow-2xl">
+                <div role="status" aria-live="polite" className="p-8 sm:p-12 rounded-2xl bg-white/[0.03] border border-white/20 text-center flex flex-col items-center justify-center min-h-[440px] shadow-2xl">
                   <div className="w-16 h-16 rounded-full bg-white text-black flex items-center justify-center mb-6 shadow-[0_0_40px_rgba(255,255,255,0.4)]">
                     <CheckCircle2 className="w-9 h-9" />
                   </div>

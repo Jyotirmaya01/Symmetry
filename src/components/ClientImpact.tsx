@@ -66,8 +66,8 @@ const initialTestimonials: Testimonial[] = [
   },
   {
     name: 'Skyline Graphics',
-    handle: '@skylinegraphics',
-    url: 'https://www.instagram.com/symmetry_official_?stkn=aHUzajRrNmc2ZTR1',
+    handle: '@skyline_graphics_07',
+    url: 'https://www.instagram.com/skyline_graphics_07',
     logoSrc: '/media/clients/skyline_graphics.jpg',
     role: 'Creative Design Studio',
     category: 'Motion Graphics & Visual Systems',
@@ -79,7 +79,7 @@ const initialTestimonials: Testimonial[] = [
   {
     name: 'Ranking Partner',
     handle: '@rankingpartner',
-    url: 'https://www.instagram.com/symmetry_official_?stkn=aHUzajRrNmc2ZTR1',
+    url: 'https://www.instagram.com/rankingpartner',
     logoSrc: '/media/clients/ranking_partner.jpg',
     role: 'Digital Growth & SEO Agency',
     category: 'High-Retention Reels & Social Hooks',
@@ -91,7 +91,7 @@ const initialTestimonials: Testimonial[] = [
   {
     name: 'Indie Extract',
     handle: '@indieextract',
-    url: 'https://www.instagram.com/symmetry_official_?stkn=aHUzajRrNmc2ZTR1',
+    url: 'https://www.instagram.com/indieextract',
     logoSrc: '/media/clients/indie_extract.jpg',
     role: 'Botanical & Natural Extracts',
     category: 'Product Storytelling & Macro Commercials',
@@ -103,7 +103,7 @@ const initialTestimonials: Testimonial[] = [
   {
     name: 'RKS Aroma',
     handle: '@rksaroma',
-    url: 'https://www.instagram.com/symmetry_official_?stkn=aHUzajRrNmc2ZTR1',
+    url: 'https://www.instagram.com/rksaroma',
     logoSrc: '/media/clients/rks_aroma.jpg',
     role: 'Luxury Fragrance & Aromatic Oils',
     category: 'Perfume Cinema & Bottle Visuals',

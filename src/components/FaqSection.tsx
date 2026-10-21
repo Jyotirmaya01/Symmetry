@@ -3,7 +3,7 @@
 // High-Intent Search Queries, Zero-Middleman Clarity & Rich Snippets
 // ─────────────────────────────────────────────
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { ChevronDown, HelpCircle, Sparkles, MessageCircle, ArrowUpRight } from 'lucide-react';
 
 interface FaqItem {
@@ -52,6 +52,71 @@ export const faqs: FaqItem[] = [
   },
 ];
 
+function AccordionItem({ faq, isOpen, onToggle }: { faq: FaqItem; isOpen: boolean; onToggle: () => void }) {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState(0);
+
+  useEffect(() => {
+    if (contentRef.current) {
+      setHeight(contentRef.current.scrollHeight);
+    }
+  }, [isOpen, faq.answer]);
+
+  return (
+    <div
+      className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+        isOpen
+          ? 'bg-white/[0.04] border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.04)]'
+          : 'bg-white/[0.015] border-white/10 hover:border-white/20 hover:bg-white/[0.025]'
+      }`}
+    >
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={isOpen}
+        className="w-full py-5 px-6 sm:px-8 flex items-center justify-between gap-4 text-left cursor-pointer group"
+      >
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-white/10 text-white/90 w-fit">
+            {faq.badge}
+          </span>
+          <h3 className="font-display font-semibold text-base sm:text-lg text-white group-hover:text-cyan-200 transition-colors">
+            {faq.question}
+          </h3>
+        </div>
+
+        <div
+          className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 border border-white/10 bg-white/5 transition-all duration-300 ${
+            isOpen ? 'rotate-180 bg-white text-black' : 'text-white/60 group-hover:text-white'
+          }`}
+        >
+          <ChevronDown className="w-4 h-4" />
+        </div>
+      </button>
+
+      {/* Smooth Height Animated Answer Panel */}
+      <div
+        style={{ maxHeight: isOpen ? `${height}px` : '0px' }}
+        className="transition-[max-height,opacity] duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden"
+      >
+        <div ref={contentRef} className="px-6 sm:px-8 pb-6 pt-1 text-sm sm:text-base text-[#c4c4d4] font-body leading-relaxed border-t border-white/5">
+          <p className="mb-4">{faq.answer}</p>
+          <div className="flex flex-wrap gap-1.5 pt-2">
+            {faq.keywords.map((kw) => (
+              <span
+                key={kw}
+                className="text-[10px] font-mono text-[#8e8e9e] bg-white/[0.03] px-2 py-0.5 rounded border border-white/5"
+              >
+                #{kw}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
@@ -81,61 +146,16 @@ export default function FaqSection() {
           </p>
         </div>
 
-        {/* Accordion List */}
+        {/* Accordion List with Smooth Height Transitions */}
         <div className="space-y-4">
-          {faqs.map((faq, idx) => {
-            const isOpen = openIndex === idx;
-            return (
-              <div
-                key={faq.question}
-                className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
-                  isOpen
-                    ? 'bg-white/[0.04] border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.04)]'
-                    : 'bg-white/[0.015] border-white/10 hover:border-white/20 hover:bg-white/[0.025]'
-                }`}
-              >
-                <button
-                  type="button"
-                  onClick={() => toggleAccordion(idx)}
-                  aria-expanded={isOpen}
-                  className="w-full py-5 px-6 sm:px-8 flex items-center justify-between gap-4 text-left cursor-pointer group"
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-white/10 text-white/90 w-fit">
-                      {faq.badge}
-                    </span>
-                    <h3 className="font-display font-semibold text-base sm:text-lg text-white group-hover:text-cyan-200 transition-colors">
-                      {faq.question}
-                    </h3>
-                  </div>
-
-                  <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 border border-white/10 bg-white/5 transition-transform duration-300 ${
-                      isOpen ? 'rotate-180 bg-white text-black' : 'text-white/60 group-hover:text-white'
-                    }`}
-                  >
-                    <ChevronDown className="w-4 h-4" />
-                  </div>
-                </button>
-
-                {isOpen && (
-                  <div className="px-6 sm:px-8 pb-6 pt-1 text-sm sm:text-base text-[#c4c4d4] font-body leading-relaxed border-t border-white/5">
-                    <p className="mb-4">{faq.answer}</p>
-                    <div className="flex flex-wrap gap-1.5 pt-2">
-                      {faq.keywords.map((kw) => (
-                        <span
-                          key={kw}
-                          className="text-[10px] font-mono text-[#8e8e9e] bg-white/[0.03] px-2 py-0.5 rounded border border-white/5"
-                        >
-                          #{kw}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
-          })}
+          {faqs.map((faq, idx) => (
+            <AccordionItem
+              key={faq.question}
+              faq={faq}
+              isOpen={openIndex === idx}
+              onToggle={() => toggleAccordion(idx)}
+            />
+          ))}
         </div>
 
         {/* Bottom Consultation Callout */}
@@ -164,3 +184,4 @@ export default function FaqSection() {
     </section>
   );
 }
+

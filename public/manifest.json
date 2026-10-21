@@ -1,0 +1,24 @@
+{
+  "name": "SYMMETRY — 3D Motion Design & Video Production Studio",
+  "short_name": "Symmetry",
+  "description": "Cinema-grade 3D product animations, viral 4K video commercials, and high-retention social reels delivered in 48–72h.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030303",
+  "theme_color": "#030303",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/symmetry-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/symmetry-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
