@@ -319,6 +319,7 @@ export default function AiVideoShowcase() {
 
                     {/* Native 9:16 Vertical Video Frame */}
                     <div
+                      data-cursor="play"
                       onClick={(e) => togglePlay(item.id, e)}
                       className="relative w-full aspect-[9/16] rounded-2xl overflow-hidden bg-black border border-white/20 shadow-inner mb-5 cursor-pointer group/video"
                     >
@@ -482,6 +483,7 @@ export default function AiVideoShowcase() {
 
                       {/* Native 16:9 Landscape Video Container */}
                       <div
+                        data-cursor="play"
                         onClick={(e) => togglePlay(item.id, e)}
                         className="relative aspect-video rounded-2xl overflow-hidden bg-black border border-white/10 mb-4 cursor-pointer group/video shadow-inner"
                       >

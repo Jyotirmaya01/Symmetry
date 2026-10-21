@@ -86,6 +86,7 @@ export default function ProjectVaultSection() {
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
+              data-cursor="explore"
               aria-label={`Open Google Drive repository for ${item.title}`}
               className="glass-panel rounded-3xl p-6 sm:p-8 border border-white/15 hover:border-white/40 transition-all duration-300 group relative flex flex-col justify-between overflow-hidden shadow-xl hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:-translate-y-1 cursor-pointer"
             >

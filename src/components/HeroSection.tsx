@@ -88,6 +88,45 @@ export default function HeroSection() {
           scrub: 0.5,
         },
       });
+
+      // Subtle 3D Interactive Mouse Tilt on Hero Headline & Content (Desktop only)
+      if (!window.matchMedia('(pointer: coarse)').matches) {
+        const onMouseMove = (e: MouseEvent) => {
+          const { innerWidth, innerHeight } = window;
+          const tiltX = (e.clientX / innerWidth - 0.5) * 14;
+          const tiltY = (e.clientY / innerHeight - 0.5) * 14;
+          if (contentRef.current) {
+            gsap.to(contentRef.current, {
+              rotateY: tiltX,
+              rotateX: -tiltY,
+              transformPerspective: 1200,
+              duration: 0.7,
+              ease: 'power2.out',
+              overwrite: 'auto',
+            });
+          }
+        };
+
+        const onMouseLeave = () => {
+          if (contentRef.current) {
+            gsap.to(contentRef.current, {
+              rotateY: 0,
+              rotateX: 0,
+              duration: 0.8,
+              ease: 'power2.out',
+              overwrite: 'auto',
+            });
+          }
+        };
+
+        window.addEventListener('mousemove', onMouseMove, { passive: true });
+        document.addEventListener('mouseleave', onMouseLeave);
+
+        return () => {
+          window.removeEventListener('mousemove', onMouseMove);
+          document.removeEventListener('mouseleave', onMouseLeave);
+        };
+      }
     }, heroRef);
 
     return () => ctx.revert();
@@ -227,6 +266,7 @@ export default function HeroSection() {
         <div className="hero-stagger flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
           <button
             onClick={scrollToSolutions}
+            data-cursor="explore"
             className="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-black font-display font-semibold text-sm uppercase tracking-wider hover:bg-[#e6e6e6] transition-all duration-300 shadow-[0_0_35px_rgba(255,255,255,0.35)] hover:shadow-[0_0_50px_rgba(255,255,255,0.6)] hover:scale-105 active:scale-95 cursor-pointer flex items-center justify-center gap-2"
           >
             <span>Explore Studio Solutions</span>
@@ -237,6 +277,7 @@ export default function HeroSection() {
             href="https://calendly.com/sabatanant883/30min"
             target="_blank"
             rel="noopener noreferrer"
+            data-cursor="explore"
             className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/15 hover:border-white/40 text-white font-display font-medium text-sm uppercase tracking-wider backdrop-blur-md transition-all duration-300 cursor-pointer flex items-center justify-center gap-2"
           >
             <span>Book 30-Min Strategy Call</span>

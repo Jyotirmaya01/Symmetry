@@ -154,7 +154,8 @@ export default function MotionShowcase() {
 
             {/* Video Container (Strictly 9:16 for vertical, 16:9 for landscape) */}
             <div
-              className={`relative z-10 transition-all duration-500 ${
+              data-cursor="play"
+              className={`relative z-10 transition-all duration-500 cursor-pointer ${
                 current.isVertical
                   ? 'w-full max-w-[325px] aspect-[9/16] rounded-2xl overflow-hidden border border-white/30 shadow-[0_0_60px_rgba(255,255,255,0.2)] bg-black'
                   : 'w-full h-full flex items-center justify-center'

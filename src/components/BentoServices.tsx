@@ -208,6 +208,7 @@ export default function BentoServices() {
                 return (
                   <div
                     key={service.id}
+                    data-cursor={isCenter ? 'flip' : 'explore'}
                     onClick={() => {
                       if (!isCenter) {
                         setActiveIndex(index);

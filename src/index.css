@@ -35,6 +35,16 @@
   }
 }
 
+/* Custom Interactive Cursor Styling on Fine Pointers (Desktop) */
+@media (hover: hover) and (pointer: fine) {
+  body, a, button, [role="button"], [role="tab"], .cursor-pointer {
+    cursor: none !important;
+  }
+  input, textarea {
+    cursor: text !important;
+  }
+}
+
 /* Custom Typography & Utility Classes */
 .font-display {
   font-family: 'Space Grotesk', -apple-system, sans-serif;
