@@ -36,7 +36,6 @@ import {
   Compass,
 } from 'lucide-react';
 import { smoothScrollTo } from '@/hooks/useLenis';
-import { submitInquiryToSpreadsheet } from '@/utils/spreadsheet';
 
 const CALENDLY_URL = 'https://calendly.com/sabatanant883/30min';
 
@@ -45,15 +44,8 @@ interface ChatMessage {
   sender: 'aj' | 'user';
   text: string;
   timestamp: string;
-  type?: 'text' | 'booking-card' | 'quick-actions' | 'navigation-card' | 'autofill-pass';
+  type?: 'text' | 'quick-actions' | 'navigation-card';
   actions?: Array<{ label: string; action: () => void; icon?: string }>;
-  bookingData?: {
-    slots: string[];
-    name?: string;
-    phone?: string;
-    email?: string;
-    service?: string;
-  };
 }
 
 // ─── MODERN ANIMATED "AJ" CYBERNETIC AVATAR ───
@@ -281,8 +273,6 @@ export default function AjBot() {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isThinking, setIsThinking] = useState(false);
   const [inputText, setInputText] = useState('');
-  const [bookingConfirmed, setBookingConfirmed] = useState(false);
-  const [selectedSlot, setSelectedSlot] = useState('Today at 4:00 PM');
 
   // Client Details auto-extracted from chat
   const [clientName, setClientName] = useState(() => {
@@ -311,9 +301,7 @@ export default function AjBot() {
   });
   const [clientCompany, setClientCompany] = useState('');
   const [clientService, setClientService] = useState('Viral 4K Video Reels & Shorts');
-  const [clientCustomService, setClientCustomService] = useState('');
-  const [bookingError, setBookingError] = useState<string | null>(null);
-  const [isBookingSubmitting, setIsBookingSubmitting] = useState(false);
+  const [clientCustomService] = useState('');
 
   // Optional Ephemeral Gemini API Key
   const [geminiApiKey, setGeminiApiKey] = useState(() => {
@@ -331,7 +319,7 @@ export default function AjBot() {
     {
       id: 'msg-0',
       sender: 'aj',
-      text: "Greetings! I'm AJ, Symmetry's live autonomous studio assistant.\n\nI can answer any question about our 4K video work, turnaround times, and verified clients, or book a 30-min discovery call in 1 click.\n\nHow can I help you accelerate your brand today?",
+      text: "Greetings! I'm AJ, Symmetry's live studio assistant.\n\nI can answer any question about our 4K video work, turnaround times, and verified clients, or direct you to fill our inquiry form or schedule on Calendly.\n\nHow can I help you accelerate your brand today?",
       timestamp: 'Just now',
       type: 'quick-actions',
       actions: [
@@ -340,11 +328,18 @@ export default function AjBot() {
           action: () => handleSendMessage('Why is Symmetry fast and the best choice?'),
         },
         {
-          label: '📞 Book 30-Min Call (1-Click)',
-          action: () => handleSendMessage('I want to book a discovery call'),
+          label: '📝 Fill Form for Call',
+          action: () => {
+            smoothScrollTo('#contact', -80);
+            setIsOpen(false);
+          },
         },
         {
-          label: '🎬 Show 4K Video Commercials',
+          label: '📅 Open Calendly (30m)',
+          action: () => window.open(CALENDLY_URL, '_blank'),
+        },
+        {
+          label: '🎬 Show 4K Commercials',
           action: () => handleSendMessage('Show me your best 4K video commercials'),
         },
         {
@@ -430,92 +425,6 @@ export default function AjBot() {
       );
     } catch {
       // Storage unavailable
-    }
-  };
-
-  // 1-Click Discovery Call Booking Submission
-  const handleBookCallSubmit = async (slotToBook: string) => {
-    if (!clientEmail || !clientEmail.includes('@')) {
-      setBookingError('Please enter your work email to confirm your 1-click meeting.');
-      return;
-    }
-
-    if (!clientName.trim()) {
-      setBookingError('Please enter your full name so the Symmetry team knows who they are meeting.');
-      return;
-    }
-
-    setBookingError(null);
-    setIsBookingSubmitting(true);
-
-    try {
-      const activeService =
-        clientService === 'Other'
-          ? clientCustomService
-            ? `Other: ${clientCustomService}`
-            : 'Custom Motion Scoping'
-          : clientService;
-
-      // Log directly into the studio spreadsheet!
-      const success = await submitInquiryToSpreadsheet({
-        name: clientName.trim(),
-        email: clientEmail.trim(),
-        phone: clientPhone ? clientPhone.trim() : 'Provided on Call',
-        company: clientCompany ? clientCompany.trim() : 'Direct Founder / Creator',
-        service: activeService,
-        slot: slotToBook,
-        message: `⚡ 1-Click Discovery Call booked via AJ Assistant for [${slotToBook}]. Auto-synced without manual form friction.`,
-        source: 'AJ Chat Bot',
-      });
-
-      // Auto-fill on-page form
-      broadcastAutoFill({
-        name: clientName.trim(),
-        email: clientEmail.trim(),
-        phone: clientPhone.trim(),
-        company: clientCompany.trim(),
-        service: activeService,
-        autoScroll: false,
-      });
-
-      setIsBookingSubmitting(false);
-      setBookingConfirmed(true);
-      setIsSpeaking(true);
-      setTimeout(() => setIsSpeaking(false), 2000);
-
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: `book-success-${Date.now()}`,
-          sender: 'aj',
-          text: `🎉 Confirmed, ${clientName}! Your discovery call has been logged for:\n\n📅 ${slotToBook}\n📧 Confirmation sent to: ${clientEmail}\n💼 Service: ${activeService}\n\nOur creative director will connect with you at this time. You can also pick a specific custom calendar slot anytime on our official Calendly below.`,
-          timestamp: 'Just now',
-          type: 'text',
-          actions: [
-            {
-              label: 'Open Calendly (Official Schedule)',
-              action: () => window.open(CALENDLY_URL, '_blank'),
-            },
-            {
-              label: 'View Pre-Filled Form on Website',
-              action: () => {
-                smoothScrollTo('#contact', -80);
-                setIsOpen(false);
-              },
-            },
-            {
-              label: 'Explore 4K Video Vault',
-              action: () => {
-                smoothScrollTo('#vault', -80);
-                setIsOpen(false);
-              },
-            },
-          ],
-        },
-      ]);
-    } catch {
-      setIsBookingSubmitting(false);
-      setBookingError('Booking recorded locally. You can also book directly via Calendly below.');
     }
   };
 
@@ -605,7 +514,20 @@ Always offer 1-click booking or quick links when appropriate.`;
     ) {
       return {
         text: `Here is why Symmetry is considered fast and the best choice for forward-thinking brands:\n\n• ⚡ 48–72h Turnaround: We deliver commercial-grade first cuts in 2–3 days, eliminating traditional 6-week agency delays.\n• 💎 Cinema 4D & ProRes 4444: Every asset is mastered uncompressed with custom lighting, liquid chrome shaders, and 60fps GPU precision.\n• 🎯 Direct 1-on-1 Creative Direction: You work directly with our motion director with zero account-executive telephone games.\n• 📱 Native Dual-Format: Simultaneous 9:16 vertical (Reels, TikTok, Shorts) and 16:9 widescreen cinema deliveries.`,
-        type: 'booking-card' as const,
+        type: 'navigation-card' as const,
+        actions: [
+          {
+            label: '📝 Fill Form for Call',
+            action: () => {
+              smoothScrollTo('#contact', -80);
+              setIsOpen(false);
+            },
+          },
+          {
+            label: '📅 Open Calendly (30m)',
+            action: () => window.open(CALENDLY_URL, '_blank'),
+          },
+        ],
       };
     }
 
@@ -620,8 +542,21 @@ Always offer 1-click booking or quick links when appropriate.`;
       q.includes('connect')
     ) {
       return {
-        text: `Let's get your project into production! You can lock in a discovery call in 1 click below or directly via Calendly.\n\nSelect a preferred time slot, and I will pre-fill your meeting pass on our website with zero retyping:`,
-        type: 'booking-card' as const,
+        text: `Let's connect and discuss your project! You can fill out our verified studio inquiry form below, or pick a direct 30-minute slot on Calendly:`,
+        type: 'navigation-card' as const,
+        actions: [
+          {
+            label: '📝 Fill Form for Call',
+            action: () => {
+              smoothScrollTo('#contact', -80);
+              setIsOpen(false);
+            },
+          },
+          {
+            label: '📅 Book on Calendly (30m)',
+            action: () => window.open(CALENDLY_URL, '_blank'),
+          },
+        ],
       };
     }
 
@@ -698,23 +633,69 @@ Always offer 1-click booking or quick links when appropriate.`;
     // 5. PRICING & TURNAROUND
     if (q.includes('price') || q.includes('cost') || q.includes('rate') || q.includes('how much') || q.includes('fee')) {
       return {
-        text: `Every Symmetry engagement is tailored to your brand's scope with transparent pricing and zero hidden fees:\n\n• Turnaround: 48–72 hours for initial commercial cuts\n• Deliverables: ProRes 4444 uncompressed masters + web/social exports (9:16 & 16:9)\n• Inclusions: 1-on-1 creative direction, custom sound design, revisions, and full commercial usage rights.\n\nSchedule a 1-click call with our creative director to get an exact custom quote:`,
-        type: 'booking-card' as const,
+        text: `Every Symmetry engagement is tailored to your brand's scope with transparent pricing and zero hidden fees:\n\n• Turnaround: 48–72 hours for initial commercial cuts\n• Deliverables: ProRes 4444 uncompressed masters + web/social exports (9:16 & 16:9)\n• Inclusions: 1-on-1 creative direction, custom sound design, revisions, and full commercial usage rights.\n\nFill our inquiry form or schedule a call with our director to get an exact custom quote:`,
+        type: 'navigation-card' as const,
+        actions: [
+          {
+            label: '📝 Fill Form for Custom Quote',
+            action: () => {
+              smoothScrollTo('#contact', -80);
+              setIsOpen(false);
+            },
+          },
+          {
+            label: '📅 Book 30-Min Call on Calendly',
+            action: () => window.open(CALENDLY_URL, '_blank'),
+          },
+        ],
       };
     }
 
     // 6. CONTACT & DIRECT CHANNELS
     if (q.includes('contact') || q.includes('email') || q.includes('phone') || q.includes('address') || q.includes('reach')) {
       return {
-        text: `You can reach the Symmetry team directly through multiple channels:\n\n• Direct Email: symmetryofficial1@gmail.com\n• 30-Min Discovery: calendly.com/sabatanant883/30min\n• Official Instagram: @symmetry_official_\n• Official YouTube: @symmetry_official\n\nWould you like me to book a discovery call for you right now?`,
-        type: 'booking-card' as const,
+        text: `You can reach the Symmetry team directly through multiple channels:\n\n• Direct Email: symmetryofficial1@gmail.com\n• 30-Min Discovery: calendly.com/sabatanant883/30min\n• Official Instagram: @symmetry_official_\n• Official YouTube: @symmetry_official\n\nFill out our inquiry form or schedule a call on Calendly:`,
+        type: 'navigation-card' as const,
+        actions: [
+          {
+            label: '📝 Fill Studio Inquiry Form',
+            action: () => {
+              smoothScrollTo('#contact', -80);
+              setIsOpen(false);
+            },
+          },
+          {
+            label: '📅 Open Calendly (30m)',
+            action: () => window.open(CALENDLY_URL, '_blank'),
+          },
+        ],
       };
     }
 
     // Default intelligent overview
     return {
-      text: `Understood, ${nameStr}! Symmetry combines 3D motion graphics, 4K commercials, and autonomous workflows into high-impact digital presence.\n\nWhether you need viral reels, product CGI, or a complete brand overhaul, we deliver in 48-72 hours with cinema fidelity.\n\nWould you like to book a 1-click discovery call or explore our video showreel?`,
-      type: 'booking-card' as const,
+      text: `Understood, ${nameStr}! Symmetry combines 3D motion graphics, 4K commercials, and autonomous workflows into high-impact digital presence.\n\nWhether you need viral reels, product CGI, or a complete brand overhaul, we deliver in 48-72 hours with cinema fidelity.`,
+      type: 'navigation-card' as const,
+      actions: [
+        {
+          label: '📝 Fill Form for Call',
+          action: () => {
+            smoothScrollTo('#contact', -80);
+            setIsOpen(false);
+          },
+        },
+        {
+          label: '📅 Book on Calendly (30m)',
+          action: () => window.open(CALENDLY_URL, '_blank'),
+        },
+        {
+          label: '🎬 Watch Master Showreel',
+          action: () => {
+            smoothScrollTo('#showreel', -80);
+            setIsOpen(false);
+          },
+        },
+      ],
     };
   };
 
@@ -744,7 +725,6 @@ Always offer 1-click booking or quick links when appropriate.`;
     const updatedEmail = extracted.email || clientEmail;
     const updatedCompany = extracted.company || clientCompany;
     const updatedService = extracted.service || clientService;
-    const updatedSlot = extracted.slot || selectedSlot;
 
     if (hasNewDetails) {
       if (extracted.name) setClientName(extracted.name);
@@ -752,7 +732,6 @@ Always offer 1-click booking or quick links when appropriate.`;
       if (extracted.email) setClientEmail(extracted.email);
       if (extracted.company) setClientCompany(extracted.company);
       if (extracted.service) setClientService(extracted.service);
-      if (extracted.slot) setSelectedSlot(extracted.slot);
 
       broadcastAutoFill({
         name: updatedName,
@@ -774,45 +753,32 @@ Always offer 1-click booking or quick links when appropriate.`;
       setIsSpeaking(true);
       setTimeout(() => setIsSpeaking(false), 1400);
 
-      const q = query.toLowerCase();
-      const needsBooking =
-        hasNewDetails ||
-        q.includes('book') ||
-        q.includes('call') ||
-        q.includes('fast') ||
-        q.includes('price') ||
-        q.includes('schedule');
-
       setMessages((prev) => [
         ...prev,
         {
           id: `aj-${Date.now()}`,
           sender: 'aj',
           text: hasNewDetails
-            ? `Noted, ${updatedName || 'there'}! I have automatically pre-filled your discovery meeting pass on our website so you don't have to retype anything.\n\n${geminiReply}`
+            ? `Noted, ${updatedName || 'there'}! I have automatically pre-filled your details on our website contact form so you don't have to retype anything.\n\n${geminiReply}`
             : geminiReply,
           timestamp: 'Just now',
-          type: hasNewDetails ? 'autofill-pass' : needsBooking ? 'booking-card' : 'text',
-          bookingData: {
-            slots: ['Today at 4:00 PM', 'Today at 6:30 PM', 'Tomorrow at 11:00 AM', 'Tomorrow at 3:30 PM'],
-            name: updatedName,
-            phone: updatedPhone,
-            email: updatedEmail,
-            service: updatedService,
-          },
+          type: 'navigation-card',
           actions: [
             {
-              label: 'Lock In Call (1-Click)',
-              action: () => handleBookCallSubmit(updatedSlot),
+              label: '📝 Fill Form for Call',
+              action: () => {
+                smoothScrollTo('#contact', -80);
+                setIsOpen(false);
+              },
             },
             {
-              label: 'Book 30-Min on Calendly',
+              label: '📅 Open Calendly (30m)',
               action: () => window.open(CALENDLY_URL, '_blank'),
             },
             {
-              label: 'View Pre-Filled Form on Page',
+              label: '🎬 Watch Master Showreel',
               action: () => {
-                smoothScrollTo('#contact', -80);
+                smoothScrollTo('#showreel', -80);
                 setIsOpen(false);
               },
             },
@@ -836,32 +802,21 @@ Always offer 1-click booking or quick links when appropriate.`;
           id: `aj-${Date.now()}`,
           sender: 'aj',
           text: hasNewDetails
-            ? `Noted, ${updatedName || 'there'}! I've pre-filled your discovery meeting pass on our website without manual retyping.\n\n${response.text}`
+            ? `Noted, ${updatedName || 'there'}! I've pre-filled your details on our website contact form so you don't have to retype them.\n\n${response.text}`
             : response.text,
           timestamp: 'Just now',
-          type: hasNewDetails ? 'autofill-pass' : response.type,
-          bookingData: {
-            slots: ['Today at 4:00 PM', 'Today at 6:30 PM', 'Tomorrow at 11:00 AM', 'Tomorrow at 3:30 PM'],
-            name: updatedName,
-            phone: updatedPhone,
-            email: updatedEmail,
-            service: updatedService,
-          },
+          type: 'navigation-card',
           actions: response.actions || [
             {
-              label: 'Confirm 1-Click Meeting',
-              action: () => handleBookCallSubmit(updatedSlot),
-            },
-            {
-              label: 'Book 30-Min on Calendly',
-              action: () => window.open(CALENDLY_URL, '_blank'),
-            },
-            {
-              label: 'View Pre-Filled Form',
+              label: '📝 Fill Form for Call',
               action: () => {
                 smoothScrollTo('#contact', -80);
                 setIsOpen(false);
               },
+            },
+            {
+              label: '📅 Open Calendly (30m)',
+              action: () => window.open(CALENDLY_URL, '_blank'),
             },
           ],
         },
@@ -926,7 +881,7 @@ Always offer 1-click booking or quick links when appropriate.`;
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 </div>
                 <p className="font-body text-[11px] text-[#c2c2d6] mt-1 leading-relaxed">
-                  Have doubts about our 4K video work or want to book a call in 1 click?
+                  Have questions about our 4K video work or want to book a discovery call?
                 </p>
 
                 {/* Modern CTA Buttons */}
@@ -941,12 +896,12 @@ Always offer 1-click booking or quick links when appropriate.`;
 
                   <button
                     onClick={() => {
-                      handleOpenChat();
-                      handleSendMessage('I want to book a call in 1 click');
+                      smoothScrollTo('#contact', -80);
+                      setShowTeaser(false);
                     }}
                     className="px-3 py-1.5 rounded-full bg-white/[0.06] hover:bg-white/[0.15] border border-white/15 text-white text-[10px] font-mono uppercase tracking-wider transition-all cursor-pointer"
                   >
-                    <span>1-Click Call</span>
+                    <span>Fill Form</span>
                   </button>
                 </div>
               </div>
@@ -1018,7 +973,7 @@ Always offer 1-click booking or quick links when appropriate.`;
                   </span>
                 </div>
                 <p className="font-mono text-[10px] text-[#a4a4b8]">
-                  48–72h Turnaround • 4K ProRes • 1-Click Call
+                  48–72h Turnaround • 4K ProRes • Fast Call Booking
                 </p>
               </div>
             </div>
@@ -1088,11 +1043,14 @@ Always offer 1-click booking or quick links when appropriate.`;
           {/* Quick Action Navigation Bar */}
           <div className="px-3 py-2 bg-black/40 border-b border-white/5 flex items-center gap-1.5 overflow-x-auto no-scrollbar text-[11px] font-mono mt-1">
             <button
-              onClick={() => handleSendMessage('Book a call in 1 click')}
+              onClick={() => {
+                smoothScrollTo('#contact', -80);
+                setIsOpen(false);
+              }}
               className="px-3 py-1.5 rounded-full bg-white hover:bg-[#eaeaea] text-black font-bold uppercase tracking-wider text-[10px] shadow-[0_0_20px_rgba(255,255,255,0.3)] flex items-center gap-1.5 shrink-0 transition-all cursor-pointer hover:scale-[1.02]"
             >
               <Phone className="w-3 h-3 text-black" />
-              <span>1-Click Call</span>
+              <span>📝 Fill Form for Call</span>
             </button>
 
             <button
@@ -1145,259 +1103,6 @@ Always offer 1-click booking or quick links when appropriate.`;
                 >
                   <p className="whitespace-pre-line leading-relaxed">{m.text}</p>
 
-                  {/* Pre-Filled Website Pass */}
-                  {m.type === 'autofill-pass' && (
-                    <div className="mt-3.5 p-3.5 rounded-2xl bg-cyan-950/20 border border-cyan-500/30 flex flex-col gap-2.5 font-mono text-[11px]">
-                      <div className="flex items-center justify-between border-b border-white/10 pb-2">
-                        <span className="text-white font-bold uppercase tracking-wider flex items-center gap-1.5">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                          <span>Pre-Filled Website Pass</span>
-                        </span>
-                        <span className="text-[9px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">
-                          AUTO-SYNCED
-                        </span>
-                      </div>
-
-                      <div className="space-y-1.5 text-xs text-[#c0c0cb]">
-                        {clientName && (
-                          <div className="flex justify-between items-center">
-                            <span className="text-[#a0a0b2]">Name:</span>
-                            <span className="text-white font-semibold">{clientName}</span>
-                          </div>
-                        )}
-                        {clientPhone && (
-                          <div className="flex justify-between items-center">
-                            <span className="text-[#a0a0b2]">Phone:</span>
-                            <span className="text-white font-semibold">{clientPhone}</span>
-                          </div>
-                        )}
-                        {clientEmail && (
-                          <div className="flex justify-between items-center">
-                            <span className="text-[#a0a0b2]">Email:</span>
-                            <span className="text-white font-semibold">{clientEmail}</span>
-                          </div>
-                        )}
-                        {clientService && (
-                          <div className="flex justify-between items-center">
-                            <span className="text-[#a0a0b2]">Service:</span>
-                            <span className="text-white font-medium truncate max-w-[190px]">
-                              {clientService === 'Other'
-                                ? clientCustomService
-                                  ? `Other: ${clientCustomService}`
-                                  : 'Other (Custom Request)'
-                                : clientService}
-                            </span>
-                          </div>
-                        )}
-                        <div className="flex justify-between items-center">
-                          <span className="text-[#a0a0b2]">Slot:</span>
-                          <span className="text-white font-semibold">{selectedSlot}</span>
-                        </div>
-                      </div>
-
-                      <p className="text-[10px] text-emerald-400 font-mono mt-0.5">
-                        ✓ Form on website pre-filled with zero retyping
-                      </p>
-
-                      {/* Missing fields inputs */}
-                      {(!clientName || !clientEmail) && (
-                        <div className="space-y-2 pt-2 border-t border-white/10">
-                          <p className="text-[10px] text-amber-300 font-mono">
-                            Enter name & email to lock in this meeting slot:
-                          </p>
-                          {!clientName && (
-                            <div className="relative">
-                              <User className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none" />
-                              <input
-                                type="text"
-                                placeholder="Your Full Name * (required)"
-                                value={clientName}
-                                onChange={(e) => {
-                                  setClientName(e.target.value);
-                                  setBookingError(null);
-                                }}
-                                className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/20 text-[11px] font-mono text-white placeholder:text-[#88889a] focus:outline-none focus:border-cyan-400"
-                              />
-                            </div>
-                          )}
-                          {!clientEmail && (
-                            <div className="relative">
-                              <Mail className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none" />
-                              <input
-                                type="email"
-                                placeholder="Work Email * (required)"
-                                value={clientEmail}
-                                onChange={(e) => {
-                                  setClientEmail(e.target.value);
-                                  setBookingError(null);
-                                }}
-                                className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/20 text-[11px] font-mono text-white placeholder:text-[#88889a] focus:outline-none focus:border-cyan-400"
-                              />
-                            </div>
-                          )}
-                        </div>
-                      )}
-
-                      {bookingError && (
-                        <div className="p-2.5 rounded-xl bg-red-500/15 border border-red-500/30 text-red-200 text-[11px] font-mono flex items-center gap-2">
-                          <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
-                          <span>{bookingError}</span>
-                        </div>
-                      )}
-
-                      <div className="pt-2 border-t border-white/10 flex flex-col gap-1.5">
-                        <button
-                          type="button"
-                          onClick={() => handleBookCallSubmit(selectedSlot)}
-                          disabled={isBookingSubmitting}
-                          className="w-full py-2.5 px-3 rounded-xl bg-white text-black font-bold uppercase tracking-wider text-xs hover:bg-[#eaeaea] shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all cursor-pointer text-center hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60 flex items-center justify-center gap-2"
-                        >
-                          {isBookingSubmitting ? (
-                            <>
-                              <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                              <span>Saving to Studio Spreadsheet...</span>
-                            </>
-                          ) : (
-                            <>
-                              <Check className="w-3.5 h-3.5" />
-                              <span>Confirm Discovery Call</span>
-                            </>
-                          )}
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => {
-                            smoothScrollTo('#contact', -80);
-                            setIsOpen(false);
-                          }}
-                          className="w-full py-2 px-3 rounded-xl bg-white/[0.08] hover:bg-white hover:text-black border border-white/20 text-white font-medium uppercase tracking-wider text-[10px] transition-all cursor-pointer text-center"
-                        >
-                          View Pre-Filled Form on Page
-                        </button>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Modern 1-Click Booking Card */}
-                  {m.type === 'booking-card' && (
-                    <div className="mt-3.5 pt-3.5 border-t border-white/15 flex flex-col gap-2.5">
-                      <div className="flex items-center justify-between">
-                        <span className="font-mono text-[10px] text-white font-bold uppercase tracking-wider flex items-center gap-1.5">
-                          <Calendar className="w-3 h-3 text-cyan-400" />
-                          <span>Select Discovery Slot:</span>
-                        </span>
-
-                        <a
-                          href={CALENDLY_URL}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-mono text-[10px] text-cyan-300 hover:text-white underline flex items-center gap-1"
-                        >
-                          <span>Calendly (30m)</span>
-                          <ExternalLink className="w-2.5 h-2.5" />
-                        </a>
-                      </div>
-
-                      {/* Slot Selection Pills */}
-                      <div className="grid grid-cols-2 gap-1.5">
-                        {m.bookingData?.slots.map((slot, i) => (
-                          <button
-                            key={i}
-                            type="button"
-                            onClick={() => {
-                              setSelectedSlot(slot);
-                              setBookingError(null);
-                            }}
-                            className={`p-2 rounded-xl text-[10px] font-mono text-center border transition-all cursor-pointer uppercase tracking-wider ${
-                              selectedSlot === slot
-                                ? 'bg-white text-black font-bold border-white shadow-[0_0_20px_rgba(255,255,255,0.3)]'
-                                : 'bg-white/[0.04] border-white/15 text-white/90 hover:bg-white hover:text-black hover:border-white'
-                            }`}
-                          >
-                            {slot}
-                          </button>
-                        ))}
-                      </div>
-
-                      {/* Contact Input Fields */}
-                      <div className="space-y-1.5 mt-1">
-                        <div className="relative">
-                          <User className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none" />
-                          <input
-                            type="text"
-                            placeholder="Full Name * (required)"
-                            value={clientName}
-                            onChange={(e) => {
-                              setClientName(e.target.value);
-                              setBookingError(null);
-                            }}
-                            className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/15 text-[11px] font-mono text-white placeholder:text-[#88889a] focus:outline-none focus:border-cyan-400"
-                          />
-                        </div>
-
-                        <div className="relative">
-                          <Mail className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none" />
-                          <input
-                            type="email"
-                            placeholder="Work Email * (required)"
-                            value={clientEmail}
-                            onChange={(e) => {
-                              setClientEmail(e.target.value);
-                              setBookingError(null);
-                            }}
-                            className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/20 text-[11px] font-mono text-white placeholder:text-[#88889a] focus:outline-none focus:border-cyan-400"
-                          />
-                        </div>
-
-                        <div className="relative">
-                          <Phone className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none" />
-                          <input
-                            type="tel"
-                            placeholder="WhatsApp or Phone (optional)"
-                            value={clientPhone}
-                            onChange={(e) => {
-                              setClientPhone(e.target.value);
-                              setBookingError(null);
-                            }}
-                            className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/15 text-[11px] font-mono text-white placeholder:text-[#88889a] focus:outline-none focus:border-cyan-400"
-                          />
-                        </div>
-                      </div>
-
-                      {bookingError && (
-                        <div className="p-2.5 rounded-xl bg-red-500/15 border border-red-500/30 text-red-200 text-[11px] font-mono flex items-center gap-2">
-                          <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
-                          <span>{bookingError}</span>
-                        </div>
-                      )}
-
-                      <button
-                        type="button"
-                        onClick={() => handleBookCallSubmit(selectedSlot)}
-                        disabled={isBookingSubmitting}
-                        className="w-full py-2.5 px-3 rounded-xl bg-white text-black font-bold uppercase tracking-wider text-xs hover:bg-[#eaeaea] shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all cursor-pointer flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60"
-                      >
-                        {isBookingSubmitting ? (
-                          <>
-                            <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                            <span>Confirming Meeting...</span>
-                          </>
-                        ) : (
-                          <>
-                            <Check className="w-3.5 h-3.5" />
-                            <span>Confirm 1-Click Discovery Call</span>
-                          </>
-                        )}
-                      </button>
-
-                      <p className="text-[9px] text-[#9090a2] font-mono text-center flex items-center justify-center gap-1.5">
-                        <ShieldCheck className="w-3 h-3 text-emerald-400" />
-                        <span>All bookings auto-synced into studio spreadsheet</span>
-                      </p>
-                    </div>
-                  )}
-
                   {/* Navigation / Action Buttons */}
                   {m.actions && m.actions.length > 0 && (
                     <div className="mt-3 pt-2.5 border-t border-white/10 flex flex-wrap gap-1.5">
@@ -1435,7 +1140,7 @@ Always offer 1-click booking or quick links when appropriate.`;
           <div className="px-3 py-1.5 bg-black/60 border-t border-white/5 flex items-center gap-1.5 overflow-x-auto no-scrollbar text-[10px] font-mono">
             {[
               { label: '⚡ Fast & Best?', query: 'Why is Symmetry fast and the best?' },
-              { label: '📞 Book Call', query: 'I want to book a call in 1 click' },
+              { label: '📝 Fill Form for Call', query: 'I want to fill the form for a call' },
               { label: '💎 Client Reviews', query: 'Tell me about your real clients on Instagram' },
               { label: '💰 Pricing', query: 'What are your turnaround times and pricing?' },
             ].map((chip, idx) => (
