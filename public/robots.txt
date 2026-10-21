@@ -1,7 +1,10 @@
 # ==========================================
 # SYMMETRY — Modern Search Engine & AI Agent Robots File
-# https://symmetry-ochre.vercel.app
+# Canonical Sitemap & Host
 # ==========================================
+
+Sitemap: https://symmetry-ochre.vercel.app/sitemap.xml
+Host: symmetry-ochre.vercel.app
 
 User-agent: *
 Allow: /
@@ -18,16 +21,16 @@ Allow: /.well-known/*
 Disallow: /api/
 Disallow: /api/*
 
-# Google, Bing, Apple, DuckDuckGo specific directives
+# Googlebot specific directives (Explicit full access to all styling & JS for rendering)
 User-agent: Googlebot
 Allow: /
-Allow: /*.js$
-Allow: /*.css$
-Allow: /*.png$
-Allow: /*.jpg$
-Allow: /*.mp4$
-Allow: /*.svg$
-Allow: /*.webp$
+Allow: /*.js
+Allow: /*.css
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.webp
+Allow: /*.svg
+Allow: /*.mp4
 
 User-agent: Bingbot
 Allow: /
@@ -53,7 +56,3 @@ Allow: /llms.txt
 
 User-agent: Google-Extended
 Allow: /
-
-# Canonical Sitemap & Host
-Sitemap: https://symmetry-ochre.vercel.app/sitemap.xml
-Host: https://symmetry-ochre.vercel.app

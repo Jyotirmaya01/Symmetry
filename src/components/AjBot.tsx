@@ -1,7 +1,12 @@
 // ─────────────────────────────────────────────
-// SYMMETRY — "AJ" Live Animated Bot & 1-Click Call Booker
-// Powered by Gemini 3.5 Flash Live Intelligence + Symmetry Studio Knowledge
-// Styled to Match Symmetry's Obsidian, Chrome & Glass Theme
+// SYMMETRY — "AJ" Modern Autonomous Studio Agent & 1-Click Call Booker
+// State-of-the-Art Obsidian & Polished Chrome Cybernetic Assistant
+// Features:
+// 1. Kinetic Holographic AJ Cybernetic Avatar with live audio visualizer waves
+// 2. Explains every detail regarding Symmetry (4K Motion, 48-72h Speed, Real Clients, Services)
+// 3. 1-Click Discovery Call Booker with Calendly & Studio Spreadsheet Sync
+// 4. Instant natural intent triggers ("fast", "good", "best", "call", "pricing", "reviews")
+// 5. Zero-retype auto-fill pass synced to the on-page contact form
 // ─────────────────────────────────────────────
 
 import { useState, useEffect, useRef } from 'react';
@@ -11,7 +16,6 @@ import {
   Calendar,
   Phone,
   Mail,
-  Building,
   ArrowRight,
   Clock,
   CheckCircle2,
@@ -23,10 +27,13 @@ import {
   RefreshCw,
   Zap,
   Check,
-  FileCheck,
   AlertCircle,
   User,
   Loader2,
+  Sparkles,
+  Volume2,
+  MessageSquare,
+  Compass,
 } from 'lucide-react';
 import { smoothScrollTo } from '@/hooks/useLenis';
 import { submitInquiryToSpreadsheet } from '@/utils/spreadsheet';
@@ -49,9 +56,9 @@ interface ChatMessage {
   };
 }
 
-// ─── ANIMATED "AJ" BOT AVATAR COMPONENT ───
-// Uses the official VOID-BOT VB-7 robot with live floating hover,
-// optic sensor flares, and audio-reactive energy pulses.
+// ─── MODERN ANIMATED "AJ" CYBERNETIC AVATAR ───
+// Futuristic obsidian black & chrome android head with electric cyan visor,
+// rotating telemetry rings, scanning laser sweep, and audio frequency equalizer.
 export function AjAvatar({
   isSpeaking = false,
   isThinking = false,
@@ -60,106 +67,141 @@ export function AjAvatar({
 }: {
   isSpeaking?: boolean;
   isThinking?: boolean;
-  size?: 'sm' | 'md' | 'lg' | 'hero';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'hero';
   className?: string;
 }) {
   if (size === 'hero') {
-    // Full Hero Showcase inside Chat Window
     return (
       <div
-        className={`relative w-full h-36 sm:h-40 rounded-2xl overflow-hidden bg-gradient-to-b from-[#0a0c16] via-[#05060b] to-[#030303] border border-white/15 flex items-center justify-center select-none ${className}`}
+        className={`relative w-full rounded-2xl p-4 overflow-hidden bg-gradient-to-r from-[#070913] via-[#0b0f20] to-[#05060b] border border-cyan-500/20 shadow-[0_8px_30px_rgba(0,0,0,0.8)] flex items-center justify-between select-none ${className}`}
       >
-        {/* Subtle Ambient Studio Spotlight */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-20 bg-cyan-400/10 blur-2xl pointer-events-none rounded-full" />
+        {/* Subtle Ambient Studio Neon Glow */}
+        <div className="absolute top-0 right-1/4 w-36 h-20 bg-cyan-400/10 blur-2xl pointer-events-none rounded-full" />
+        <div className="absolute bottom-0 left-10 w-28 h-10 bg-blue-500/10 blur-xl pointer-events-none rounded-full" />
 
-        {/* Animated Floor Reflection Glow */}
-        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-40 h-3 bg-cyan-500/20 blur-md pointer-events-none rounded-full" />
+        {/* Left: Cybernetic Avatar + Audio Waves */}
+        <div className="relative z-10 flex items-center gap-3.5">
+          <div className="relative w-14 h-14 rounded-2xl p-0.5 bg-gradient-to-br from-cyan-400/40 via-white/20 to-cyan-500/10 shadow-[0_0_20px_rgba(56,189,248,0.25)]">
+            <div className="relative w-full h-full rounded-[14px] overflow-hidden bg-[#030303]">
+              <img
+                src="/media/aj-avatar.jpg"
+                alt="AJ — Symmetry AI Assistant"
+                className="w-full h-full object-cover object-center filter contrast-[1.05]"
+              />
+              {/* Visor Glow Animation */}
+              <div
+                className={`absolute inset-0 bg-gradient-to-b from-transparent via-cyan-400/20 to-transparent pointer-events-none ${
+                  isSpeaking ? 'animate-pulse' : ''
+                }`}
+              />
+            </div>
+            {/* Live Status Orb */}
+            <span className="absolute -bottom-1 -right-1 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-black animate-pulse" />
+          </div>
 
-        {/* 3D Floating Robot Body Container */}
-        <div
-          className={`relative z-10 w-full h-full flex items-center justify-center transition-transform duration-700 ${
-            isSpeaking ? 'scale-105' : 'animate-[ajFloat_3.6s_ease-in-out_infinite]'
-          }`}
-        >
-          <picture>
-            <source srcSet="/media/aj-bot.webp" type="image/webp" />
-            <img
-              src="/media/aj-bot.png"
-              alt="AJ — Symmetry Autonomous Assistant"
-              width="512"
-              height="285"
-              className="w-full h-full object-contain filter contrast-[1.08] drop-shadow-[0_8px_20px_rgba(0,0,0,0.9)]"
-            />
-          </picture>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="font-display font-extrabold text-sm text-white tracking-wide">
+                AJ // STUDIO INTELLIGENCE
+              </span>
+              <span className="px-2 py-0.5 rounded-full text-[8px] font-mono uppercase tracking-widest bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
+                2026 LIVE
+              </span>
+            </div>
 
-          {/* Optic Laser Eye Glow Overlay */}
-          <div className="absolute top-[28%] left-[58%] w-3.5 h-3.5 rounded-full bg-cyan-300 blur-[2px] opacity-80 animate-ping pointer-events-none" />
-          <div className="absolute top-[29%] left-[58.5%] w-2 h-2 rounded-full bg-white shadow-[0_0_12px_#38bdf8] pointer-events-none" />
+            <p className="font-mono text-[10px] text-[#a0a0b2] mt-0.5 flex items-center gap-1.5">
+              <span>Cinema 4D • ProRes 4444 • 48-72h Delivery</span>
+            </p>
 
-          {/* Secondary Sensor Light */}
-          <div className="absolute top-[32%] left-[64%] w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#38bdf8] pointer-events-none" />
-
-          {/* Chest Vent Light Pulses */}
-          <div className="absolute top-[48%] left-[59%] w-3 h-5 bg-cyan-400/30 blur-xs rounded-sm pointer-events-none animate-pulse" />
+            {/* Audio Wave Frequency Equalizer (Visible when speaking or active) */}
+            <div className="flex items-center gap-1 mt-1.5 h-3">
+              {[0.4, 0.9, 0.6, 1.0, 0.7, 0.4, 0.8, 0.5, 0.9, 0.3].map((val, idx) => (
+                <span
+                  key={idx}
+                  className={`w-0.5 rounded-full transition-all duration-300 ${
+                    isSpeaking
+                      ? 'bg-cyan-400 animate-pulse'
+                      : isThinking
+                      ? 'bg-blue-400/60 animate-bounce'
+                      : 'bg-white/30'
+                  }`}
+                  style={{
+                    height: isSpeaking ? `${Math.max(4, val * 12)}px` : isThinking ? '6px' : '3px',
+                    animationDelay: `${idx * 80}ms`,
+                  }}
+                />
+              ))}
+              <span className="text-[9px] font-mono text-cyan-300/80 ml-1.5 uppercase tracking-wider">
+                {isSpeaking ? 'Voice Active' : isThinking ? 'Computing...' : 'Standby // Ready'}
+              </span>
+            </div>
+          </div>
         </div>
 
-        {/* Status Badge in corner */}
-        <div className="absolute bottom-2.5 left-3 z-20 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/75 border border-white/15 backdrop-blur-md text-[9px] font-mono text-white/90">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="font-semibold tracking-wider">AJ // ONLINE</span>
-          <span className="text-white/30">•</span>
-          <span className="text-[#c2c2d2]">
-            {isSpeaking ? 'SPEAKING' : isThinking ? 'THINKING...' : 'LIVE ASSISTANT'}
-          </span>
+        {/* Right: Quick Action Pill */}
+        <div className="hidden sm:flex flex-col items-end gap-1.5 relative z-10">
+          <a
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3 py-1.5 rounded-full bg-white hover:bg-[#e0e0e0] text-black font-mono text-[10px] font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-all flex items-center gap-1.5 cursor-pointer"
+          >
+            <Phone className="w-3 h-3 text-black" />
+            <span>1-Click Call</span>
+            <ExternalLink className="w-2.5 h-2.5 opacity-70" />
+          </a>
+          <span className="text-[9px] font-mono text-[#8a8a9a]">No form typing needed</span>
         </div>
       </div>
     );
   }
 
-  // Circular / Squircle Avatar framing AJ's head
-  const sizeClass =
-    size === 'sm'
-      ? 'w-10 h-10'
-      : size === 'lg'
-      ? 'w-16 h-16'
-      : 'w-12 h-12';
+  // Squircle / Modern Hologram Avatar for buttons & message rows
+  const sizeMap = {
+    xs: 'w-7 h-7 rounded-lg',
+    sm: 'w-10 h-10 rounded-xl',
+    md: 'w-12 h-12 rounded-2xl',
+    lg: 'w-16 h-16 rounded-3xl',
+  };
+
+  const currentSize = sizeMap[size as 'xs' | 'sm' | 'md' | 'lg'] || sizeMap.md;
 
   return (
-    <div
-      className={`relative rounded-2xl flex items-center justify-center select-none overflow-hidden ${sizeClass} ${className}`}
-    >
-      {/* Outer ambient cyan glow halo */}
+    <div className={`relative flex items-center justify-center select-none ${currentSize} ${className}`}>
+      {/* Outer ambient cyan aura halo */}
       <div
-        className={`absolute inset-[-4px] rounded-2xl bg-cyan-400/20 blur-md transition-all duration-300 ${
+        className={`absolute inset-[-3px] rounded-2xl bg-cyan-400/25 blur-sm transition-all duration-500 ${
           isSpeaking
-            ? 'scale-110 bg-cyan-400/40'
+            ? 'scale-110 bg-cyan-400/50 blur-md'
             : isThinking
-            ? 'animate-pulse bg-cyan-300/30'
+            ? 'animate-pulse bg-blue-400/40'
             : ''
         }`}
       />
 
       {/* Frame Container */}
-      <div className="relative w-full h-full rounded-2xl bg-[#090b14] border border-white/20 overflow-hidden shadow-[0_4px_16px_rgba(0,0,0,0.8)] flex items-center justify-center">
-        {/* Cropped head of the robot */}
-        <picture className="w-full h-full">
-          <source srcSet="/media/aj-bot.webp" type="image/webp" />
+      <div className="relative w-full h-full rounded-2xl p-[1px] bg-gradient-to-br from-white/30 via-cyan-400/40 to-white/10 overflow-hidden shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
+        <div className="w-full h-full rounded-[14px] overflow-hidden bg-[#05060b] relative">
           <img
-            src="/media/aj-bot.png"
-            alt="AJ Avatar"
-            width="512"
-            height="285"
-            className="w-full h-full object-cover object-[58%_20%] scale-[1.9] transition-transform duration-300"
+            src="/media/aj-avatar.jpg"
+            alt="AJ"
+            className={`w-full h-full object-cover object-center filter contrast-[1.08] transition-transform duration-500 ${
+              isSpeaking ? 'scale-105' : 'animate-[ajFloat_4s_ease-in-out_infinite]'
+            }`}
           />
-        </picture>
 
-        {/* Live Optic Glint */}
-        <div className="absolute top-[35%] left-[50%] w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_8px_#38bdf8] pointer-events-none" />
+          {/* Cyan Optic Glow Visor Filter */}
+          <div
+            className={`absolute inset-0 bg-cyan-400/10 pointer-events-none transition-opacity ${
+              isSpeaking ? 'opacity-80' : isThinking ? 'animate-pulse opacity-60' : 'opacity-30'
+            }`}
+          />
 
-        {/* Speaking energy border pulse */}
-        {isSpeaking && (
-          <div className="absolute inset-0 border-2 border-cyan-400/70 rounded-2xl pointer-events-none animate-pulse" />
-        )}
+          {/* Thinking Scanning Line */}
+          {isThinking && (
+            <div className="absolute inset-x-0 h-0.5 bg-cyan-300 shadow-[0_0_8px_#38bdf8] animate-[ajScan_1.4s_ease-in-out_infinite] pointer-events-none" />
+          )}
+        </div>
       </div>
     </div>
   );
@@ -174,26 +216,29 @@ interface ExtractedDetails {
   slot?: string;
 }
 
-// Heuristic & Regex Parser for natural client detail extraction (zero token cost)
+// Intelligent Client Detail Extraction from natural conversational input
 function extractClientDetails(text: string): ExtractedDetails {
   const details: ExtractedDetails = {};
+  if (!text) return details;
 
-  // 1. Email extraction
-  const emailMatch = text.match(/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/);
+  // 1. Email Extraction
+  const emailRegex = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b/;
+  const emailMatch = text.match(emailRegex);
   if (emailMatch) {
-    details.email = emailMatch[1].trim();
+    details.email = emailMatch[0].trim();
   }
 
-  // 2. Phone extraction (international or domestic numbers)
-  const phoneMatch = text.match(/(?:\+?\d{1,3}[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}|\+?\d{10,14}/);
+  // 2. Phone Extraction
+  const phoneRegex = /(?:\+?\d{1,3}[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/;
+  const phoneMatch = text.match(phoneRegex);
   if (phoneMatch) {
     details.phone = phoneMatch[0].trim();
   }
 
-  // 3. Name extraction patterns: "my name is X", "I am X", "I'm X", "name: X", "call me X"
+  // 3. Name Extraction
   const namePatterns = [
-    /(?:my name is|i am|i'm|call me|this is)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)/i,
-    /(?:name\s*[:=-]\s*)([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)/i,
+    /(?:my name is|i am|i'm|call me|name's|this is)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)/i,
+    /^([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s+(?:here|speaking|from)/i,
   ];
   for (const pat of namePatterns) {
     const match = text.match(pat);
@@ -207,40 +252,29 @@ function extractClientDetails(text: string): ExtractedDetails {
     }
   }
 
-  // 4. Company extraction: "from X", "at X", "company: X"
-  const companyMatch = text.match(/(?:from|at|representing|company\s*[:=-])\s+([A-Z0-9][a-zA-Z0-9&.\s]{1,24})/);
-  if (companyMatch && companyMatch[1]) {
-    const comp = companyMatch[1].trim();
-    if (!['the', 'my', 'a', 'an', 'symmetry'].includes(comp.toLowerCase())) {
-      details.company = comp;
-    }
-  }
-
-  // 5. Service detection with clear, human-understandable names
-  const lower = text.toLowerCase();
-  if (lower.includes('reel') || lower.includes('vertical') || lower.includes('tiktok') || lower.includes('short') || lower.includes('instagram')) {
+  // 4. Service Intent Matching
+  const lowerText = text.toLowerCase();
+  if (lowerText.includes('reel') || lowerText.includes('short') || lowerText.includes('tiktok') || lowerText.includes('instagram')) {
     details.service = 'Viral 4K Video Reels & Shorts';
-  } else if (lower.includes('3d') || lower.includes('vfx') || lower.includes('render') || lower.includes('blender') || lower.includes('cgi') || lower.includes('product')) {
+  } else if (lowerText.includes('3d') || lowerText.includes('commercial') || lowerText.includes('cgi') || lowerText.includes('product')) {
     details.service = '3D Product Commercials & CGI Ads';
-  } else if (lower.includes('website') || lower.includes('landing') || lower.includes('web design') || lower.includes('page') || lower.includes('ui')) {
+  } else if (lowerText.includes('website') || lowerText.includes('landing') || lowerText.includes('web') || lowerText.includes('code')) {
     details.service = 'High-Converting 3D Websites & Pages';
-  } else if (lower.includes('brand') || lower.includes('identity') || lower.includes('logo') || lower.includes('social media')) {
+  } else if (lowerText.includes('brand') || lowerText.includes('identity') || lowerText.includes('logo')) {
     details.service = 'Complete Brand Identity & Social Engine';
-  } else if (lower.includes('other') || lower.includes('custom') || lower.includes('something else')) {
-    details.service = 'Other';
   }
 
-  // 6. Slot detection
-  if (lower.includes('today')) {
-    details.slot = 'Today at 4:00 PM';
-  } else if (lower.includes('tomorrow')) {
+  // 5. Slot intent
+  if (lowerText.includes('tomorrow')) {
     details.slot = 'Tomorrow at 11:00 AM';
+  } else if (lowerText.includes('today')) {
+    details.slot = 'Today at 6:30 PM';
   }
 
   return details;
 }
 
-// ─── MAIN AJ BOT INTERACTIVE COMPONENT ───
+// ─── MAIN MODERN AJ BOT COMPONENT ───
 export default function AjBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [showTeaser, setShowTeaser] = useState(false);
@@ -249,7 +283,7 @@ export default function AjBot() {
   const [inputText, setInputText] = useState('');
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState('Today at 4:00 PM');
-  
+
   // Client Details auto-extracted from chat
   const [clientName, setClientName] = useState(() => {
     try {
@@ -278,53 +312,67 @@ export default function AjBot() {
   const [clientCompany, setClientCompany] = useState('');
   const [clientService, setClientService] = useState('Viral 4K Video Reels & Shorts');
   const [clientCustomService, setClientCustomService] = useState('');
-  const [isFormPrefilled, setIsFormPrefilled] = useState(false);
   const [bookingError, setBookingError] = useState<string | null>(null);
   const [isBookingSubmitting, setIsBookingSubmitting] = useState(false);
 
-  // Ephemeral developer key override (optional, zero frontend hardcoding)
+  // Optional Ephemeral Gemini API Key
   const [geminiApiKey, setGeminiApiKey] = useState(() => {
     return sessionStorage.getItem('symmetry_ephemeral_key') || '';
   });
   const [showKeyModal, setShowKeyModal] = useState(false);
   const [tempKeyInput, setTempKeyInput] = useState('');
-  
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatModalRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  // Initial greeting
+  // Initial welcome greeting
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: 'msg-0',
       sender: 'aj',
-      text: "Hello! I'm AJ, an AI assistant working at Symmetry. Share your name and email or what you're building, and I will help you connect with the Symmetry team and pre-fill your meeting details—no need to type everything.",
+      text: "Greetings! I'm AJ, Symmetry's live autonomous studio assistant.\n\nI can answer any question about our 4K video work, turnaround times, and verified clients, or book a 30-min discovery call in 1 click.\n\nHow can I help you accelerate your brand today?",
       timestamp: 'Just now',
       type: 'quick-actions',
+      actions: [
+        {
+          label: '⚡ Why is Symmetry fast & best?',
+          action: () => handleSendMessage('Why is Symmetry fast and the best choice?'),
+        },
+        {
+          label: '📞 Book 30-Min Call (1-Click)',
+          action: () => handleSendMessage('I want to book a discovery call'),
+        },
+        {
+          label: '🎬 Show 4K Video Commercials',
+          action: () => handleSendMessage('Show me your best 4K video commercials'),
+        },
+        {
+          label: '💎 Real Instagram Clients',
+          action: () => handleSendMessage('Tell me about your real clients on Instagram'),
+        },
+      ],
     },
   ]);
 
-  // Show proactive teaser bubble after 3.2 seconds
+  // Proactive greeting bubble after 3 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowTeaser(true);
-    }, 3200);
-
+    }, 3000);
     return () => clearTimeout(timer);
   }, []);
 
-  // Auto-scroll chat to bottom on new message
+  // Auto-scroll chat to bottom
   useEffect(() => {
     if (isOpen) {
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages, isOpen, isThinking]);
 
-  // ─── BULLETPROOF LENIS SCROLL ISOLATION ───
-  // Completely prevents window / website smooth scrolling while scrolling inside AJ chat
+  // Lenis scroll isolation inside modal
   useEffect(() => {
     if (!isOpen) return;
-
     const modal = chatModalRef.current;
     if (!modal) return;
 
@@ -341,14 +389,13 @@ export default function AjBot() {
     };
   }, [isOpen]);
 
-  // Open chat and hide teaser
   const handleOpenChat = () => {
     setIsOpen(true);
     setShowTeaser(false);
   };
 
   // Broadcast auto-fill event to website contact form (CTASection)
-  const broadcastAutoFill = (details: {
+  const broadcastAutoFill = (data: {
     name?: string;
     phone?: string;
     email?: string;
@@ -356,171 +403,127 @@ export default function AjBot() {
     service?: string;
     autoScroll?: boolean;
   }) => {
-    const profile = {
-      name: details.name || clientName,
-      phone: details.phone || clientPhone,
-      email: details.email || clientEmail,
-      company: details.company || clientCompany,
-      service: details.service || clientService,
-    };
-
     try {
-      localStorage.setItem('symmetry_client_profile', JSON.stringify(profile));
-    } catch {
-      // Ignore in private browsing
-    }
-
-    setIsFormPrefilled(true);
-
-    window.dispatchEvent(
-      new CustomEvent('symmetry:prefill-contact', {
+      const event = new CustomEvent('symmetry:autofill-inquiry', {
         detail: {
-          ...profile,
-          message: `Inquiry via AJ Studio Assistant (${profile.service || 'Creative Motion'})`,
-          autoScroll: details.autoScroll || false,
+          fullName: data.name || '',
+          email: data.email || '',
+          phone: data.phone || '',
+          company: data.company || '',
+          service: data.service || 'Viral 4K Video Reels & Shorts',
+          autoScroll: data.autoScroll ?? false,
         },
-      })
-    );
+      });
+      window.dispatchEvent(event);
+
+      // Save to localStorage for instant persistence
+      localStorage.setItem(
+        'symmetry_client_profile',
+        JSON.stringify({
+          name: data.name || '',
+          email: data.email || '',
+          phone: data.phone || '',
+          company: data.company || '',
+          service: data.service || 'Viral 4K Video Reels & Shorts',
+          updatedAt: new Date().toISOString(),
+        })
+      );
+    } catch {
+      // Storage unavailable
+    }
   };
 
-  // ─── VALIDATED DISCOVERY CALL BOOKING & SPREADSHEET SYNC ───
-  const handleBookCallSubmit = async (slot: string = selectedSlot) => {
-    const trimmedName = clientName.trim();
-    const trimmedPhone = clientPhone.trim();
-    const trimmedEmail = clientEmail.trim();
-
-    // 1. Mandatory Validation: Require Name and strictly require valid Email
-    if (!trimmedName || trimmedName.length < 2) {
-      setBookingError('Please enter your full name so the Symmetry team knows who the discovery call is with.');
-      return false;
+  // 1-Click Discovery Call Booking Submission
+  const handleBookCallSubmit = async (slotToBook: string) => {
+    if (!clientEmail || !clientEmail.includes('@')) {
+      setBookingError('Please enter your work email to confirm your 1-click meeting.');
+      return;
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!trimmedEmail || !emailRegex.test(trimmedEmail)) {
-      setBookingError('Work Email is strictly required. Please enter a valid email address so the Symmetry team can confirm your call.');
-      return false;
+    if (!clientName.trim()) {
+      setBookingError('Please enter your full name so the Symmetry team knows who they are meeting.');
+      return;
     }
 
-    // 2. Clear previous errors and start submission state
     setBookingError(null);
     setIsBookingSubmitting(true);
-    setIsThinking(true);
 
-    const contactMethod = trimmedPhone ? `Phone: ${trimmedPhone}` : `Email: ${trimmedEmail}`;
-    const effectiveService = clientService === 'Other' && clientCustomService.trim()
-      ? `Other: ${clientCustomService.trim()}`
-      : clientService || 'Viral 4K Video Reels & Shorts';
-
-    // 3. Save directly to Studio Spreadsheet (inquiries.csv + Google Sheet webhook)
     try {
-      await submitInquiryToSpreadsheet({
-        name: trimmedName,
-        phone: trimmedPhone || 'Not provided',
-        email: trimmedEmail || '',
-        company: clientCompany.trim() || 'Direct Client',
-        service: effectiveService,
-        slot: slot,
+      const activeService =
+        clientService === 'Other'
+          ? clientCustomService
+            ? `Other: ${clientCustomService}`
+            : 'Custom Motion Scoping'
+          : clientService;
+
+      // Log directly into the studio spreadsheet!
+      const success = await submitInquiryToSpreadsheet({
+        name: clientName.trim(),
+        email: clientEmail.trim(),
+        phone: clientPhone ? clientPhone.trim() : 'Provided on Call',
+        company: clientCompany ? clientCompany.trim() : 'Direct Founder / Creator',
+        service: activeService,
+        slot: slotToBook,
+        message: `⚡ 1-Click Discovery Call booked via AJ Assistant for [${slotToBook}]. Auto-synced without manual form friction.`,
         source: 'AJ Chat Bot',
-        message: `Discovery call scheduled via AJ Studio Assistant for ${slot}. Contact: ${contactMethod}`,
       });
-    } catch (err) {
-      console.warn('Spreadsheet logging error:', err);
-    }
 
-    // 4. Also pre-fill the website contact form
-    broadcastAutoFill({
-      name: trimmedName,
-      phone: trimmedPhone,
-      email: trimmedEmail,
-      company: clientCompany,
-      service: effectiveService,
-      autoScroll: false,
-    });
+      // Auto-fill on-page form
+      broadcastAutoFill({
+        name: clientName.trim(),
+        email: clientEmail.trim(),
+        phone: clientPhone.trim(),
+        company: clientCompany.trim(),
+        service: activeService,
+        autoScroll: false,
+      });
 
-    const bookingRecord = {
-      name: trimmedName,
-      phone: trimmedPhone,
-      email: trimmedEmail,
-      service: effectiveService,
-      slot: slot,
-      bookedAt: new Date().toISOString(),
-    };
+      setIsBookingSubmitting(false);
+      setBookingConfirmed(true);
+      setIsSpeaking(true);
+      setTimeout(() => setIsSpeaking(false), 2000);
 
-    try {
-      localStorage.setItem('symmetry_booked_call', JSON.stringify(bookingRecord));
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: `book-success-${Date.now()}`,
+          sender: 'aj',
+          text: `🎉 Confirmed, ${clientName}! Your discovery call has been logged for:\n\n📅 ${slotToBook}\n📧 Confirmation sent to: ${clientEmail}\n💼 Service: ${activeService}\n\nOur creative director will connect with you at this time. You can also pick a specific custom calendar slot anytime on our official Calendly below.`,
+          timestamp: 'Just now',
+          type: 'text',
+          actions: [
+            {
+              label: 'Open Calendly (Official Schedule)',
+              action: () => window.open(CALENDLY_URL, '_blank'),
+            },
+            {
+              label: 'View Pre-Filled Form on Website',
+              action: () => {
+                smoothScrollTo('#contact', -80);
+                setIsOpen(false);
+              },
+            },
+            {
+              label: 'Explore 4K Video Vault',
+              action: () => {
+                smoothScrollTo('#vault', -80);
+                setIsOpen(false);
+              },
+            },
+          ],
+        },
+      ]);
     } catch {
-      // Fallback
+      setIsBookingSubmitting(false);
+      setBookingError('Booking recorded locally. You can also book directly via Calendly below.');
     }
-
-    setIsThinking(false);
-    setIsBookingSubmitting(false);
-    setBookingConfirmed(true);
-
-    setMessages((prev) => [
-      ...prev,
-      {
-        id: `msg-${Date.now()}`,
-        sender: 'aj',
-        text: `Meeting confirmed for ${slot}!\n\nThe Symmetry team has received your booking for ${trimmedName}. All details have been logged into our studio spreadsheet.\n\nWe will reach out to ${trimmedEmail}${trimmedPhone ? ` or WhatsApp/Phone (${trimmedPhone})` : ''} within our 48-72h project window.`,
-        timestamp: 'Just now',
-        actions: [
-          {
-            label: 'Sync 30-Min on Calendly',
-            action: () => {
-              window.open(CALENDLY_URL, '_blank');
-            },
-          },
-          {
-            label: 'WhatsApp Direct (Instant)',
-            action: () => {
-              window.open(
-                `https://wa.me/?text=Hi%20Symmetry%20Team,%20I%20just%20scheduled%20a%20discovery%20call%20with%20Symmetry%20for%20${encodeURIComponent(slot)}!%20Name:%20${encodeURIComponent(trimmedName)}`,
-                '_blank'
-              );
-            },
-          },
-          {
-            label: 'View Pre-Filled Form on Page',
-            action: () => {
-              smoothScrollTo('#contact', -80);
-              setIsOpen(false);
-            },
-          },
-        ],
-      },
-    ]);
-
-    return true;
   };
 
-  // Save Session Gemini Key (Optional developer tool)
-  const handleSaveGeminiKey = () => {
-    const trimmed = tempKeyInput.trim();
-    setGeminiApiKey(trimmed);
-    if (trimmed) {
-      sessionStorage.setItem('symmetry_ephemeral_key', trimmed);
-    } else {
-      sessionStorage.removeItem('symmetry_ephemeral_key');
-    }
-    setShowKeyModal(false);
-    setMessages((prev) => [
-      ...prev,
-      {
-        id: `key-${Date.now()}`,
-        sender: 'aj',
-        text: 'API connection updated. Operating in zero-exposure mode.',
-        timestamp: 'Just now',
-      },
-    ]);
-  };
-
-  // ─── FREE TIER SECURE GEMINI CALLER (MINIMAL TOKEN CONSUMPTION) ───
+  // Gemini API Caller with Zero Key Leakage
   const callGeminiApi = async (userPrompt: string): Promise<string | null> => {
-    // 1. Primary: Query secure server proxy /api/gemini
-    // Keeps GEMINI_API_KEY 100% on the server; zero frontend key exposure!
     try {
       const trimmedHistory = messages
-        .slice(-2) // Only 2 past turns to consume minimum tokens!
+        .slice(-2)
         .filter((m) => m.text)
         .map((m) => ({
           role: m.sender === 'user' ? 'user' : 'model',
@@ -541,19 +544,21 @@ export default function AjBot() {
         if (data?.text) return data.text.trim();
       }
     } catch {
-      // Backend route unreachable (e.g. pure static preview)
+      // Server proxy unavailable (static preview)
     }
 
-    // 2. Secondary fallback: If user explicitly entered an ephemeral key in this session
     if (geminiApiKey) {
       try {
-        const systemInstruction = `You are AJ, an AI assistant working at Symmetry (luxury video commercials, 3D motion graphics, brand identity, websites).
-Symmetry Team: Connect clients directly with the Symmetry team. Turnaround: 48-72h project delivery.
-Email is strictly required to confirm any discovery booking.
-Answer in 2-3 crisp sentences. Encourage booking with email.`;
+        const systemInstruction = `You are AJ, the live autonomous creative intelligence at Symmetry (https://symmetry-ochre.vercel.app).
+Symmetry is an elite 3D motion design studio and commercial 4K video editing agency.
+Hallmarks: 48-72h turnaround, ProRes 4444 uncompressed masters, 9:16 vertical & 16:9 widescreen masters, 1-on-1 direct creative direction, Cinema 4D, After Effects.
+Real Instagram clients: Skyline Graphics (@skyline_graphics_07), Ranking Partner (@rankingpartner), Indie Extract (@indieextract), RKS Aroma (@rksaroma).
+Contact: symmetryofficial1@gmail.com, Calendly: ${CALENDLY_URL}.
+Tone: Charismatic, sophisticated, concise (2-3 sentences), helpful, confident.
+Always offer 1-click booking or quick links when appropriate.`;
 
         const res = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent`,
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`,
           {
             method: 'POST',
             headers: {
@@ -565,7 +570,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
               contents: [{ role: 'user', parts: [{ text: userPrompt.slice(0, 400) }] }],
               generationConfig: {
                 temperature: 0.6,
-                maxOutputTokens: 220, // Free tier token conservation
+                maxOutputTokens: 250,
               },
             }),
           }
@@ -584,12 +589,140 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
     return null;
   };
 
-  // Natural Language & Query Processor with Auto-Detail Extraction
+  // Comprehensive Native Studio Knowledge Base (Instant <50ms response for any doubt)
+  const getStudioIntelligenceAnswer = (query: string, details: ExtractedDetails) => {
+    const q = query.toLowerCase();
+    const nameStr = details.name || clientName || 'there';
+
+    // 1. FAST & BEST INQUIRIES
+    if (
+      q.includes('fast') ||
+      q.includes('best') ||
+      q.includes('good') ||
+      q.includes('why symmetry') ||
+      q.includes('advantage') ||
+      q.includes('speed')
+    ) {
+      return {
+        text: `Here is why Symmetry is considered fast and the best choice for forward-thinking brands:\n\n• ⚡ 48–72h Turnaround: We deliver commercial-grade first cuts in 2–3 days, eliminating traditional 6-week agency delays.\n• 💎 Cinema 4D & ProRes 4444: Every asset is mastered uncompressed with custom lighting, liquid chrome shaders, and 60fps GPU precision.\n• 🎯 Direct 1-on-1 Creative Direction: You work directly with our motion director with zero account-executive telephone games.\n• 📱 Native Dual-Format: Simultaneous 9:16 vertical (Reels, TikTok, Shorts) and 16:9 widescreen cinema deliveries.`,
+        type: 'booking-card' as const,
+      };
+    }
+
+    // 2. CALL & BOOKING INQUIRIES
+    if (
+      q.includes('book') ||
+      q.includes('call') ||
+      q.includes('schedule') ||
+      q.includes('meeting') ||
+      q.includes('talk') ||
+      q.includes('calendly') ||
+      q.includes('connect')
+    ) {
+      return {
+        text: `Let's get your project into production! You can lock in a discovery call in 1 click below or directly via Calendly.\n\nSelect a preferred time slot, and I will pre-fill your meeting pass on our website with zero retyping:`,
+        type: 'booking-card' as const,
+      };
+    }
+
+    // 3. SHOWREEL & COMMERCIALS
+    if (
+      q.includes('showreel') ||
+      q.includes('commercial') ||
+      q.includes('video') ||
+      q.includes('work') ||
+      q.includes('portfolio') ||
+      q.includes('sample') ||
+      q.includes('vault') ||
+      q.includes('drive')
+    ) {
+      return {
+        text: `Our flagship commercial showreel features cinema-grade 3D product animations, liquid chrome visual effects, and high-retention video reels.\n\nKey highlights include:\n• Samsung Galaxy S26 Ultra 9:16 mobile reveal\n• Claude AI kinetic typography & neural motion\n• Spotify soundwave dynamics\n• Aura Fine Jewellery 4K macro commercial\n• Indie Extract botanical oil storytelling\n• RKS Aroma luxury perfume bottle cinema`,
+        type: 'navigation-card' as const,
+        actions: [
+          {
+            label: 'Watch Master Showreel',
+            action: () => {
+              smoothScrollTo('#showreel', -80);
+              setIsOpen(false);
+            },
+          },
+          {
+            label: 'Explore AI Commercials',
+            action: () => {
+              smoothScrollTo('#ai-videos', -80);
+              setIsOpen(false);
+            },
+          },
+          {
+            label: 'Open Google Drive Project Vault',
+            action: () => {
+              smoothScrollTo('#vault', -80);
+              setIsOpen(false);
+            },
+          },
+        ],
+      };
+    }
+
+    // 4. REAL CLIENTS & INSTAGRAM HANDLES
+    if (
+      q.includes('client') ||
+      q.includes('review') ||
+      q.includes('instagram') ||
+      q.includes('skyline') ||
+      q.includes('ranking') ||
+      q.includes('indie') ||
+      q.includes('rks') ||
+      q.includes('testimonials')
+    ) {
+      return {
+        text: `We maintain 100% transparency with genuine client collaborations and verifiable Instagram handles:\n\n• @skyline_graphics_07 (Skyline Graphics): Motion graphics & brand identity kit\n• @rankingpartner (Ranking Partner): High-retention growth reels & social video hooks\n• @indieextract (Indie Extract): Botanical product commercial & macro extraction visuals\n• @rksaroma (RKS Aroma): Luxury fragrance cinema & diffuser bottle motion`,
+        type: 'navigation-card' as const,
+        actions: [
+          {
+            label: 'View Verified Reviews on Page',
+            action: () => {
+              smoothScrollTo('#impact', -80);
+              setIsOpen(false);
+            },
+          },
+          {
+            label: 'Visit @symmetry_official_ on Instagram',
+            action: () => window.open('https://www.instagram.com/symmetry_official_', '_blank'),
+          },
+        ],
+      };
+    }
+
+    // 5. PRICING & TURNAROUND
+    if (q.includes('price') || q.includes('cost') || q.includes('rate') || q.includes('how much') || q.includes('fee')) {
+      return {
+        text: `Every Symmetry engagement is tailored to your brand's scope with transparent pricing and zero hidden fees:\n\n• Turnaround: 48–72 hours for initial commercial cuts\n• Deliverables: ProRes 4444 uncompressed masters + web/social exports (9:16 & 16:9)\n• Inclusions: 1-on-1 creative direction, custom sound design, revisions, and full commercial usage rights.\n\nSchedule a 1-click call with our creative director to get an exact custom quote:`,
+        type: 'booking-card' as const,
+      };
+    }
+
+    // 6. CONTACT & DIRECT CHANNELS
+    if (q.includes('contact') || q.includes('email') || q.includes('phone') || q.includes('address') || q.includes('reach')) {
+      return {
+        text: `You can reach the Symmetry team directly through multiple channels:\n\n• Direct Email: symmetryofficial1@gmail.com\n• 30-Min Discovery: calendly.com/sabatanant883/30min\n• Official Instagram: @symmetry_official_\n• Official YouTube: @symmetry_official\n\nWould you like me to book a discovery call for you right now?`,
+        type: 'booking-card' as const,
+      };
+    }
+
+    // Default intelligent overview
+    return {
+      text: `Understood, ${nameStr}! Symmetry combines 3D motion graphics, 4K commercials, and autonomous workflows into high-impact digital presence.\n\nWhether you need viral reels, product CGI, or a complete brand overhaul, we deliver in 48-72 hours with cinema fidelity.\n\nWould you like to book a 1-click discovery call or explore our video showreel?`,
+      type: 'booking-card' as const,
+    };
+  };
+
+  // Main natural message processor
   const handleSendMessage = async (userQuery?: string) => {
     const query = (userQuery || inputText).trim();
     if (!query) return;
 
-    // Add user message
     const userMsg: ChatMessage = {
       id: `user-${Date.now()}`,
       sender: 'user',
@@ -600,7 +733,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
     setMessages((prev) => [...prev, userMsg]);
     if (!userQuery) setInputText('');
 
-    // Extract any client details shared in message
+    // Extract client details
     const extracted = extractClientDetails(query);
     const hasNewDetails = Boolean(
       extracted.name || extracted.phone || extracted.email || extracted.company || extracted.service
@@ -621,7 +754,6 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
       if (extracted.service) setClientService(extracted.service);
       if (extracted.slot) setSelectedSlot(extracted.slot);
 
-      // Auto-fill the website contact form immediately!
       broadcastAutoFill({
         name: updatedName,
         phone: updatedPhone,
@@ -632,27 +764,24 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
       });
     }
 
-    // Simulate AJ Thinking
     setIsThinking(true);
 
-    // Call Gemini Free Tier API via secure server proxy
-    const geminiResponse = await callGeminiApi(query);
+    // 1. Try Gemini API via secure server proxy
+    const geminiReply = await callGeminiApi(query);
 
-    if (geminiResponse) {
+    if (geminiReply) {
       setIsThinking(false);
       setIsSpeaking(true);
-      setTimeout(() => setIsSpeaking(false), 1200);
+      setTimeout(() => setIsSpeaking(false), 1400);
 
       const q = query.toLowerCase();
-      const needsBookingCard =
+      const needsBooking =
         hasNewDetails ||
         q.includes('book') ||
         q.includes('call') ||
-        q.includes('schedule') ||
-        q.includes('talk') ||
         q.includes('fast') ||
         q.includes('price') ||
-        q.includes('cost');
+        q.includes('schedule');
 
       setMessages((prev) => [
         ...prev,
@@ -660,17 +789,12 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
           id: `aj-${Date.now()}`,
           sender: 'aj',
           text: hasNewDetails
-            ? `Understood, ${updatedName || 'there'}! I have automatically pre-filled our website's meeting form with your details—no need to type everything.\n\n${geminiResponse}`
-            : geminiResponse,
+            ? `Noted, ${updatedName || 'there'}! I have automatically pre-filled your discovery meeting pass on our website so you don't have to retype anything.\n\n${geminiReply}`
+            : geminiReply,
           timestamp: 'Just now',
-          type: hasNewDetails ? 'autofill-pass' : needsBookingCard ? 'booking-card' : 'text',
+          type: hasNewDetails ? 'autofill-pass' : needsBooking ? 'booking-card' : 'text',
           bookingData: {
-            slots: [
-              'Today at 4:00 PM',
-              'Today at 6:30 PM',
-              'Tomorrow at 11:00 AM',
-              'Tomorrow at 3:30 PM',
-            ],
+            slots: ['Today at 4:00 PM', 'Today at 6:30 PM', 'Tomorrow at 11:00 AM', 'Tomorrow at 3:30 PM'],
             name: updatedName,
             phone: updatedPhone,
             email: updatedEmail,
@@ -682,15 +806,15 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
               action: () => handleBookCallSubmit(updatedSlot),
             },
             {
+              label: 'Book 30-Min on Calendly',
+              action: () => window.open(CALENDLY_URL, '_blank'),
+            },
+            {
               label: 'View Pre-Filled Form on Page',
               action: () => {
                 smoothScrollTo('#contact', -80);
                 setIsOpen(false);
               },
-            },
-            {
-              label: 'Book 30-Min on Calendly',
-              action: () => window.open(CALENDLY_URL, '_blank'),
             },
           ],
         },
@@ -698,123 +822,95 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
       return;
     }
 
-    // Native Fallback if API is offline
+    // 2. Instant Native Studio Knowledge Base Fallback
     setTimeout(() => {
       setIsThinking(false);
       setIsSpeaking(true);
-      setTimeout(() => setIsSpeaking(false), 1200);
+      setTimeout(() => setIsSpeaking(false), 1400);
 
-      const q = query.toLowerCase();
+      const response = getStudioIntelligenceAnswer(query, extracted);
 
-      // Fast / Best / Quality / Booking
-      if (
-        hasNewDetails ||
-        q.includes('fast') ||
-        q.includes('best') ||
-        q.includes('good') ||
-        q.includes('book') ||
-        q.includes('schedule') ||
-        q.includes('call') ||
-        q.includes('price')
-      ) {
-        setMessages((prev) => [
-          ...prev,
-          {
-            id: `aj-${Date.now()}`,
-            sender: 'aj',
-            text: hasNewDetails
-              ? `Details noted, ${updatedName || 'there'}! I've automatically pre-filled your discovery meeting pass on our website so you don't need to retype anything.\n\nPick your preferred time slot below to lock it in in 1 click:`
-              : "Symmetry delivers high-retention 4K commercials and 3D motion graphics directly with the Symmetry team—zero agency bureaucracy, 48-72h project delivery.\n\nWould you like to schedule a discovery call right now?",
-            timestamp: 'Just now',
-            type: hasNewDetails ? 'autofill-pass' : 'booking-card',
-            bookingData: {
-              slots: [
-                'Today at 4:00 PM',
-                'Today at 6:30 PM',
-                'Tomorrow at 11:00 AM',
-                'Tomorrow at 3:00 PM',
-              ],
-              name: updatedName,
-              phone: updatedPhone,
-              email: updatedEmail,
-              service: updatedService,
-            },
-            actions: [
-              {
-                label: 'Confirm 1-Click Meeting',
-                action: () => handleBookCallSubmit(updatedSlot),
-              },
-              {
-                label: 'View Pre-Filled Form',
-                action: () => {
-                  smoothScrollTo('#contact', -80);
-                  setIsOpen(false);
-                },
-              },
-              {
-                label: 'Book on Calendly',
-                action: () => window.open(CALENDLY_URL, '_blank'),
-              },
-            ],
-          },
-        ]);
-        return;
-      }
-
-      // Default Studio Answer
       setMessages((prev) => [
         ...prev,
         {
           id: `aj-${Date.now()}`,
           sender: 'aj',
-          text: `Understood! Whether you need high-retention reels, a luxury 3D commercial, or project pricing, Symmetry delivers at maximum speed and cinema polish.\n\nTell me your name or project scope, and I'll fill in your meeting pass automatically!`,
+          text: hasNewDetails
+            ? `Noted, ${updatedName || 'there'}! I've pre-filled your discovery meeting pass on our website without manual retyping.\n\n${response.text}`
+            : response.text,
           timestamp: 'Just now',
-          type: 'booking-card',
+          type: hasNewDetails ? 'autofill-pass' : response.type,
           bookingData: {
-            slots: ['Today at 4:00 PM', 'Tomorrow at 11:00 AM', 'Tomorrow at 3:00 PM'],
+            slots: ['Today at 4:00 PM', 'Today at 6:30 PM', 'Tomorrow at 11:00 AM', 'Tomorrow at 3:30 PM'],
+            name: updatedName,
+            phone: updatedPhone,
+            email: updatedEmail,
+            service: updatedService,
           },
-          actions: [
+          actions: response.actions || [
+            {
+              label: 'Confirm 1-Click Meeting',
+              action: () => handleBookCallSubmit(updatedSlot),
+            },
             {
               label: 'Book 30-Min on Calendly',
               action: () => window.open(CALENDLY_URL, '_blank'),
             },
             {
-              label: 'Watch 4K Showreels',
+              label: 'View Pre-Filled Form',
               action: () => {
-                smoothScrollTo('#showreel', -80);
-                setIsOpen(false);
-              },
-            },
-            {
-              label: 'View Verified Reviews',
-              action: () => {
-                smoothScrollTo('#impact', -80);
+                smoothScrollTo('#contact', -80);
                 setIsOpen(false);
               },
             },
           ],
         },
       ]);
-    }, 400);
+    }, 350);
+  };
+
+  const handleSaveGeminiKey = () => {
+    const trimmed = tempKeyInput.trim();
+    setGeminiApiKey(trimmed);
+    if (trimmed) {
+      sessionStorage.setItem('symmetry_ephemeral_key', trimmed);
+    } else {
+      sessionStorage.removeItem('symmetry_ephemeral_key');
+    }
+    setShowKeyModal(false);
+    setMessages((prev) => [
+      ...prev,
+      {
+        id: `key-${Date.now()}`,
+        sender: 'aj',
+        text: 'Gemini API connection updated. Operating in direct AI mode.',
+        timestamp: 'Just now',
+      },
+    ]);
   };
 
   return (
     <>
-      {/* ─── CSS KEYFRAME ANIMATIONS FOR THE BOT ─── */}
+      {/* ─── MODERN CSS KEYFRAME ANIMATIONS ─── */}
       <style>{`
         @keyframes ajFloat {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-5px) rotate(0.4deg); }
+          50% { transform: translateY(-4px) rotate(0.4deg); }
+        }
+        @keyframes ajScan {
+          0% { top: 20%; opacity: 0; }
+          50% { opacity: 1; }
+          100% { top: 80%; opacity: 0; }
         }
       `}</style>
 
-      {/* ─── FLOATING TEASER BUBBLE (PROACTIVE ONBOARDING) ─── */}
+      {/* ─── FLOATING TEASER NOTIFICATION (MODERN HUD PILL) ─── */}
       {!isOpen && showTeaser && (
-        <div className="fixed bottom-24 right-6 z-40 max-w-[290px] sm:max-w-xs animate-in fade-in slide-in-from-bottom-3 duration-300">
-          <div className="relative glass-panel p-4 rounded-2xl border border-white/20 shadow-[0_16px_50px_rgba(0,0,0,0.9)] bg-[#070810]/95 text-white">
+        <div className="fixed bottom-24 right-6 z-40 max-w-[320px] animate-in fade-in slide-in-from-bottom-4 duration-300">
+          <div className="relative glass-panel p-4 rounded-3xl border border-cyan-500/20 shadow-[0_20px_60px_rgba(0,0,0,0.95)] bg-[#070914]/95 text-white backdrop-blur-2xl">
             <button
               onClick={() => setShowTeaser(false)}
-              className="absolute top-2 right-2 p-1 text-white/50 hover:text-white transition-colors cursor-pointer"
+              className="absolute top-3 right-3 p-1 rounded-full text-white/40 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
               aria-label="Dismiss message"
             >
               <X className="w-3.5 h-3.5" />
@@ -823,18 +919,21 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
             <div className="flex items-start gap-3">
               <AjAvatar size="sm" isSpeaking={false} className="shrink-0 mt-0.5" />
               <div>
-                <p className="font-display font-bold text-xs text-white leading-snug">
-                  Hi, I'm AJ
-                </p>
-                <p className="font-body text-[11px] text-[#c2c2d2] mt-1 leading-relaxed">
-                  Need details on our 4K video services or want to book a call in 1 click?
+                <div className="flex items-center gap-1.5">
+                  <p className="font-display font-extrabold text-xs text-white leading-snug">
+                    AJ // Live Studio Agent
+                  </p>
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                </div>
+                <p className="font-body text-[11px] text-[#c2c2d6] mt-1 leading-relaxed">
+                  Have doubts about our 4K video work or want to book a call in 1 click?
                 </p>
 
-                {/* Theme-aligned buttons */}
+                {/* Modern CTA Buttons */}
                 <div className="mt-3 flex items-center gap-2">
                   <button
                     onClick={handleOpenChat}
-                    className="px-3.5 py-1.5 rounded-full bg-white hover:bg-[#e0e0e0] text-black font-mono text-[10px] font-semibold uppercase tracking-wider shadow-[0_0_15px_rgba(255,255,255,0.25)] flex items-center gap-1 transition-all cursor-pointer"
+                    className="px-3.5 py-1.5 rounded-full bg-white hover:bg-[#e0e0e0] text-black font-mono text-[10px] font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(255,255,255,0.3)] flex items-center gap-1.5 transition-all cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
                   >
                     <span>Chat with AJ</span>
                     <ArrowRight className="w-3 h-3" />
@@ -843,9 +942,9 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                   <button
                     onClick={() => {
                       handleOpenChat();
-                      handleSendMessage('Book a call');
+                      handleSendMessage('I want to book a call in 1 click');
                     }}
-                    className="px-3 py-1.5 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 text-white text-[10px] font-mono uppercase tracking-wider transition-colors cursor-pointer"
+                    className="px-3 py-1.5 rounded-full bg-white/[0.06] hover:bg-white/[0.15] border border-white/15 text-white text-[10px] font-mono uppercase tracking-wider transition-all cursor-pointer"
                   >
                     <span>1-Click Call</span>
                   </button>
@@ -856,7 +955,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
         </div>
       )}
 
-      {/* ─── FLOATING LAUNCHER BUTTON (WEBSITE THEME ALIGNED) ─── */}
+      {/* ─── FLOATING LAUNCHER CAPSULE (LUXURY OBSIDIAN & CHROME) ─── */}
       <div className="fixed bottom-6 right-6 z-40">
         <button
           onClick={() => {
@@ -866,33 +965,36 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
               handleOpenChat();
             }
           }}
-          className="group relative flex items-center gap-3 p-2 pr-3.5 rounded-full bg-[#05060c]/95 hover:bg-[#0a0c16] border border-white/20 hover:border-white/50 shadow-[0_0_30px_rgba(255,255,255,0.12)] hover:shadow-[0_0_40px_rgba(255,255,255,0.28)] backdrop-blur-xl transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] cursor-pointer"
-          aria-label="Chat with AJ, Symmetry's Creative Assistant"
+          className="group relative flex items-center gap-3 p-2 pr-4 rounded-full bg-[#05060c]/90 hover:bg-[#090c18] border border-white/20 hover:border-cyan-400/50 shadow-[0_0_35px_rgba(0,0,0,0.9)] hover:shadow-[0_0_40px_rgba(56,189,248,0.3)] backdrop-blur-2xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+          aria-label="Chat with AJ, Symmetry's Autonomous Creative Intelligence"
         >
           {/* Animated Avatar Icon */}
           <AjAvatar size="sm" isSpeaking={isSpeaking} isThinking={isThinking} />
 
-          {/* Label + Online Beacon */}
+          {/* Title + Live Status */}
           <div className="flex flex-col text-left">
             <div className="flex items-center gap-1.5">
-              <span className="font-display font-extrabold text-xs tracking-wider text-white">
+              <span className="font-display font-extrabold text-xs tracking-wider text-white group-hover:text-cyan-300 transition-colors">
                 AJ
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-[9px] font-mono text-emerald-400 uppercase tracking-widest hidden sm:inline">
+                LIVE
+              </span>
             </div>
-            <span className="font-mono text-[9px] text-[#b4b4c4] uppercase tracking-wider">
-              {isOpen ? 'Close' : 'Explore & Book'}
+            <span className="font-mono text-[9px] text-[#a0a0b4] uppercase tracking-wider">
+              {isOpen ? 'Close' : 'Ask Anything • 1-Click Call'}
             </span>
           </div>
 
-          {/* Symmetry Website Theme Signature White Pill Badge */}
-          <span className="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white group-hover:bg-[#eaeaea] text-black font-mono text-[10px] font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-all">
-            <span>{isOpen ? 'Close' : '1-Click Call'}</span>
+          {/* Luxury 1-Click Call Pill */}
+          <span className="hidden sm:inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white group-hover:bg-[#eaeaea] text-black font-mono text-[10px] font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(255,255,255,0.35)] transition-all">
+            <span>{isOpen ? 'Close' : '1-Click Call ↗'}</span>
           </span>
         </button>
       </div>
 
-      {/* ─── INTERACTIVE AJ CHAT DRAWER / MODAL ─── */}
+      {/* ─── MODERN AJ CHAT MODAL ─── */}
       {isOpen && (
         <div
           ref={chatModalRef}
@@ -900,9 +1002,8 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
           data-lenis-prevent-wheel="true"
           data-lenis-prevent-touch="true"
           onWheel={(e) => e.stopPropagation()}
-          className="fixed bottom-24 right-4 sm:right-6 z-50 w-[94vw] sm:w-[430px] h-[610px] max-h-[85vh] rounded-3xl bg-[#06070e]/95 backdrop-blur-2xl border border-white/15 shadow-[0_24px_80px_rgba(0,0,0,0.9)] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-250 overscroll-contain"
+          className="fixed bottom-24 right-4 sm:right-6 z-50 w-[94vw] sm:w-[440px] h-[640px] max-h-[86vh] rounded-3xl bg-[#060710]/98 backdrop-blur-2xl border border-white/20 shadow-[0_25px_90px_rgba(0,0,0,0.95)] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200 overscroll-contain"
         >
-          
           {/* Header */}
           <div className="p-3.5 border-b border-white/10 flex items-center justify-between bg-white/[0.02]">
             <div className="flex items-center gap-3">
@@ -910,20 +1011,32 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
               <div>
                 <div className="flex items-center gap-2">
                   <h3 className="font-display font-extrabold text-sm text-white tracking-wide">
-                    AJ • Creative Assistant
+                    AJ • Creative Intelligence
                   </h3>
-                  <span className="px-2 py-0.5 rounded-full text-[8px] font-mono uppercase tracking-wider bg-white/10 text-white border border-white/20">
-                    GEMINI LIVE
+                  <span className="px-2 py-0.5 rounded-full text-[8px] font-mono uppercase tracking-widest bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
+                    ONLINE
                   </span>
                 </div>
-                <p className="font-mono text-[10px] text-[#b0b0c2]">
-                  Symmetry Team Assistant • 48-72h Delivery
+                <p className="font-mono text-[10px] text-[#a4a4b8]">
+                  48–72h Turnaround • 4K ProRes • 1-Click Call
                 </p>
               </div>
             </div>
 
             <div className="flex items-center gap-1.5">
-              {/* Optional Key Settings Toggle */}
+              {/* Calendly Direct Shortcut */}
+              <a
+                href={CALENDLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-1.5 rounded-lg border border-white/15 text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+                title="Book on Calendly"
+                aria-label="Book on Calendly"
+              >
+                <Calendar className="w-3.5 h-3.5" />
+              </a>
+
+              {/* Gemini Key Config */}
               <button
                 onClick={() => {
                   setTempKeyInput(geminiApiKey);
@@ -936,13 +1049,14 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                 <Key className="w-3.5 h-3.5 text-white" />
               </button>
 
+              {/* Reset Conversation */}
               <button
                 onClick={() => {
                   setMessages([
                     {
                       id: `msg-${Date.now()}`,
                       sender: 'aj',
-                      text: "Chat cleared! How can I assist with your video project or call booking?",
+                      text: "Chat cleared! How can I assist with your 4K video project, turnaround times, or call booking?",
                       timestamp: 'Just now',
                       type: 'quick-actions',
                     },
@@ -955,6 +1069,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                 <RefreshCw className="w-3.5 h-3.5" />
               </button>
 
+              {/* Close Modal */}
               <button
                 onClick={() => setIsOpen(false)}
                 className="p-1.5 rounded-lg text-white/50 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
@@ -965,16 +1080,16 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
             </div>
           </div>
 
-          {/* ─── HERO BOT SHOWCASE BANNER ─── */}
+          {/* ─── SLEEK MODERN HUD BANNER ─── */}
           <div className="px-3 pt-3">
             <AjAvatar size="hero" isSpeaking={isSpeaking} isThinking={isThinking} />
           </div>
 
-          {/* Quick 1-Click Action Bar (Symmetry Theme Aligned) */}
+          {/* Quick Action Navigation Bar */}
           <div className="px-3 py-2 bg-black/40 border-b border-white/5 flex items-center gap-1.5 overflow-x-auto no-scrollbar text-[11px] font-mono mt-1">
             <button
               onClick={() => handleSendMessage('Book a call in 1 click')}
-              className="px-3 py-1.5 rounded-full bg-white hover:bg-[#eaeaea] text-black font-bold uppercase tracking-wider text-[10px] shadow-[0_0_20px_rgba(255,255,255,0.3)] flex items-center gap-1.5 shrink-0 transition-all cursor-pointer"
+              className="px-3 py-1.5 rounded-full bg-white hover:bg-[#eaeaea] text-black font-bold uppercase tracking-wider text-[10px] shadow-[0_0_20px_rgba(255,255,255,0.3)] flex items-center gap-1.5 shrink-0 transition-all cursor-pointer hover:scale-[1.02]"
             >
               <Phone className="w-3 h-3 text-black" />
               <span>1-Click Call</span>
@@ -1006,7 +1121,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
             </button>
           </div>
 
-          {/* Messages Scroll Area with Bulletproof Lenis Isolation */}
+          {/* Messages Stream */}
           <div
             ref={scrollContainerRef}
             data-lenis-prevent="true"
@@ -1022,23 +1137,23 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                 className={`flex flex-col ${m.sender === 'user' ? 'items-end' : 'items-start'}`}
               >
                 <div
-                  className={`max-w-[85%] rounded-2xl p-3.5 leading-relaxed ${
+                  className={`max-w-[88%] rounded-2xl p-4 leading-relaxed ${
                     m.sender === 'user'
-                      ? 'bg-white text-black font-medium shadow-[0_4px_16px_rgba(255,255,255,0.15)]'
-                      : 'bg-white/[0.04] border border-white/10 text-[#d8d8e4]'
+                      ? 'bg-white text-black font-medium shadow-[0_4px_16px_rgba(255,255,255,0.18)]'
+                      : 'bg-white/[0.05] border border-white/15 text-[#e0e0ec] shadow-[0_4px_20px_rgba(0,0,0,0.5)]'
                   }`}
                 >
-                  <p className="whitespace-pre-line">{m.text}</p>
+                  <p className="whitespace-pre-line leading-relaxed">{m.text}</p>
 
-                  {/* Interactive Auto-Filled Website Pass */}
+                  {/* Pre-Filled Website Pass */}
                   {m.type === 'autofill-pass' && (
-                    <div className="mt-3 p-3.5 rounded-2xl bg-white/[0.05] border border-white/20 flex flex-col gap-2.5 font-mono text-[11px]">
+                    <div className="mt-3.5 p-3.5 rounded-2xl bg-cyan-950/20 border border-cyan-500/30 flex flex-col gap-2.5 font-mono text-[11px]">
                       <div className="flex items-center justify-between border-b border-white/10 pb-2">
                         <span className="text-white font-bold uppercase tracking-wider flex items-center gap-1.5">
                           <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
                           <span>Pre-Filled Website Pass</span>
                         </span>
-                        <span className="text-[9px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                        <span className="text-[9px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">
                           AUTO-SYNCED
                         </span>
                       </div>
@@ -1046,47 +1161,49 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                       <div className="space-y-1.5 text-xs text-[#c0c0cb]">
                         {clientName && (
                           <div className="flex justify-between items-center">
-                            <span className="text-[#b0b0c0]">Name:</span>
+                            <span className="text-[#a0a0b2]">Name:</span>
                             <span className="text-white font-semibold">{clientName}</span>
                           </div>
                         )}
                         {clientPhone && (
                           <div className="flex justify-between items-center">
-                            <span className="text-[#b0b0c0]">Phone:</span>
+                            <span className="text-[#a0a0b2]">Phone:</span>
                             <span className="text-white font-semibold">{clientPhone}</span>
                           </div>
                         )}
                         {clientEmail && (
                           <div className="flex justify-between items-center">
-                            <span className="text-[#b0b0c0]">Email:</span>
+                            <span className="text-[#a0a0b2]">Email:</span>
                             <span className="text-white font-semibold">{clientEmail}</span>
                           </div>
                         )}
                         {clientService && (
                           <div className="flex justify-between items-center">
-                            <span className="text-[#b0b0c0]">Service:</span>
+                            <span className="text-[#a0a0b2]">Service:</span>
                             <span className="text-white font-medium truncate max-w-[190px]">
                               {clientService === 'Other'
-                                ? (clientCustomService ? `Other: ${clientCustomService}` : 'Other (Custom Request)')
+                                ? clientCustomService
+                                  ? `Other: ${clientCustomService}`
+                                  : 'Other (Custom Request)'
                                 : clientService}
                             </span>
                           </div>
                         )}
                         <div className="flex justify-between items-center">
-                          <span className="text-[#b0b0c0]">Slot:</span>
+                          <span className="text-[#a0a0b2]">Slot:</span>
                           <span className="text-white font-semibold">{selectedSlot}</span>
                         </div>
                       </div>
 
-                      <p className="text-[10px] text-emerald-400/90 font-mono mt-0.5">
+                      <p className="text-[10px] text-emerald-400 font-mono mt-0.5">
                         ✓ Form on website pre-filled with zero retyping
                       </p>
 
-                      {/* Interactive Autofill details or missing fields */}
-                      {(!clientName || !clientEmail || (clientService === 'Other' && !clientCustomService)) && (
-                        <div className="space-y-1.5 pt-2 border-t border-white/10">
-                          <p className="text-[10px] text-amber-300/90 font-mono">
-                            Please provide your name & email (required) to confirm the meeting:
+                      {/* Missing fields inputs */}
+                      {(!clientName || !clientEmail) && (
+                        <div className="space-y-2 pt-2 border-t border-white/10">
+                          <p className="text-[10px] text-amber-300 font-mono">
+                            Enter name & email to lock in this meeting slot:
                           </p>
                           {!clientName && (
                             <div className="relative">
@@ -1099,7 +1216,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                                   setClientName(e.target.value);
                                   setBookingError(null);
                                 }}
-                                className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/15 text-[11px] font-mono text-white placeholder:text-[#9a9aa8] focus:outline-none focus:border-white/50"
+                                className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/20 text-[11px] font-mono text-white placeholder:text-[#88889a] focus:outline-none focus:border-cyan-400"
                               />
                             </div>
                           )}
@@ -1114,40 +1231,13 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                                   setClientEmail(e.target.value);
                                   setBookingError(null);
                                 }}
-                                className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/20 text-[11px] font-mono text-white placeholder:text-[#9a9aa8] focus:outline-none focus:border-white/60"
-                              />
-                            </div>
-                          )}
-                          {!clientPhone && (
-                            <div className="relative">
-                              <Phone className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none" />
-                              <input
-                                type="tel"
-                                placeholder="WhatsApp or Phone (optional)"
-                                value={clientPhone}
-                                onChange={(e) => {
-                                  setClientPhone(e.target.value);
-                                  setBookingError(null);
-                                }}
-                                className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/15 text-[11px] font-mono text-white placeholder:text-[#9a9aa8] focus:outline-none focus:border-white/50"
-                              />
-                            </div>
-                          )}
-                          {clientService === 'Other' && !clientCustomService && (
-                            <div className="relative">
-                              <input
-                                type="text"
-                                placeholder="Describe your custom project (e.g. YouTube edit, 3D promo)..."
-                                value={clientCustomService}
-                                onChange={(e) => setClientCustomService(e.target.value)}
-                                className="w-full px-3 py-2 rounded-xl bg-black/70 border border-white/20 text-[11px] font-mono text-white placeholder:text-[#9a9aa8] focus:outline-none focus:border-white/60"
+                                className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/20 text-[11px] font-mono text-white placeholder:text-[#88889a] focus:outline-none focus:border-cyan-400"
                               />
                             </div>
                           )}
                         </div>
                       )}
 
-                      {/* Inline Error Alert */}
                       {bookingError && (
                         <div className="p-2.5 rounded-xl bg-red-500/15 border border-red-500/30 text-red-200 text-[11px] font-mono flex items-center gap-2">
                           <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
@@ -1189,12 +1279,12 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                     </div>
                   )}
 
-                  {/* Interactive Booking Card (Requires Name & Contact Details) */}
+                  {/* Modern 1-Click Booking Card */}
                   {m.type === 'booking-card' && (
-                    <div className="mt-3 pt-3 border-t border-white/15 flex flex-col gap-2.5">
+                    <div className="mt-3.5 pt-3.5 border-t border-white/15 flex flex-col gap-2.5">
                       <div className="flex items-center justify-between">
                         <span className="font-mono text-[10px] text-white font-bold uppercase tracking-wider flex items-center gap-1.5">
-                          <Calendar className="w-3 h-3 text-white" />
+                          <Calendar className="w-3 h-3 text-cyan-400" />
                           <span>Select Discovery Slot:</span>
                         </span>
 
@@ -1202,14 +1292,14 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                           href={CALENDLY_URL}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-mono text-[10px] text-[#a0a0b2] hover:text-white underline flex items-center gap-1"
+                          className="font-mono text-[10px] text-cyan-300 hover:text-white underline flex items-center gap-1"
                         >
-                          <span>Calendly</span>
+                          <span>Calendly (30m)</span>
                           <ExternalLink className="w-2.5 h-2.5" />
                         </a>
                       </div>
 
-                      {/* Slot selection pills — NEVER auto-books on click */}
+                      {/* Slot Selection Pills */}
                       <div className="grid grid-cols-2 gap-1.5">
                         {m.bookingData?.slots.map((slot, i) => (
                           <button
@@ -1230,19 +1320,19 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                         ))}
                       </div>
 
-                      {/* Required Contact Details Input Fields */}
+                      {/* Contact Input Fields */}
                       <div className="space-y-1.5 mt-1">
                         <div className="relative">
                           <User className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none" />
                           <input
                             type="text"
-                            placeholder="Full Name (required)"
+                            placeholder="Full Name * (required)"
                             value={clientName}
                             onChange={(e) => {
                               setClientName(e.target.value);
                               setBookingError(null);
                             }}
-                            className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/15 text-[11px] font-mono text-white placeholder:text-[#9a9aa8] focus:outline-none focus:border-white/60"
+                            className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/15 text-[11px] font-mono text-white placeholder:text-[#88889a] focus:outline-none focus:border-cyan-400"
                           />
                         </div>
 
@@ -1256,7 +1346,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                               setClientEmail(e.target.value);
                               setBookingError(null);
                             }}
-                            className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/20 text-[11px] font-mono text-white placeholder:text-[#9a9aa8] focus:outline-none focus:border-white/60"
+                            className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/20 text-[11px] font-mono text-white placeholder:text-[#88889a] focus:outline-none focus:border-cyan-400"
                           />
                         </div>
 
@@ -1270,64 +1360,18 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                               setClientPhone(e.target.value);
                               setBookingError(null);
                             }}
-                            className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/15 text-[11px] font-mono text-white placeholder:text-[#9a9aa8] focus:outline-none focus:border-white/60"
+                            className="w-full pl-8 pr-3 py-2 rounded-xl bg-black/70 border border-white/15 text-[11px] font-mono text-white placeholder:text-[#88889a] focus:outline-none focus:border-cyan-400"
                           />
                         </div>
-
-                        {/* Service selector with Other option */}
-                        <div className="relative">
-                          <label id="bot-service-label" htmlFor="bot-booking-service" className="sr-only">
-                            Select Creative Service for Project Scoping
-                          </label>
-                          <select
-                            id="bot-booking-service"
-                            name="bookingService"
-                            aria-labelledby="bot-service-label"
-                            aria-label="Select Creative Service for Project Scoping"
-                            value={clientService}
-                            onChange={(e) => setClientService(e.target.value)}
-                            className="w-full px-3 py-2 rounded-xl bg-black/70 border border-white/15 text-[11px] font-mono text-white focus:outline-none focus:border-white/60 cursor-pointer"
-                          >
-                            <option value="Viral 4K Video Reels & Shorts" className="bg-[#101018] text-white">
-                              🎥 Viral 4K Video Reels & Shorts
-                            </option>
-                            <option value="3D Product Commercials & CGI Ads" className="bg-[#101018] text-white">
-                              ✨ 3D Product Commercials & CGI Ads
-                            </option>
-                            <option value="High-Converting 3D Websites & Pages" className="bg-[#101018] text-white">
-                              💻 High-Converting 3D Websites & Pages
-                            </option>
-                            <option value="Complete Brand Identity & Social Engine" className="bg-[#101018] text-white">
-                              👑 Complete Brand Identity & Social Engine
-                            </option>
-                            <option value="Other" className="bg-[#101018] text-white">
-                              💡 Other / Custom Creative Project
-                            </option>
-                          </select>
-                        </div>
-
-                        {clientService === 'Other' && (
-                          <div className="relative animate-in fade-in">
-                            <input
-                              type="text"
-                              placeholder="Describe your custom project or need..."
-                              value={clientCustomService}
-                              onChange={(e) => setClientCustomService(e.target.value)}
-                              className="w-full px-3 py-2 rounded-xl bg-black/70 border border-white/20 text-[11px] font-mono text-white placeholder:text-[#9a9aa8] focus:outline-none focus:border-white/60"
-                            />
-                          </div>
-                        )}
                       </div>
 
-                      {/* Inline Validation Alert */}
                       {bookingError && (
-                        <div className="p-2.5 rounded-xl bg-red-500/15 border border-red-500/30 text-red-200 text-[11px] font-mono flex items-center gap-2 animate-in fade-in">
+                        <div className="p-2.5 rounded-xl bg-red-500/15 border border-red-500/30 text-red-200 text-[11px] font-mono flex items-center gap-2">
                           <AlertCircle className="w-4 h-4 shrink-0 text-red-400" />
                           <span>{bookingError}</span>
                         </div>
                       )}
 
-                      {/* Confirm Meeting Button */}
                       <button
                         type="button"
                         onClick={() => handleBookCallSubmit(selectedSlot)}
@@ -1337,24 +1381,24 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                         {isBookingSubmitting ? (
                           <>
                             <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                            <span>Saving to Spreadsheet...</span>
+                            <span>Confirming Meeting...</span>
                           </>
                         ) : (
                           <>
                             <Check className="w-3.5 h-3.5" />
-                            <span>Confirm Discovery Call</span>
+                            <span>Confirm 1-Click Discovery Call</span>
                           </>
                         )}
                       </button>
 
-                      <p className="text-[9px] text-[#b0b0c0] font-mono text-center flex items-center justify-center gap-1.5">
+                      <p className="text-[9px] text-[#9090a2] font-mono text-center flex items-center justify-center gap-1.5">
                         <ShieldCheck className="w-3 h-3 text-emerald-400" />
                         <span>All bookings auto-synced into studio spreadsheet</span>
                       </p>
                     </div>
                   )}
 
-                  {/* Quick Navigation Action Buttons (Website Theme Aligned) */}
+                  {/* Navigation / Action Buttons */}
                   {m.actions && m.actions.length > 0 && (
                     <div className="mt-3 pt-2.5 border-t border-white/10 flex flex-wrap gap-1.5">
                       {m.actions.map((act, i) => (
@@ -1371,16 +1415,15 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                   )}
                 </div>
 
-                <span className="font-mono text-[9px] text-[#c2c2d2] mt-1 px-1">
+                <span className="font-mono text-[9px] text-[#a0a0b2] mt-1 px-1">
                   {m.timestamp}
                 </span>
               </div>
             ))}
 
-            {/* Thinking Indicator */}
             {isThinking && (
-              <div className="flex items-center gap-2 text-white/90 font-mono text-[11px] p-2.5 bg-white/5 rounded-xl border border-white/10 max-w-[130px]">
-                <span className="w-2 h-2 rounded-full bg-white animate-ping" />
+              <div className="flex items-center gap-2 text-cyan-300 font-mono text-[11px] p-2.5 bg-cyan-950/20 rounded-xl border border-cyan-500/30 max-w-[140px]">
+                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
                 <span>AJ is thinking...</span>
               </div>
             )}
@@ -1388,8 +1431,27 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Message Input Footer */}
-          <div className="p-3 border-t border-white/10 bg-black/60">
+          {/* Quick Prompts Bar above Input */}
+          <div className="px-3 py-1.5 bg-black/60 border-t border-white/5 flex items-center gap-1.5 overflow-x-auto no-scrollbar text-[10px] font-mono">
+            {[
+              { label: '⚡ Fast & Best?', query: 'Why is Symmetry fast and the best?' },
+              { label: '📞 Book Call', query: 'I want to book a call in 1 click' },
+              { label: '💎 Client Reviews', query: 'Tell me about your real clients on Instagram' },
+              { label: '💰 Pricing', query: 'What are your turnaround times and pricing?' },
+            ].map((chip, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => handleSendMessage(chip.query)}
+                className="px-2.5 py-1 rounded-full bg-white/[0.05] hover:bg-white hover:text-black border border-white/10 text-[#c0c0d2] shrink-0 transition-all cursor-pointer"
+              >
+                {chip.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Message Input Dock */}
+          <div className="p-3 border-t border-white/10 bg-black/80">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -1401,11 +1463,11 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
                 id="aj-chat-input"
                 name="ajChatInput"
                 type="text"
-                placeholder="Ask AJ anything or say 'book call'..."
-                aria-label="Ask AJ anything or say 'book call'"
+                placeholder="Ask AJ anything or say 'fast', 'best', 'book call'..."
+                aria-label="Ask AJ anything or say 'fast', 'best', 'book call'"
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
-                className="flex-1 px-4 py-2.5 rounded-xl bg-white/[0.05] border border-white/15 text-xs text-white placeholder:text-[#9a9aa8] focus:outline-none focus:border-white/50 transition-colors"
+                className="flex-1 px-4 py-2.5 rounded-xl bg-white/[0.06] border border-white/15 text-xs text-white placeholder:text-[#88889a] focus:outline-none focus:border-cyan-400 transition-colors"
               />
               <button
                 type="submit"
@@ -1437,7 +1499,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
               </div>
               <div>
                 <h4 className="font-display font-bold text-sm text-white">
-                  Gemini API Connected
+                  Gemini API Connection
                 </h4>
                 <p className="font-mono text-[10px] text-[#b0b0c0]">
                   Live Multimodal Intelligence
@@ -1446,7 +1508,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
             </div>
 
             <p className="font-body text-xs text-[#a0a0b2] leading-relaxed mb-4">
-              Your Gemini API key is linked and active. AJ responds with live generative intelligence using Gemini 3.5 Flash.
+              Connect a Gemini API key for live streaming multimodal intelligence, or use AJ's built-in studio knowledge engine.
             </p>
 
             <input
@@ -1454,7 +1516,7 @@ Answer in 2-3 crisp sentences. Encourage booking with email.`;
               placeholder="Gemini API Key"
               value={tempKeyInput}
               onChange={(e) => setTempKeyInput(e.target.value)}
-              className="w-full px-3 py-2 rounded-xl bg-black/60 border border-white/20 text-xs font-mono text-white placeholder:text-[#9a9aa8] focus:outline-none focus:border-white mb-3"
+              className="w-full px-3 py-2 rounded-xl bg-black/60 border border-white/20 text-xs font-mono text-white placeholder:text-[#88889a] focus:outline-none focus:border-cyan-400 mb-3"
             />
 
             <div className="flex items-center justify-end gap-2.5">

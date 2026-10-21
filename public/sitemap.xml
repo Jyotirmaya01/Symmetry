@@ -6,20 +6,19 @@
   <!-- 1. Homepage Primary Authority Route -->
   <url>
     <loc>https://symmetry-ochre.vercel.app/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://symmetry-ochre.vercel.app/symmetry-logo.png</image:loc>
-      <image:title>SYMMETRY — 3D Motion Design Studio & 4K Video Editing Agency</image:title>
+      <image:title>SYMMETRY — 3D Motion Design Studio &amp; 4K Video Editing Agency</image:title>
       <image:caption>Cinema-grade 3D product animations, viral 4K video commercials, and high-retention video reels</image:caption>
     </image:image>
     <video:video>
       <video:thumbnail_loc>https://res.cloudinary.com/mnosh6bi/video/upload/so_0,f_auto,q_auto,w_900/Symmetry_Most_compressed.jpg</video:thumbnail_loc>
-      <video:title>SYMMETRY 3D Motion Design & 4K Commercial Showreel</video:title>
+      <video:title>SYMMETRY 3D Motion Design &amp; 4K Commercial Showreel</video:title>
       <video:description>High-performance 3D motion graphics, liquid chrome visual effects, and cinema-grade commercial video production by Symmetry.</video:description>
       <video:content_loc>https://symmetry-ochre.vercel.app/Symmetry_Most_compressed.mp4</video:content_loc>
-      <video:player_loc>https://symmetry-ochre.vercel.app/</video:player_loc>
       <video:duration>60</video:duration>
       <video:publication_date>2026-10-01T00:00:00+00:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
@@ -27,26 +26,28 @@
     </video:video>
   </url>
 
-  <!-- 2. Legal, Trust & Security Verification Routes -->
-  <url>
-    <loc>https://symmetry-ochre.vercel.app/privacy</loc>
-    <lastmod>2026-10-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
-  <url>
-    <loc>https://symmetry-ochre.vercel.app/terms</loc>
-    <lastmod>2026-10-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-
+  <!-- 2. Enterprise Security Verification Route -->
   <url>
     <loc>https://symmetry-ochre.vercel.app/security</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 3. Enterprise Privacy & AI Data Governance Route -->
+  <url>
+    <loc>https://symmetry-ochre.vercel.app/privacy</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 4. Client Terms of Service Route -->
+  <url>
+    <loc>https://symmetry-ochre.vercel.app/terms</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
 </urlset>
