@@ -19,7 +19,6 @@ export default function SmoothCursor() {
   const spotlightRef = useRef<HTMLDivElement>(null);
   const [cursorText, setCursorText] = useState<string>('');
   const [cursorState, setCursorState] = useState<'default' | 'hover' | 'media' | 'text' | 'active'>('default');
-  const [isSupported, setIsSupported] = useState(false);
 
   useEffect(() => {
     // Only activate on non-touch devices with fine pointers and desktop viewports
@@ -27,12 +26,13 @@ export default function SmoothCursor() {
     if (window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    setIsSupported(true);
-
     const dot = dotRef.current;
     const ring = ringRef.current;
     const spotlight = spotlightRef.current;
     if (!dot || !ring) return;
+
+    // Safely enable custom cursor styling on body now that refs are active
+    document.body.classList.add('custom-cursor-enabled');
 
     // Center pivot origins
     gsap.set([dot, ring], { xPercent: -50, yPercent: -50 });
@@ -173,22 +173,31 @@ export default function SmoothCursor() {
       setCursorState('default');
     };
 
+    const onScroll = () => {
+      if (!isVisible && dot && ring) {
+        gsap.to([dot, ring], { opacity: 1, duration: 0.2, overwrite: 'auto' });
+        if (spotlight) gsap.to(spotlight, { opacity: 1, duration: 0.3, overwrite: 'auto' });
+        isVisible = true;
+      }
+    };
+
     window.addEventListener('mousemove', onMouseMove, { passive: true });
     window.addEventListener('mouseover', onMouseOver, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
     document.addEventListener('mouseleave', onMouseLeave);
     window.addEventListener('mousedown', onMouseDown);
     window.addEventListener('mouseup', onMouseUp);
 
     return () => {
+      document.body.classList.remove('custom-cursor-enabled');
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseover', onMouseOver);
+      window.removeEventListener('scroll', onScroll);
       document.removeEventListener('mouseleave', onMouseLeave);
       window.removeEventListener('mousedown', onMouseDown);
       window.removeEventListener('mouseup', onMouseUp);
     };
   }, []);
-
-  if (!isSupported) return null;
 
   return (
     <>

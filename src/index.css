@@ -35,12 +35,18 @@
   }
 }
 
-/* Custom Interactive Cursor Styling on Fine Pointers (Desktop) */
+/* Custom Interactive Cursor Styling on Fine Pointers (Desktop) - Scoped to active custom cursor */
 @media (hover: hover) and (pointer: fine) {
-  body, a, button, [role="button"], [role="tab"], .cursor-pointer {
+  body.custom-cursor-enabled,
+  body.custom-cursor-enabled a,
+  body.custom-cursor-enabled button,
+  body.custom-cursor-enabled [role="button"],
+  body.custom-cursor-enabled [role="tab"],
+  body.custom-cursor-enabled .cursor-pointer {
     cursor: none !important;
   }
-  input, textarea {
+  body.custom-cursor-enabled input,
+  body.custom-cursor-enabled textarea {
     cursor: text !important;
   }
 }

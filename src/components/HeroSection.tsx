@@ -73,31 +73,31 @@ export default function HeroSection() {
         }
       );
 
-      // Hero scroll parallax — compositor-only transform & opacity (Zero repaints)
+      // Hero scroll parallax — gentle fade with natural motion (eliminates abrupt upward slides)
       gsap.to(contentRef.current, {
-        y: -120,
-        opacity: 0,
-        scale: 0.95,
+        y: -30,
+        opacity: 0.1,
+        scale: 0.98,
         ease: 'none',
         scrollTrigger: {
           trigger: heroRef.current,
           start: 'top top',
           end: 'bottom top',
-          scrub: 0.4,
+          scrub: 0.3,
         },
       });
 
-      // Video background slow cinematic drift on scroll (Hardware accelerated)
+      // Video background subtle ambient fade on scroll
       gsap.to('.hero-video-container', {
-        y: 60,
-        scale: 1.05,
-        opacity: 0.35,
+        y: 20,
+        scale: 1.02,
+        opacity: 0.4,
         ease: 'none',
         scrollTrigger: {
           trigger: heroRef.current,
           start: 'top top',
           end: 'bottom top',
-          scrub: 0.5,
+          scrub: 0.3,
         },
       });
 
