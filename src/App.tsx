@@ -99,9 +99,6 @@ function AppContent() {
       {/* 3D Ladder & Bouncing Ball Preloader */}
       {loading && <SymmetryLoader onComplete={handleLoaderComplete} />}
 
-      {/* 60fps GPU Ambient Spotlight Cursor Follower */}
-      <SmoothCursor />
-
       {/* Live Animated Creative Assistant & 1-Click Call Booker (Lazy loaded after idle) */}
       {showBot && (
         <ErrorBoundary>
@@ -125,6 +122,9 @@ function AppContent() {
           </Routes>
         </Suspense>
       </ErrorBoundary>
+
+      {/* 60fps GPU Ambient Spotlight Cursor Follower (Highest DOM layer) */}
+      <SmoothCursor />
     </div>
   );
 }

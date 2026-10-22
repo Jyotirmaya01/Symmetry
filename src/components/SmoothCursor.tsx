@@ -205,7 +205,7 @@ export default function SmoothCursor() {
       <div
         ref={spotlightRef}
         aria-hidden="true"
-        className="fixed top-0 left-0 w-[500px] h-[500px] rounded-full pointer-events-none z-30 opacity-0 hidden md:block will-change-transform transform-gpu"
+        className="fixed top-0 left-0 w-[500px] h-[500px] rounded-full pointer-events-none z-[9990] opacity-0 hidden md:block will-change-transform transform-gpu"
         style={{
           background:
             'radial-gradient(circle, rgba(56, 189, 248, 0.05) 0%, rgba(255, 255, 255, 0.02) 30%, transparent 70%)',
@@ -216,7 +216,7 @@ export default function SmoothCursor() {
       <div
         ref={ringRef}
         aria-hidden="true"
-        className={`fixed top-0 left-0 pointer-events-none z-50 rounded-full flex items-center justify-center opacity-0 hidden md:flex will-change-transform transform-gpu transition-[width,height,background-color,border-color,box-shadow] duration-250 ease-out ${
+        className={`fixed top-0 left-0 pointer-events-none z-[9999] rounded-full flex items-center justify-center opacity-0 hidden md:flex will-change-transform transform-gpu transition-[width,height,background-color,border-color,box-shadow] duration-250 ease-out ${
           cursorState === 'media'
             ? 'w-20 h-20 bg-black/75 border border-cyan-400/80 shadow-[0_0_25px_rgba(34,211,238,0.4)] backdrop-blur-md'
             : cursorState === 'hover'
@@ -241,7 +241,7 @@ export default function SmoothCursor() {
       <div
         ref={dotRef}
         aria-hidden="true"
-        className={`fixed top-0 left-0 pointer-events-none z-50 rounded-full opacity-0 hidden md:block will-change-transform transform-gpu transition-[width,height,background-color,box-shadow,opacity] duration-150 ease-out ${
+        className={`fixed top-0 left-0 pointer-events-none z-[9999] rounded-full opacity-0 hidden md:block will-change-transform transform-gpu transition-[width,height,background-color,box-shadow,opacity] duration-150 ease-out ${
           cursorState === 'media'
             ? 'w-0 h-0 opacity-0'
             : cursorState === 'hover'
