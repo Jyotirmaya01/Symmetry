@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- 1. Primary Authority Route -->
   <url>
-    <loc>https://symmetry-ochre.vercel.app/</loc>
+    <loc>https://symmetryofficial.vercel.app/</loc>
     <lastmod>2026-10-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -10,7 +10,7 @@
 
   <!-- 2. Security Architecture -->
   <url>
-    <loc>https://symmetry-ochre.vercel.app/security</loc>
+    <loc>https://symmetryofficial.vercel.app/security</loc>
     <lastmod>2026-10-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -18,7 +18,7 @@
 
   <!-- 3. Privacy Policy & Governance -->
   <url>
-    <loc>https://symmetry-ochre.vercel.app/privacy</loc>
+    <loc>https://symmetryofficial.vercel.app/privacy</loc>
     <lastmod>2026-10-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -26,7 +26,7 @@
 
   <!-- 4. Client Terms of Service -->
   <url>
-    <loc>https://symmetry-ochre.vercel.app/terms</loc>
+    <loc>https://symmetryofficial.vercel.app/terms</loc>
     <lastmod>2026-10-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

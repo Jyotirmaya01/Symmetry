@@ -24,13 +24,19 @@ export default function HeroSection() {
     const el = heroRef.current;
     if (!el) return;
 
+    let playTimeout: ReturnType<typeof setTimeout>;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (videoRef.current) {
           if (entry.isIntersecting) {
-            videoRef.current.play().catch(() => {});
-            setIsPlaying(true);
+            // Delay video play slightly to let browser complete instant LCP poster paint
+            playTimeout = setTimeout(() => {
+              videoRef.current?.play().catch(() => {});
+              setIsPlaying(true);
+            }, 800);
           } else {
+            clearTimeout(playTimeout);
             videoRef.current.pause();
             setIsPlaying(false);
           }
@@ -40,11 +46,17 @@ export default function HeroSection() {
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(playTimeout);
+      observer.disconnect();
+    };
   }, []);
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth < 768) {
+      gsap.set('.hero-stagger', { opacity: 1, y: 0 });
+      return;
+    }
 
     const ctx = gsap.context(() => {
       // Staggered entrance — pure compositor transforms for instant 60fps
@@ -162,15 +174,25 @@ export default function HeroSection() {
     >
       {/* ── Background Video Container with Vignette ── */}
       <div className="hero-video-container absolute inset-0 z-0 pointer-events-none overflow-hidden flex items-center justify-center will-change-transform transform-gpu">
+        {/* Instant LCP Poster Image with high fetch priority */}
+        <img
+          src="/hero-poster.webp"
+          alt="Symmetry 3D cinematic motion reel showcase"
+          fetchPriority="high"
+          decoding="async"
+          width={900}
+          height={506}
+          className="absolute inset-0 w-full h-full object-cover sm:object-contain max-h-[110vh] opacity-80"
+        />
+
         <video
           ref={videoRef}
           src={getOptimizedMediaUrl('Symmetry_Most_compressed.mp4', { isVideo: true })}
-          poster={getOptimizedMediaUrl('Symmetry_Most_compressed.mp4', { isVideo: true, isPoster: true, width: 900 })}
-          autoPlay
+          poster="/hero-poster.webp"
           loop
           muted
           playsInline
-          preload="metadata"
+          preload="none"
           aria-label="Symmetry 3D cinematic motion reel showcase"
           title="Symmetry 3D motion showcase"
           onError={(e) => {
@@ -179,7 +201,7 @@ export default function HeroSection() {
               target.src = '/Symmetry_Most_compressed.mp4';
             }
           }}
-          className="w-full h-full object-cover sm:object-contain max-h-[110vh] opacity-80"
+          className="absolute inset-0 w-full h-full object-cover sm:object-contain max-h-[110vh] opacity-80"
         >
           <track kind="captions" src="data:text/vtt,WEBVTT" label="English" srcLang="en" default />
         </video>

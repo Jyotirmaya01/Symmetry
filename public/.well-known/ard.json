@@ -2,16 +2,16 @@
   "specVersion": "1.0",
   "host": {
     "displayName": "SYMMETRY",
-    "identifier": "did:web:symmetry-ochre.vercel.app",
-    "documentationUrl": "https://symmetry-ochre.vercel.app",
-    "logoUrl": "https://symmetry-ochre.vercel.app/symmetry-logo.png"
+    "identifier": "did:web:symmetryofficial.vercel.app",
+    "documentationUrl": "https://symmetryofficial.vercel.app",
+    "logoUrl": "https://symmetryofficial.vercel.app/symmetry-logo.png"
   },
   "entries": [
     {
-      "identifier": "urn:air:symmetry-ochre.vercel.app:creative-studio:discovery",
+      "identifier": "urn:air:symmetryofficial.vercel.app:creative-studio:discovery",
       "displayName": "Symmetry 3D Motion Design & Video Editing Agency",
       "type": "text/markdown",
-      "url": "https://symmetry-ochre.vercel.app/llms.txt",
+      "url": "https://symmetryofficial.vercel.app/llms.txt",
       "description": "Cinema-grade 3D product animations, 4K commercials, viral video production, and bespoke digital architecture.",
       "representativeQueries": [
         "book 3D motion design project",
@@ -23,10 +23,10 @@
       ]
     },
     {
-      "identifier": "urn:air:symmetry-ochre.vercel.app:creative-studio:catalog",
+      "identifier": "urn:air:symmetryofficial.vercel.app:creative-studio:catalog",
       "displayName": "Symmetry Services Catalog",
       "type": "application/json",
-      "url": "https://symmetry-ochre.vercel.app/ai-catalog.json",
+      "url": "https://symmetryofficial.vercel.app/ai-catalog.json",
       "description": "Machine-readable discovery manifest for Symmetry's creative motion design and video editing capabilities.",
       "representativeQueries": [
         "creative services pricing",

@@ -5,7 +5,7 @@
 ## Studio Overview
 Symmetry is an elite 3D motion design studio and commercial video editing agency engineering cinema-grade 3D product animations, viral 4K commercial reels, luxury visual effects, and high-converting digital architecture. We deliver commercial-grade motion and web experiences with rapid 48-72h turnaround.
 
-- Official Domain: https://symmetry-ochre.vercel.app
+- Official Domain: https://symmetryofficial.vercel.app
 - Primary Email: symmetryofficial1@gmail.com
 - Delivery SLA: 48 to 72 hours for initial creative milestone
 - Quality Standard: 4K 60FPS, ProRes 4444, HDR-ready color pipeline
@@ -29,6 +29,6 @@ Symmetry is an elite 3D motion design studio and commercial video editing agency
 - Deliverables: Vector logo identity, motion guideline stinger, typography tokens, social media templates, monthly recurring content engine.
 
 ## Discovery & Contact
-- Website: [https://symmetry-ochre.vercel.app](https://symmetry-ochre.vercel.app)
-- Booking Gateway: [https://symmetry-ochre.vercel.app/#contact](https://symmetry-ochre.vercel.app/#contact)
+- Website: [https://symmetryofficial.vercel.app](https://symmetryofficial.vercel.app)
+- Booking Gateway: [https://symmetryofficial.vercel.app/#contact](https://symmetryofficial.vercel.app/#contact)
 - Inquiries: [mailto:symmetryofficial1@gmail.com](mailto:symmetryofficial1@gmail.com)

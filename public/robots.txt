@@ -3,8 +3,8 @@
 # Canonical Sitemap & Host
 # ==========================================
 
-Sitemap: https://symmetry-ochre.vercel.app/sitemap.xml
-Host: symmetry-ochre.vercel.app
+Sitemap: https://symmetryofficial.vercel.app/sitemap.xml
+Host: symmetryofficial.vercel.app
 
 User-agent: *
 Allow: /

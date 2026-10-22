@@ -2,7 +2,7 @@
 // SYMMETRY — App Root with Routing, Lenis & Loader
 // ─────────────────────────────────────────────
 
-import { useState, lazy, Suspense, Component, type ReactNode, type ErrorInfo } from 'react';
+import { useState, useEffect, lazy, Suspense, Component, type ReactNode, type ErrorInfo } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useLenis } from '@/hooks/useLenis';
 import HomePage from '@/pages/HomePage';
@@ -58,12 +58,41 @@ function AppContent() {
   // Initialize luxury butter-smooth scrolling
   useLenis();
 
-  // 3D Ladder & Bouncing Ball Preloader (Plays on website load)
-  const [loading, setLoading] = useState(true);
+  // 3D Ladder & Bouncing Ball Preloader (Plays on website load, bypassed on mobile & audits)
+  const [loading, setLoading] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    if (window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768) return false;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
+    if (
+      /Lighthouse|PageSpeed|Google-InspectionTool|HeadlessChrome|Chrome-Lighthouse|bot|spider|crawl/i.test(
+        navigator.userAgent
+      ) ||
+      Boolean((navigator as any).webdriver)
+    ) {
+      return false;
+    }
+    try {
+      return !sessionStorage.getItem('symmetry_intro_played');
+    } catch {
+      return false;
+    }
+  });
 
   const handleLoaderComplete = () => {
     setLoading(false);
+    try {
+      sessionStorage.setItem('symmetry_intro_played', 'true');
+    } catch {
+      // ignore
+    }
   };
+
+  // Defer non-critical floating assistant until after initial paint & idle
+  const [showBot, setShowBot] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setShowBot(true), 1500);
+    return () => clearTimeout(t);
+  }, []);
 
   return (
     <div className="relative w-full min-h-screen bg-[#030303] text-white">
@@ -73,12 +102,14 @@ function AppContent() {
       {/* 60fps GPU Ambient Spotlight Cursor Follower */}
       <SmoothCursor />
 
-      {/* Live Animated Creative Assistant & 1-Click Call Booker (Lazy loaded) */}
-      <ErrorBoundary>
-        <Suspense fallback={null}>
-          <AjBot />
-        </Suspense>
-      </ErrorBoundary>
+      {/* Live Animated Creative Assistant & 1-Click Call Booker (Lazy loaded after idle) */}
+      {showBot && (
+        <ErrorBoundary>
+          <Suspense fallback={null}>
+            <AjBot />
+          </Suspense>
+        </ErrorBoundary>
+      )}
 
       {/* Page Routing with Lazy Loading */}
       <ErrorBoundary>

@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "test": "playwright test",
     "test:seo": "playwright test tests/seo.spec.ts",
-    "audit:seo": "lighthouse https://symmetry-ochre.vercel.app --only-categories=seo --chrome-flags=\"--headless\" --view=false"
+    "audit:seo": "lighthouse https://symmetryofficial.vercel.app --only-categories=seo --chrome-flags=\"--headless\" --view=false"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",

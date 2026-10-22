@@ -458,7 +458,7 @@ export default function AjBot() {
 
     if (geminiApiKey) {
       try {
-        const systemInstruction = `You are AJ, the live autonomous creative intelligence at Symmetry (https://symmetry-ochre.vercel.app).
+        const systemInstruction = `You are AJ, the live autonomous creative intelligence at Symmetry (https://symmetryofficial.vercel.app).
 Symmetry is an elite 3D motion design studio and commercial 4K video editing agency.
 Hallmarks: 48-72h turnaround, ProRes 4444 uncompressed masters, 9:16 vertical & 16:9 widescreen masters, 1-on-1 direct creative direction, Cinema 4D, After Effects.
 Real Instagram clients: Skyline Graphics (@skyline_graphics_07), Ranking Partner (@rankingpartner), Indie Extract (@indieextract), RKS Aroma (@rksaroma).

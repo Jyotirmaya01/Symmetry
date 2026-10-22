@@ -19,12 +19,15 @@ export default function SmoothCursor() {
   const spotlightRef = useRef<HTMLDivElement>(null);
   const [cursorText, setCursorText] = useState<string>('');
   const [cursorState, setCursorState] = useState<'default' | 'hover' | 'media' | 'text' | 'active'>('default');
+  const [isSupported, setIsSupported] = useState(false);
 
   useEffect(() => {
-    // Only activate on non-touch devices with fine pointers
+    // Only activate on non-touch devices with fine pointers and desktop viewports
     if (typeof window === 'undefined') return;
-    if (window.matchMedia('(pointer: coarse)').matches) return;
+    if (window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    setIsSupported(true);
 
     const dot = dotRef.current;
     const ring = ringRef.current;
@@ -184,6 +187,8 @@ export default function SmoothCursor() {
       window.removeEventListener('mouseup', onMouseUp);
     };
   }, []);
+
+  if (!isSupported) return null;
 
   return (
     <>
