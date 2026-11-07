@@ -68,6 +68,25 @@ test.describe('SEO & Search Engine Crawlability Verification', () => {
     expect(sitemapRes.status()).toBe(200);
     const sitemapXml = await sitemapRes.text();
     expect(sitemapXml).toContain('<urlset');
+    expect(sitemapXml).toContain('/services'); // Must include high-value services route
     expect(sitemapXml).not.toContain('/#'); // Must not contain invalid hash URLs
+  });
+
+  test('Services landing page has valid metadata and heading hierarchy', async ({ page }) => {
+    await page.goto('/services');
+
+    // Title verification
+    await expect(page).toHaveTitle(/Creative Services.*SYMMETRY/i);
+
+    // Heading hierarchy
+    const h1 = page.locator('h1');
+    await expect(h1).toBeVisible();
+    const h1Text = await h1.textContent();
+    expect(h1Text).toMatch(/motion design|commercial video/i);
+
+    // Verify service articles are rendered
+    const articles = page.locator('article');
+    const articleCount = await articles.count();
+    expect(articleCount).toBeGreaterThanOrEqual(4);
   });
 });
