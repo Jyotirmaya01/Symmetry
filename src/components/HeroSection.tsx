@@ -277,6 +277,7 @@ export default function HeroSection() {
           CINEMATIC VISION.
           <br />
           <span className="chrome-text chrome-glow">UNCOMPROMISING IMPACT.</span>
+          <span className="sr-only"> — 3D Motion Design Studio & 4K Video Editing Agency</span>
         </h1>
 
         {/* Tagline / Subtitle */}

@@ -3,7 +3,7 @@
   <!-- 1. Primary Authority Route -->
   <url>
     <loc>https://symmetryofficial.vercel.app/</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-11-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -11,7 +11,7 @@
   <!-- 2. Security Architecture -->
   <url>
     <loc>https://symmetryofficial.vercel.app/security</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-11-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -19,7 +19,7 @@
   <!-- 3. Privacy Policy & Governance -->
   <url>
     <loc>https://symmetryofficial.vercel.app/privacy</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-11-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -27,7 +27,7 @@
   <!-- 4. Client Terms of Service -->
   <url>
     <loc>https://symmetryofficial.vercel.app/terms</loc>
-    <lastmod>2026-10-21</lastmod>
+    <lastmod>2026-11-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
