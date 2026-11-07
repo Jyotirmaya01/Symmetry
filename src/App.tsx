@@ -10,6 +10,7 @@ import SymmetryLoader from '@/components/SymmetryLoader';
 import SmoothCursor from '@/components/SmoothCursor';
 
 // Code-split heavy below-the-fold & secondary routes
+const ServicesPage = lazy(() => import('@/pages/ServicesPage'));
 const PrivacyPage = lazy(() => import('@/pages/PrivacyPage'));
 const TermsPage = lazy(() => import('@/pages/TermsPage'));
 const SecurityPage = lazy(() => import('@/pages/SecurityPage'));
@@ -113,6 +114,7 @@ function AppContent() {
         <Suspense fallback={<div className="min-h-screen bg-[#030303]" />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/services" element={<ServicesPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/terms" element={<TermsPage />} />
             <Route path="/security" element={<SecurityPage />} />

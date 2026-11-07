@@ -1,24 +1,20 @@
 // ─────────────────────────────────────────────
-// SYMMETRY — Cinema-Grade Interactive Magnetic Cursor & Physics Trailing Ring
-// Features:
-// 1. Instant laser point reticle (0ms tracking)
-// 2. Velocity-responsive outer fluid ring (squash & stretch)
-// 3. Dynamic context morphing: "PLAY", "EXPLORE", "FLIP", "FOCUS"
-// 4. Click ripple shockwave animation
-// 5. Ambient cursor lighting spotlight
-// 6. Zero lag: hardware-accelerated transforms & passive listeners
+// SYMMETRY — Cinema-Grade Physics Cursor & Ambient Light
+// Zero-Lag 120fps Engine:
+// 1. Instant 0ms Laser Reticle (Direct hardware transform, zero latency)
+// 2. Continuous rAF Physics Lerp Ring (Buttery organic inertia without React re-render thrashing)
+// 3. Dynamic Velocity Stretch & Rotation (Follows cursor momentum vector)
+// 4. Zero Re-render DOM Attribute Binding (Direct dataset & textContent updates)
+// 5. Ambient Photonic Spotlight (Subtle gradient illumination)
 // ─────────────────────────────────────────────
 
-import { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
+import { useEffect, useRef } from 'react';
 
 export default function SmoothCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const labelRef = useRef<HTMLSpanElement>(null);
   const spotlightRef = useRef<HTMLDivElement>(null);
-  const [cursorText, setCursorText] = useState<string>('');
-  const [cursorState, setCursorState] = useState<'default' | 'hover' | 'media' | 'text' | 'active'>('default');
 
   useEffect(() => {
     // Only activate on non-touch devices with fine pointers and desktop viewports
@@ -28,96 +24,97 @@ export default function SmoothCursor() {
 
     const dot = dotRef.current;
     const ring = ringRef.current;
+    const label = labelRef.current;
     const spotlight = spotlightRef.current;
     if (!dot || !ring) return;
 
-    // Safely enable custom cursor styling on body now that refs are active
+    // Enable custom cursor styling on body
     document.body.classList.add('custom-cursor-enabled');
 
-    // Center pivot origins
-    gsap.set([dot, ring], { xPercent: -50, yPercent: -50 });
-    if (spotlight) gsap.set(spotlight, { xPercent: -50, yPercent: -50 });
-
-    // Hardware-accelerated quickTo setters
-    const dotX = gsap.quickTo(dot, 'x', { duration: 0.04, ease: 'none' });
-    const dotY = gsap.quickTo(dot, 'y', { duration: 0.04, ease: 'none' });
-
-    const ringX = gsap.quickTo(ring, 'x', { duration: 0.22, ease: 'power2.out' });
-    const ringY = gsap.quickTo(ring, 'y', { duration: 0.22, ease: 'power2.out' });
-
-    const spotX = spotlight ? gsap.quickTo(spotlight, 'x', { duration: 0.35, ease: 'power2.out' }) : null;
-    const spotY = spotlight ? gsap.quickTo(spotlight, 'y', { duration: 0.35, ease: 'power2.out' }) : null;
-
+    let targetX = -100;
+    let targetY = -100;
+    let ringX = -100;
+    let ringY = -100;
+    let spotX = -100;
+    let spotY = -100;
     let isVisible = false;
-    let prevX = 0;
-    let prevY = 0;
+    let animationFrameId: number;
+    let isPressed = false;
+    let currentState: 'default' | 'hover' | 'media' | 'text' = 'default';
+
+    // Physics Lerp Loop: Locked 60fps/120fps hardware composite
+    const render = () => {
+      if (isVisible) {
+        // Trailing ring physics lerp (smooth 0.18 spring factor)
+        const ringLerp = 0.18;
+        ringX += (targetX - ringX) * ringLerp;
+        ringY += (targetY - ringY) * ringLerp;
+
+        // Ambient spotlight lazy drift lerp
+        const spotLerp = 0.08;
+        spotX += (targetX - spotX) * spotLerp;
+        spotY += (targetY - spotY) * spotLerp;
+
+        // Momentum vector calculation
+        const dx = targetX - ringX;
+        const dy = targetY - ringY;
+        const dist = Math.hypot(dx, dy);
+        const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+        // Velocity-based squash & stretch (only active in default or hover state)
+        let stretch = 0;
+        let rotation = 0;
+        if (currentState === 'default' && dist > 2) {
+          stretch = Math.min(dist * 0.004, 0.35);
+          rotation = angle;
+        }
+
+        const scaleModifier = isPressed ? 0.8 : 1;
+
+        ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) translate(-50%, -50%) rotate(${rotation}deg) scale(${
+          (1 + stretch) * scaleModifier
+        }, ${(1 - stretch * 0.7) * scaleModifier})`;
+
+        if (spotlight) {
+          spotlight.style.transform = `translate3d(${spotX}px, ${spotY}px, 0) translate(-50%, -50%)`;
+        }
+      }
+
+      animationFrameId = requestAnimationFrame(render);
+    };
+
+    animationFrameId = requestAnimationFrame(render);
 
     const onMouseMove = (e: MouseEvent) => {
-      const { clientX: x, clientY: y } = e;
+      targetX = e.clientX;
+      targetY = e.clientY;
+
+      // 0ms Instant Laser Reticle (Instantaneous hardware coordinate)
+      dot.style.transform = `translate3d(${targetX}px, ${targetY}px, 0) translate(-50%, -50%)`;
 
       if (!isVisible) {
-        gsap.to([dot, ring], { opacity: 1, duration: 0.25, overwrite: 'auto' });
-        if (spotlight) gsap.to(spotlight, { opacity: 1, duration: 0.35, overwrite: 'auto' });
         isVisible = true;
+        ringX = targetX;
+        ringY = targetY;
+        spotX = targetX;
+        spotY = targetY;
+        dot.style.opacity = '1';
+        ring.style.opacity = '1';
+        if (spotlight) spotlight.style.opacity = '1';
       }
+    };
 
-      // Update positions
-      dotX(x);
-      dotY(y);
-      ringX(x);
-      ringY(y);
-      if (spotX && spotY) {
-        spotX(x);
-        spotY(y);
+    const updateCursorState = (state: 'default' | 'hover' | 'media' | 'text', text: string = '') => {
+      if (currentState === state && (!label || label.textContent === text)) return;
+      currentState = state;
+      ring.setAttribute('data-cursor-state', state);
+
+      if (label) {
+        label.textContent = text;
+        label.style.display = text ? 'block' : 'none';
       }
-
-      // Velocity calculation for dynamic rotation and squash & stretch
-      const deltaX = x - prevX;
-      const deltaY = y - prevY;
-      const velocity = Math.min(Math.hypot(deltaX, deltaY), 35);
-      const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
-
-      if (velocity > 3) {
-        gsap.to(ring, {
-          rotation: angle,
-          scaleX: 1 + velocity * 0.008,
-          scaleY: Math.max(0.78, 1 - velocity * 0.006),
-          duration: 0.15,
-          ease: 'power1.out',
-          overwrite: 'auto',
-        });
-      } else {
-        gsap.to(ring, {
-          rotation: 0,
-          scaleX: 1,
-          scaleY: 1,
-          duration: 0.2,
-          ease: 'power2.out',
-          overwrite: 'auto',
-        });
-      }
-
-      prevX = x;
-      prevY = y;
     };
 
-    const onMouseLeave = () => {
-      gsap.to([dot, ring], { opacity: 0, duration: 0.3 });
-      if (spotlight) gsap.to(spotlight, { opacity: 0, duration: 0.3 });
-      isVisible = false;
-    };
-
-    const onMouseDown = () => {
-      gsap.to(ring, { scale: 0.75, duration: 0.1, ease: 'power2.inOut' });
-      gsap.to(dot, { scale: 1.6, duration: 0.1, ease: 'power2.inOut' });
-    };
-
-    const onMouseUp = () => {
-      gsap.to(ring, { scale: 1, duration: 0.2, ease: 'back.out(2)' });
-      gsap.to(dot, { scale: 1, duration: 0.2, ease: 'power2.out' });
-    };
-
-    // Context Detection via Event Delegation
     const onMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
       if (!target) return;
@@ -126,130 +123,125 @@ export default function SmoothCursor() {
       if (cursorTarget) {
         const type = cursorTarget.getAttribute('data-cursor') || '';
         if (type === 'play') {
-          setCursorText('PLAY');
-          setCursorState('media');
+          updateCursorState('media', 'PLAY');
           return;
         }
         if (type === 'explore' || type === 'view') {
-          setCursorText('VIEW');
-          setCursorState('media');
+          updateCursorState('media', 'VIEW');
           return;
         }
         if (type === 'flip') {
-          setCursorText('FLIP');
-          setCursorState('media');
+          updateCursorState('media', 'FLIP');
           return;
         }
       }
 
-      // Check for video containers or interactive players
-      const videoContainer = target.closest('video, .hero-video-container');
-      if (videoContainer) {
-        setCursorText('SOUND');
-        setCursorState('media');
+      // Video elements
+      if (target.closest('video, .hero-video-container')) {
+        updateCursorState('media', 'SOUND');
         return;
       }
 
-      // Check for text inputs
+      // Text input fields
       if (target.closest('input, textarea, [contenteditable="true"]')) {
-        setCursorText('');
-        setCursorState('text');
+        updateCursorState('text', '');
         return;
       }
 
-      // Check for interactive clickables (links, buttons, accordion headers)
+      // Interactive clickable elements (buttons, links, controls)
       if (
         target.closest(
           'a, button, [role="button"], [role="tab"], .cursor-pointer, input[type="submit"]'
         )
       ) {
-        setCursorText('');
-        setCursorState('hover');
+        updateCursorState('hover', '');
         return;
       }
 
-      // Default state
-      setCursorText('');
-      setCursorState('default');
+      // Default baseline
+      updateCursorState('default', '');
     };
 
-    const onScroll = () => {
-      if (!isVisible && dot && ring) {
-        gsap.to([dot, ring], { opacity: 1, duration: 0.2, overwrite: 'auto' });
-        if (spotlight) gsap.to(spotlight, { opacity: 1, duration: 0.3, overwrite: 'auto' });
-        isVisible = true;
-      }
+    const onMouseDown = () => {
+      isPressed = true;
+      dot.style.transform = `translate3d(${targetX}px, ${targetY}px, 0) translate(-50%, -50%) scale(1.6)`;
+    };
+
+    const onMouseUp = () => {
+      isPressed = false;
+      dot.style.transform = `translate3d(${targetX}px, ${targetY}px, 0) translate(-50%, -50%) scale(1)`;
+    };
+
+    const onMouseLeave = () => {
+      isVisible = false;
+      dot.style.opacity = '0';
+      ring.style.opacity = '0';
+      if (spotlight) spotlight.style.opacity = '0';
+    };
+
+    const onMouseEnter = (e: MouseEvent) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+      ringX = targetX;
+      ringY = targetY;
+      spotX = targetX;
+      spotY = targetY;
+      isVisible = true;
+      dot.style.opacity = '1';
+      ring.style.opacity = '1';
+      if (spotlight) spotlight.style.opacity = '1';
     };
 
     window.addEventListener('mousemove', onMouseMove, { passive: true });
     window.addEventListener('mouseover', onMouseOver, { passive: true });
-    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('mousedown', onMouseDown, { passive: true });
+    window.addEventListener('mouseup', onMouseUp, { passive: true });
     document.addEventListener('mouseleave', onMouseLeave);
-    window.addEventListener('mousedown', onMouseDown);
-    window.addEventListener('mouseup', onMouseUp);
+    document.addEventListener('mouseenter', onMouseEnter);
 
     return () => {
+      cancelAnimationFrame(animationFrameId);
       document.body.classList.remove('custom-cursor-enabled');
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseover', onMouseOver);
-      window.removeEventListener('scroll', onScroll);
-      document.removeEventListener('mouseleave', onMouseLeave);
       window.removeEventListener('mousedown', onMouseDown);
       window.removeEventListener('mouseup', onMouseUp);
+      document.removeEventListener('mouseleave', onMouseLeave);
+      document.removeEventListener('mouseenter', onMouseEnter);
     };
   }, []);
 
   return (
     <>
-      {/* ── 1. AMBIENT GLOW SPOTLIGHT ── */}
+      {/* ── 1. AMBIENT GLOW SPOTLIGHT (Photonic Trail) ── */}
       <div
         ref={spotlightRef}
         aria-hidden="true"
-        className="fixed top-0 left-0 w-[500px] h-[500px] rounded-full pointer-events-none z-[9990] opacity-0 hidden md:block will-change-transform transform-gpu"
+        className="fixed top-0 left-0 w-[480px] h-[480px] rounded-full pointer-events-none z-[9990] opacity-0 hidden md:block will-change-transform transform-gpu transition-opacity duration-300"
         style={{
           background:
-            'radial-gradient(circle, rgba(56, 189, 248, 0.05) 0%, rgba(255, 255, 255, 0.02) 30%, transparent 70%)',
+            'radial-gradient(circle, rgba(56, 189, 248, 0.06) 0%, rgba(255, 255, 255, 0.02) 35%, transparent 70%)',
         }}
       />
 
-      {/* ── 2. FLUID TRAILING RING ── */}
+      {/* ── 2. FLUID VELOCITY RING ── */}
       <div
         ref={ringRef}
+        data-cursor-state="default"
         aria-hidden="true"
-        className={`fixed top-0 left-0 pointer-events-none z-[9999] rounded-full flex items-center justify-center opacity-0 hidden md:flex will-change-transform transform-gpu transition-[width,height,background-color,border-color,box-shadow] duration-250 ease-out ${
-          cursorState === 'media'
-            ? 'w-20 h-20 bg-black/75 border border-cyan-400/80 shadow-[0_0_25px_rgba(34,211,238,0.4)] backdrop-blur-md'
-            : cursorState === 'hover'
-            ? 'w-14 h-14 bg-white/[0.08] border border-white/60 shadow-[0_0_20px_rgba(255,255,255,0.25)] backdrop-blur-[2px]'
-            : cursorState === 'text'
-            ? 'w-6 h-10 rounded-sm bg-transparent border-l-2 border-cyan-400'
-            : 'w-9 h-9 bg-transparent border border-white/30 shadow-[0_0_12px_rgba(255,255,255,0.1)]'
-        }`}
+        className="fixed top-0 left-0 pointer-events-none z-[9999] rounded-full flex items-center justify-center opacity-0 hidden md:flex will-change-transform transform-gpu cursor-ring-element"
       >
-        {/* Dynamic Context Monospace Label */}
-        {cursorText && (
-          <span
-            ref={labelRef}
-            className="text-[10px] font-mono font-bold tracking-widest text-cyan-300 uppercase animate-in fade-in zoom-in-75 duration-150 drop-shadow-[0_0_6px_rgba(34,211,238,0.8)]"
-          >
-            {cursorText}
-          </span>
-        )}
+        <span
+          ref={labelRef}
+          className="text-[10px] font-mono font-bold tracking-widest text-cyan-300 uppercase drop-shadow-[0_0_6px_rgba(34,211,238,0.8)] hidden select-none"
+        />
       </div>
 
-      {/* ── 3. PRECISION LASER RETICLE DOT ── */}
+      {/* ── 3. 0MS INSTANT LASER DOT RETICLE ── */}
       <div
         ref={dotRef}
         aria-hidden="true"
-        className={`fixed top-0 left-0 pointer-events-none z-[9999] rounded-full opacity-0 hidden md:block will-change-transform transform-gpu transition-[width,height,background-color,box-shadow,opacity] duration-150 ease-out ${
-          cursorState === 'media'
-            ? 'w-0 h-0 opacity-0'
-            : cursorState === 'hover'
-            ? 'w-2.5 h-2.5 bg-cyan-300 shadow-[0_0_10px_#22d3ee]'
-            : cursorState === 'text'
-            ? 'w-0 h-0 opacity-0'
-            : 'w-1.5 h-1.5 bg-white shadow-[0_0_8px_#ffffff]'
-        }`}
+        className="fixed top-0 left-0 pointer-events-none z-[9999] rounded-full opacity-0 hidden md:block will-change-transform transform-gpu cursor-dot-element"
       />
     </>
   );

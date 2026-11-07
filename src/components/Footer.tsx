@@ -71,6 +71,14 @@ export default function Footer() {
               Navigation
             </h3>
             <ul className="space-y-2.5 text-xs font-mono text-[#b4b4c6]">
+              <li>
+                <Link
+                  to="/services"
+                  className="hover:text-white text-[#38bdf8] transition-colors block font-semibold"
+                >
+                  All Services &amp; Pricing →
+                </Link>
+              </li>
               {[
                 { name: 'Solutions', id: 'solutions' },
                 { name: 'Motion Graphics', id: 'showreel' },

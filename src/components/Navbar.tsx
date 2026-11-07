@@ -86,7 +86,13 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav aria-label="Primary Navigation" className="hidden md:flex items-center gap-8 rounded-full px-6 py-2 bg-white/[0.03] border border-white/10 backdrop-blur-md">
+        <nav aria-label="Primary Navigation" className="hidden md:flex items-center gap-7 rounded-full px-6 py-2 bg-white/[0.03] border border-white/10 backdrop-blur-md">
+          <Link
+            to="/services"
+            className="text-xs uppercase tracking-widest font-mono text-[#38bdf8] hover:text-white transition-colors font-semibold"
+          >
+            Services
+          </Link>
           {[
             { name: 'Solutions', id: 'solutions' },
             { name: 'Motion', id: 'showreel' },
@@ -156,6 +162,13 @@ export default function Navbar() {
         }`}
       >
         <div className="px-6 pt-4 pb-8 bg-[#08080a] border-b border-white/10 shadow-2xl flex flex-col gap-4">
+          <Link
+            to="/services"
+            onClick={() => setMobileMenuOpen(false)}
+            className="text-left py-2 text-sm uppercase tracking-widest font-mono text-[#38bdf8] hover:text-white transition-colors font-semibold"
+          >
+            Services &amp; Pricing →
+          </Link>
           {[
             { name: 'Solutions', id: 'solutions' },
             { name: 'Motion', id: 'showreel' },
